@@ -14,8 +14,8 @@
     self=[super init];
     if(self){
         //generate random name
-        NSArray* l=[root objectForKey:lastnames];
-       // " "+root[@"lastnames"][arc4random()%200];
+        self.name=[NSString stringWithFormat:@"%@ %@",root[@"firstNames"][arc4random()%200]
+                      ,root[@"lastNames"][arc4random()%200] ];
         
         //generate random gender
         int gender=arc4random()%2;
