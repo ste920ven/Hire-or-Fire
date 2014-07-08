@@ -13,10 +13,13 @@
     Resume *_resumeNode;
     CCNode *_contentNode;
     CCNode *selectedObject;
+    CCLabelTTF *_name,*_address,*_birthdate;
     NSMutableArray *resumeArray;
     
     NSDictionary *root;
     NSDateComponents *components;
+    
+    
 }
 
 #pragma mark Setup
@@ -30,12 +33,16 @@
 //        Resume* r=[[Resume alloc] initWithCurrentDate:components rootDir:root];
 //        resumeArray[i]=r;
 //    }
+    [self newResume];
 }
 
 #pragma mark Animations Controls
 -(void)newResume{
     _resumeNode=[[Resume alloc] initWithCurrentDate:components rootDir:root];
     _resumeNode.position=ccp(1,1);
+    _name.string=_resumeNode.name;
+    _address.string=_resumeNode.address;
+    _birthdate.string=[NSString stringWithFormat:@"%@ %d, %d",_resumeNode.birthmonth,_resumeNode.birthdate,_resumeNode.birthyear];
     NSLog(@"new resume");
 }
 
