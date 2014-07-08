@@ -10,12 +10,23 @@
 
 @implementation Resume
 
+#define ADDRESS_NUM_SIZE 1500
+#define ADDRESS_BODY_SIZE 50
+#define ADDRESS_END_SIZE 3
+#define FIRSTNAME_SIZE 200
+#define LASTNAME_SIZE 200
+#define BIRTHDAY_RANGE 60
+
 -(id)initWithCurrentDate:(NSDateComponents*)now rootDir:(NSDictionary*)root{
     self=[super init];
     if(self){
+        //generate random address
+        self.address=[NSString stringWithFormat:@"%d %@ %@",arc4random()%ADDRESS_BODY_SIZE,root[@"Address1"][arc4random()%ADDRESS_BODY_SIZE]
+                      ,root[@"Address2"][arc4random()%ADDRESS_END_SIZE]];
+        
         //generate random name
-        self.name=[NSString stringWithFormat:@"%@ %@",root[@"firstNames"][arc4random()%200]
-                      ,root[@"lastNames"][arc4random()%200] ];
+        self.name=[NSString stringWithFormat:@"%@ %@",root[@"firstNames"][arc4random()%FIRSTNAME_SIZE]
+                      ,root[@"lastNames"][arc4random()%LASTNAME_SIZE] ];
         
         //generate random gender
         int gender=arc4random()%2;
@@ -24,7 +35,7 @@
         
         //generate random birthday
         NSInteger year = [now year];
-         self.birthyear=year-(arc4random()%60+5);
+         self.birthyear=year-(arc4random()%BIRTHDAY_RANGE+5);
         int month=arc4random()%12;
         switch(month){
             case 0:

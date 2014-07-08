@@ -14,24 +14,29 @@
     CCNode *_contentNode;
     CCNode *selectedObject;
     NSMutableArray *resumeArray;
+    
+    NSDictionary *root;
+    NSDateComponents *components;
 }
 
 #pragma mark Setup
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    resumeArray=[NSMutableArray array];
+    components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
-    NSDictionary *root = [NSDictionary dictionaryWithContentsOfFile:path];
-    for(int i=0;i<30;++i){
-        Resume* r=[[Resume alloc] initWithCurrentDate:components rootDir:root];
-        resumeArray[i]=r;
-    }
+    root = [NSDictionary dictionaryWithContentsOfFile:path];
+//    for(int i=0;i<30;++i){
+//        Resume* r=[[Resume alloc] initWithCurrentDate:components rootDir:root];
+//        resumeArray[i]=r;
+//    }
 }
 
 #pragma mark Animations Controls
 -(void)newResume{
-    _resumeNode=resumeArray.lastObject;
-    resumeArray.removeLastObject;
+    _resumeNode=[[Resume alloc] initWithCurrentDate:components rootDir:root];
+    _resumeNode.position=ccp(1,1);
+    NSLog(@"new resume");
 }
 
 #pragma mark Touch Controls
@@ -40,6 +45,8 @@
     if(CGRectContainsPoint([_resumeNode boundingBox], touchLocation)){//touch is in _resumeNode
         selectedObject=_resumeNode;
     }
+    else
+        selectedObject=nil;
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{

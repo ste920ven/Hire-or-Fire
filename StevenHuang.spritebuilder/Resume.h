@@ -10,6 +10,8 @@
 
 @interface Resume : CCNode
 
+
+@property (assign) bool correct;
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic) NSInteger birthdate;
 @property (nonatomic) NSString *birthmonth;
