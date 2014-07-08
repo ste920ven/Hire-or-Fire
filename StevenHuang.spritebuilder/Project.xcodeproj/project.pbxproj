@@ -10,7 +10,7 @@
 		682370761968F9DF00136283 /* Resume.m in Sources */ = {isa = PBXBuildFile; fileRef = 682370751968F9DF00136283 /* Resume.m */; };
 		6823707A1968F9F200136283 /* RuleBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 682370791968F9F200136283 /* RuleBook.m */; };
 		6823707D1968FA0500136283 /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 6823707C1968FA0500136283 /* Gameplay.m */; };
-		68653BA1196B357300BB994C /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68653BA0196B357300BB994C /* Property List.plist */; };
+		68653BA1196B357300BB994C /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68653BA0196B357300BB994C /* Data.plist */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -66,7 +66,7 @@
 		682370791968F9F200136283 /* RuleBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleBook.m; sourceTree = "<group>"; };
 		6823707B1968FA0500136283 /* Gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gameplay.h; sourceTree = "<group>"; };
 		6823707C1968FA0500136283 /* Gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gameplay.m; sourceTree = "<group>"; };
-		68653BA0196B357300BB994C /* Property List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
+		68653BA0196B357300BB994C /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
-				68653BA0196B357300BB994C /* Property List.plist */,
+				68653BA0196B357300BB994C /* Data.plist */,
 				B737893C1807616C0076A88C /* Source */,
 				B77F1B4617B978D7009739AE /* Resources */,
 				9222E2B918734FF800A246C7 /* libs */,
@@ -330,7 +330,7 @@
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
-				68653BA1196B357300BB994C /* Property List.plist in Resources */,
+				68653BA1196B357300BB994C /* Data.plist in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

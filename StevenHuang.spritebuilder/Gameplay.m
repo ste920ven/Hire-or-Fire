@@ -16,8 +16,16 @@
     NSMutableArray *resumeArray;
 }
 
+#pragma mark Setup
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
+    NSDictionary *root = [NSDictionary dictionaryWithContentsOfFile:path];
+    for(int i=0;i<30;++i){
+        Resume* r=[[Resume alloc] initWithCurrentDate:components rootDir:root];
+        resumeArray[i]=r;
+    }
 }
 
 #pragma mark Animations Controls

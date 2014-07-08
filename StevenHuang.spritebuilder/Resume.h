@@ -12,7 +12,11 @@
 
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic) NSInteger birthdate;
+@property (nonatomic) NSString *birthmonth;
+@property (nonatomic) NSInteger birthyear;
 @property (assign) bool male;
+@property (nonatomic) NSString * address;
 
+-(id)initWithCurrentDate:(NSDateComponents*)now rootDir:(NSDictionary*)root;
 
 @end
