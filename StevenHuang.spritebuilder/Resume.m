@@ -11,7 +11,7 @@
 @implementation Resume{
     NSDictionary* root;
     NSDateComponents* now;
-    CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel;
+    CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_bodyLabel;
 }
 
 #define ADDRESS_NUM_SIZE 1500
@@ -26,7 +26,6 @@
         self.totalCount=0;
         now=_now;
         root=_root;
-        [self createNew];
 }
 
 -(void)createDay:(int) maxDays{
@@ -34,6 +33,8 @@
 }
 
 -(void)createNew{
+    self.zOrder=1;
+    
     //increment total counter
     ++self.totalCount;
     

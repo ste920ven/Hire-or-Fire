@@ -13,11 +13,13 @@
 @implementation Gameplay{
     Resume *_resumeNode;
     RuleBook *_rulebookNode;
-    CCNode *_contentNode;
-    CCNode *selectedObject;
+    CCNode *_contentNode,*_readyNode;
     CCSprite *_clockhandSprite;
     NSMutableArray *documentArray;
     
+    bool ready;
+    CCNode *selectedObject;
+    int roundTime;
     NSDictionary *root;
     NSDateComponents *components;
 }
@@ -25,6 +27,9 @@
 #pragma mark Setup
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
+    
+    //set up variables
+    ready=false;
     documentArray=[NSMutableArray array];
     documentArray[0]=_rulebookNode;
     documentArray[1]=_resumeNode;
@@ -32,7 +37,6 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
     root = [NSDictionary dictionaryWithContentsOfFile:path][@"ResumeInfo"];
     [_resumeNode setup:components rootDir:root];
-    [self newResume];
 }
 
 #pragma mark Animations Controls
@@ -47,6 +51,12 @@
 #pragma mark Touch Controls
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:_contentNode];
+    if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
+        ready=true;
+        [self newResume];
+        [_readyNode removeFromParent];
+        return;
+    }
     selectedObject=nil;
     //item on top get priority
     for(CCNode* documentNode in documentArray){
