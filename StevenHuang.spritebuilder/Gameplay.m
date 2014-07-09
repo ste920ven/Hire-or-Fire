@@ -8,12 +8,14 @@
 
 #import "Gameplay.h"
 #import "Resume.h"
+#import "RuleBook.h"
 
 @implementation Gameplay{
     Resume *_resumeNode;
+    RuleBook *_rulebookNode;
     CCNode *_contentNode;
     CCNode *selectedObject;
-    NSMutableArray *resumeArray;
+    NSMutableArray *documentArray;
     
     NSDictionary *root;
     NSDateComponents *components;
@@ -22,7 +24,9 @@
 #pragma mark Setup
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
-    resumeArray=[NSMutableArray array];
+    documentArray=[NSMutableArray array];
+    documentArray[0]=_rulebookNode;
+    documentArray[1]=_resumeNode;
     components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
     root = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -32,18 +36,27 @@
 
 #pragma mark Animations Controls
 -(void)newResume{
-    NSLog(@"new resume");
     [_resumeNode createNew];
+}
+
+-(void)update:(CCTime)delta{
+    
 }
 
 #pragma mark Touch Controls
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:_contentNode];
-    if(CGRectContainsPoint([_resumeNode boundingBox], touchLocation)){//touch is in _resumeNode
-        selectedObject=_resumeNode;
+    selectedObject=nil;
+    //item on top get priority
+    for(CCNode* documentNode in documentArray){
+        if(CGRectContainsPoint([documentNode boundingBox], touchLocation)){
+            selectedObject=documentNode;
+            break;
+        }
     }
-    else
-        selectedObject=nil;
+    selectedObject.zOrder=1;
+    [documentArray removeObject:selectedObject];
+    [documentArray insertObject:selectedObject atIndex:0];
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
@@ -53,13 +66,15 @@
 }
 
 -(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
-    CGPoint touchLocation = [touch locationInNode:_contentNode];
-    if(touchLocation.x<=20 || touchLocation.x>_contentNode.contentSizeInPoints.width-20)
-        [self newResume];
+    if(selectedObject==_resumeNode){
+        CGPoint touchLocation = [touch locationInNode:_contentNode];
+        if(touchLocation.x<=20 || touchLocation.x>_contentNode.contentSizeInPoints.width-20)
+            [self newResume];
+    }
 }
 
 -(void) touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event{
-
+    
 }
 
 
