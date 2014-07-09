@@ -13,13 +13,10 @@
     Resume *_resumeNode;
     CCNode *_contentNode;
     CCNode *selectedObject;
-    CCLabelTTF *_name,*_address,*_birthdate;
     NSMutableArray *resumeArray;
     
     NSDictionary *root;
     NSDateComponents *components;
-    
-    
 }
 
 #pragma mark Setup
@@ -29,21 +26,14 @@
     components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
     root = [NSDictionary dictionaryWithContentsOfFile:path];
-//    for(int i=0;i<30;++i){
-//        Resume* r=[[Resume alloc] initWithCurrentDate:components rootDir:root];
-//        resumeArray[i]=r;
-//    }
+    [_resumeNode setup:components rootDir:root];
     [self newResume];
 }
 
 #pragma mark Animations Controls
 -(void)newResume{
-    _resumeNode=[[Resume alloc] initWithCurrentDate:components rootDir:root];
-    _resumeNode.position=ccp(1,1);
-    _name.string=_resumeNode.name;
-    _address.string=_resumeNode.address;
-    _birthdate.string=[NSString stringWithFormat:@"%@ %d, %d",_resumeNode.birthmonth,_resumeNode.birthdate,_resumeNode.birthyear];
     NSLog(@"new resume");
+    [_resumeNode createNew];
 }
 
 #pragma mark Touch Controls
@@ -58,7 +48,8 @@
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:_contentNode];
-    selectedObject.position=touchLocation;
+    CGPoint newLocation = ccp(touchLocation.x/_contentNode.contentSizeInPoints.width,touchLocation.y/_contentNode.contentSizeInPoints.height);
+    selectedObject.position=newLocation;
 }
 
 -(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{

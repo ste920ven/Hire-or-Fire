@@ -18,7 +18,10 @@
 @property (nonatomic) NSInteger birthyear;
 @property (assign) bool male;
 @property (nonatomic) NSString * address;
+@property (nonatomic) NSInteger totalCount;
+@property (nonatomic) NSInteger correctCount;
 
--(id)initWithCurrentDate:(NSDateComponents*)now rootDir:(NSDictionary*)root;
+-(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root;
+-(void)createNew;
 
 @end
