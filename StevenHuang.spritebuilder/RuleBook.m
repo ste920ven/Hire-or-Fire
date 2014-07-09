@@ -8,6 +8,10 @@
 
 #import "RuleBook.h"
 
-@implementation RuleBook
+@implementation RuleBook{
+    CCLabelTTF *_rulesLabel;
+}
+
+
 
 @end

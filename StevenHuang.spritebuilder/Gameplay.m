@@ -15,6 +15,7 @@
     RuleBook *_rulebookNode;
     CCNode *_contentNode;
     CCNode *selectedObject;
+    CCSprite *_clockhandSprite;
     NSMutableArray *documentArray;
     
     NSDictionary *root;
@@ -29,7 +30,7 @@
     documentArray[1]=_resumeNode;
     components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
-    root = [NSDictionary dictionaryWithContentsOfFile:path];
+    root = [NSDictionary dictionaryWithContentsOfFile:path][@"ResumeInfo"];
     [_resumeNode setup:components rootDir:root];
     [self newResume];
 }
@@ -40,7 +41,7 @@
 }
 
 -(void)update:(CCTime)delta{
-    
+    _clockhandSprite.rotation++;
 }
 
 #pragma mark Touch Controls
