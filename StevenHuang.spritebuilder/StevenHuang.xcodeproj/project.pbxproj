@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6813F6EF196DBE400016CE5E /* LevelSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 6813F6EE196DBE400016CE5E /* LevelSelect.m */; };
+		6813F705196ED5000016CE5E /* ScoreScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 6813F704196ED5000016CE5E /* ScoreScreen.m */; };
 		682370761968F9DF00136283 /* Resume.m in Sources */ = {isa = PBXBuildFile; fileRef = 682370751968F9DF00136283 /* Resume.m */; };
 		6823707A1968F9F200136283 /* RuleBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 682370791968F9F200136283 /* RuleBook.m */; };
 		6823707D1968FA0500136283 /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 6823707C1968FA0500136283 /* Gameplay.m */; };
@@ -60,6 +62,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6813F6ED196DBE400016CE5E /* LevelSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelect.h; path = Source/LevelSelect.h; sourceTree = "<group>"; };
+		6813F6EE196DBE400016CE5E /* LevelSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelect.m; path = Source/LevelSelect.m; sourceTree = "<group>"; };
+		6813F703196ED5000016CE5E /* ScoreScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreScreen.h; sourceTree = "<group>"; };
+		6813F704196ED5000016CE5E /* ScoreScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreScreen.m; sourceTree = "<group>"; };
 		682370741968F9DF00136283 /* Resume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resume.h; sourceTree = "<group>"; };
 		682370751968F9DF00136283 /* Resume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resume.m; sourceTree = "<group>"; };
 		682370781968F9F200136283 /* RuleBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleBook.h; sourceTree = "<group>"; };
@@ -146,6 +152,10 @@
 				682370791968F9F200136283 /* RuleBook.m */,
 				6823707B1968FA0500136283 /* Gameplay.h */,
 				6823707C1968FA0500136283 /* Gameplay.m */,
+				6813F703196ED5000016CE5E /* ScoreScreen.h */,
+				6813F704196ED5000016CE5E /* ScoreScreen.m */,
+				6813F6ED196DBE400016CE5E /* LevelSelect.h */,
+				6813F6EE196DBE400016CE5E /* LevelSelect.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -363,6 +373,8 @@
 				6823707A1968F9F200136283 /* RuleBook.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
+				6813F705196ED5000016CE5E /* ScoreScreen.m in Sources */,
+				6813F6EF196DBE400016CE5E /* LevelSelect.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				6823707D1968FA0500136283 /* Gameplay.m in Sources */,
 			);

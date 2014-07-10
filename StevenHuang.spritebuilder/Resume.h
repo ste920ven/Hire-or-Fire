@@ -12,12 +12,6 @@
 
 
 @property (assign) bool correct;
-@property (nonatomic,strong) NSString *name;
-@property (nonatomic) NSInteger birthdate;
-@property (nonatomic) NSString *birthmonth;
-@property (nonatomic) NSInteger birthyear;
-@property (assign) bool male;
-@property (nonatomic) NSString * address;
 @property (nonatomic) NSInteger totalCount;
 @property (nonatomic) NSInteger correctCount;
 

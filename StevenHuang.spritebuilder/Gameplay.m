@@ -9,11 +9,18 @@
 #import "Gameplay.h"
 #import "Resume.h"
 #import "RuleBook.h"
+#import "ScoreScreen.h"
+
+typedef NS_ENUM(NSInteger, GameMechanics){
+    SIGNATURE_GAME,
+    ALWAYS_CORRRECT
+};
 
 @implementation Gameplay{
+    CCTimer *_timer;
     Resume *_resumeNode;
     RuleBook *_rulebookNode;
-    CCNode *_contentNode,*_readyNode;
+    CCNode *_contentNode,*_readyNode,*_scoreScreen;
     CCSprite *_clockhandSprite;
     NSMutableArray *documentArray;
     
@@ -25,10 +32,18 @@
 }
 
 #pragma mark Setup
+- (id)init{
+    self = [super init];
+    if (self) {
+        _timer = [[CCTimer alloc] init];
+    }
+    return self;
+}
+
+
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
     
-    //set up variables
     ready=false;
     documentArray=[NSMutableArray array];
     documentArray[0]=_rulebookNode;
@@ -45,7 +60,9 @@
 }
 
 -(void)update:(CCTime)delta{
-    _clockhandSprite.rotation++;
+    if(ready){
+        _clockhandSprite.rotation++;
+    }
 }
 
 #pragma mark Touch Controls
@@ -53,6 +70,7 @@
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
         ready=true;
+        [self schedule:@selector(endGame) interval:3.f];
         [self newResume];
         [_readyNode removeFromParent];
         return;
@@ -66,8 +84,10 @@
         }
     }
     selectedObject.zOrder=1;
+    if(selectedObject!=nil){
     [documentArray removeObject:selectedObject];
     [documentArray insertObject:selectedObject atIndex:0];
+    }
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
@@ -88,6 +108,14 @@
     
 }
 
+-(void) endGame{
+    ScoreScreen* screen = (ScoreScreen*)[CCBReader loadAsScene:@"screens/scoreScreen"];
+    screen.positionType = CCPositionTypeNormalized;
+    screen.position = ccp(0.5, 0.5);
+    screen.zOrder = INT_MAX;
+    [_contentNode addChild:screen];
+    ready=false;
+}
 
 
 @end
