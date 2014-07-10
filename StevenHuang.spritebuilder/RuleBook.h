@@ -8,6 +8,21 @@
 
 #import "CCNode.h"
 
+typedef NS_ENUM(NSInteger, RuleType){
+    YOUNGAGE,
+    OLDAGE,
+    NAME,
+    ADDRESS,
+    EDUCATION,
+    PHONE,
+    EXPERIENCE
+};
+
+
 @interface RuleBook : CCNode
 
+@property (nonatomic,strong) NSArray* Leveldata;
+
+
+-(void)createRulesWithLevel:(int)level;
 @end

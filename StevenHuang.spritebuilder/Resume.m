@@ -13,6 +13,7 @@
     NSString *education;
     NSDictionary *experience;
     
+    NSInteger age;
     NSString *name;
     NSInteger birthdate;
     NSString *birthmonth;
@@ -32,10 +33,10 @@
 #define BIRTHDAY_RANGE 60
 
 -(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root{
-        self.correctCount=0;
-        self.totalCount=0;
-        now=_now;
-        root=_root;
+    self.correctCount=0;
+    self.totalCount=0;
+    now=_now;
+    root=_root;
 }
 
 -(void)createDay:(int) maxDays{
@@ -49,20 +50,20 @@
     ++self.totalCount;
     
     //generate random phone number
-    phoneNumber=[NSString stringWithFormat:@"%d-%d-%d",arc4random()%1000,arc4random()%1000,arc4random()%10000];
+    phoneNumber=[NSString stringWithFormat:@"%d-%d-%d",arc4random_uniform(1000),arc4random()%1000,arc4random()%10000];
     
     //generate random address
     address=[NSString stringWithFormat:@"%d %@ %@",arc4random()%ADDRESS_NUM_SIZE+1,root[@"Address1"][arc4random()%ADDRESS_BODY_SIZE]
-                  ,root[@"Address2"][arc4random()%ADDRESS_END_SIZE]];
+             ,root[@"Address2"][arc4random()%ADDRESS_END_SIZE]];
     
     //generate random name
     name=[NSString stringWithFormat:@"%@ %@",root[@"firstNames"][arc4random()%FIRSTNAME_SIZE]
-               ,root[@"lastNames"][arc4random()%LASTNAME_SIZE] ];
+          ,root[@"lastNames"][arc4random()%LASTNAME_SIZE] ];
     
-//    //generate random gender
-//    int gender=arc4random()%2;
-//    if(gender)
-//        self.male=true;
+    //    //generate random gender
+    //    int gender=arc4random()%2;
+    //    if(gender)
+    //        self.male=true;
     
     //generate random birthday
     NSInteger year = [now year];
@@ -118,6 +119,14 @@
             [self createDay:31];
             break;
     }
+    
+    //calculate age
+    age=year-birthyear;
+    if([now month]==month+1){
+        if([now day]<birthdate)
+            --age;
+    }else if([now month]<month)
+        --age;
     
     //display all info
     _birthdateLabel.string=[NSString stringWithFormat:@"%@ %d, %d",birthmonth,birthdate,birthyear];

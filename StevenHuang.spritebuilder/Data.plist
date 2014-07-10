@@ -4,12 +4,20 @@
 <dict>
 	<key>Levels</key>
 	<array>
-		<array/>
+		<dict>
+			<key>718</key>
+			<integer>5</integer>
+			<key>18</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>ResumeInfo</key>
 	<dict>
 		<key>Experiences</key>
-		<dict/>
+		<dict>
+			<key>New item</key>
+			<array/>
+		</dict>
 		<key>Address2</key>
 		<array>
 			<string>St</string>

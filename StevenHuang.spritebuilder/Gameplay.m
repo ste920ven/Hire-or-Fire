@@ -24,9 +24,10 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CCSprite *_clockhandSprite;
     NSMutableArray *documentArray;
     
+    
     bool ready;
     CCNode *selectedObject;
-    int roundTime;
+    int roundTime,level;
     NSDictionary *root;
     NSDateComponents *components;
 }
@@ -50,8 +51,11 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     documentArray[1]=_resumeNode;
     components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
-    root = [NSDictionary dictionaryWithContentsOfFile:path][@"ResumeInfo"];
-    [_resumeNode setup:components rootDir:root];
+    root = [NSDictionary dictionaryWithContentsOfFile:path];
+    NSDictionary* resumeInfo= root[@"ResumeInfo"];
+    [_resumeNode setup:components rootDir:resumeInfo];
+    _rulebookNode.Leveldata=root[@"Levels"];
+    [_rulebookNode createRulesWithLevel:0];
 }
 
 #pragma mark Animations Controls
