@@ -55,6 +55,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     NSDictionary* resumeInfo= root[@"ResumeInfo"];
     [_resumeNode setup:components rootDir:resumeInfo];
     _rulebookNode.Leveldata=root[@"Levels"];
+#pragma mark TODO change to loading levels
     [_rulebookNode createRulesWithLevel:0];
 }
 
@@ -74,7 +75,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
         ready=true;
-        [self schedule:@selector(endGame) interval:3.f];
+        [self schedule:@selector(endGame) interval:240.f];
         [self newResume];
         [_readyNode removeFromParent];
         return;

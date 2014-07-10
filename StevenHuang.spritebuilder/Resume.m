@@ -22,7 +22,7 @@
     
     NSDictionary* root;
     NSDateComponents* now;
-    CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_bodyLabel,*_phoneNumberLabel,*_experiencesLabel;
+    CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_phoneNumberLabel,*_experiencesLabel,*_educationLabel;
 }
 
 #define ADDRESS_NUM_SIZE 1500
@@ -31,6 +31,7 @@
 #define FIRSTNAME_SIZE 200
 #define LASTNAME_SIZE 200
 #define BIRTHDAY_RANGE 60
+#define SCHOOL_SIZE 14
 
 -(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root{
     self.correctCount=0;
@@ -48,6 +49,9 @@
     
     //increment total counter
     ++self.totalCount;
+    
+    //generate random school
+    education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
     
     //generate random phone number
     phoneNumber=[NSString stringWithFormat:@"%d-%d-%d",arc4random_uniform(1000),arc4random()%1000,arc4random()%10000];
@@ -132,6 +136,8 @@
     _birthdateLabel.string=[NSString stringWithFormat:@"%@ %d, %d",birthmonth,birthdate,birthyear];
     _nameLabel.string=name;
     _addressLabel.string=address;
+    _phoneNumberLabel.string=phoneNumber;
+    _educationLabel.string=education;
     
     //move new resume to position
     self.position=ccp(.6,.5);
