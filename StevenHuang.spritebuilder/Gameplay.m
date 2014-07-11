@@ -24,11 +24,11 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CCSprite *_clockhandSprite;
     NSMutableArray *documentArray;
     
-    
     bool ready,noBarActive;
     NSArray *noArray;
     CCNode *selectedObject;
-    int roundTime,level;
+    CGFloat roundTime;
+    int level, score;
     NSDictionary *root;
     NSDateComponents *components;
 }
@@ -46,6 +46,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
     
+    score=0;
     ready=false;
     _noBar.zOrder=INT_MAX;
     documentArray=[NSMutableArray array];
@@ -61,6 +62,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     [_rulebookNode createRulesWithLevel:0];
     
     [self setupNoOptions:3];
+    roundTime=120.f;
 }
 
 -(void)setupNoOptions:(int)num{
@@ -104,7 +106,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
         ready=true;
-        [self schedule:@selector(endGame) interval:60.f];
+        [self schedule:@selector(endGame) interval:roundTime];
         [self newResume];
         [_readyNode removeFromParent];
         return;
@@ -141,8 +143,12 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     if(selectedObject==_resumeNode){
         CGPoint touchLocation = [touch locationInNode:_contentNode];
         if(touchLocation.x<=20){
+            if(_resumeNode.correct==false)
+                ++score;
             [self newResume];
         }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-20){
+            if(_resumeNode.correct==true)
+                ++score;
             [self newResume];
         }
     }
@@ -155,10 +161,13 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 #pragma mark Game End
 
 -(void) endGame{
-    ScoreScreen* screen = (ScoreScreen*)[CCBReader loadAsScene:@"screens/scoreScreen"];
+    ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"screens/scoreScreen"];
     screen.positionType = CCPositionTypeNormalized;
     screen.position = ccp(0.5, 0.5);
     screen.zOrder = INT_MAX;
+    [screen setScreenWithScore:score message:@"Level Passed" total:_resumeNode.totalCount];
+#pragma mark TODO diasble touch in the back
+    
     [_contentNode addChild:screen];
     ready=false;
 }

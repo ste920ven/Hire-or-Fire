@@ -62,4 +62,10 @@
     return [CCBReader loadAsScene:@"MainScene"];
 }
 
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+
+
 @end

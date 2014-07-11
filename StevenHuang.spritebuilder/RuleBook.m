@@ -22,10 +22,10 @@
         [tmp appendFormat:@"%d. ",counter];
         switch ([self.rules[rule] intValue]) {
             case MAXAGE: //0
-                [tmp appendFormat:@"Must be younger than %@\n",rule];
+                [tmp appendFormat:@"Must be atleast %@ years old\n",rule];
                 break;
             case MINAGE: //1
-                [tmp appendFormat:@"Must be older than %@\n",rule];
+                [tmp appendFormat:@"Must be at most %@ years old\n",rule];
                 break;
             case NAME: //2
                 [tmp appendFormat:@""];

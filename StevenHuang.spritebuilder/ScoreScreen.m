@@ -10,7 +10,13 @@
 
 @implementation ScoreScreen{
     
-    
+    CCLabelTTF *_moneyLabel,*_moneyEarnedLabel,*_scoreLabel,*_messageLabel,*_totalLabel;
+}
+
+-(void)setScreenWithScore:(int)score message:(NSString*)msg total:(int)total{
+    _messageLabel.string=msg;
+    _scoreLabel.string=[NSString stringWithFormat:@"%d",score];
+    _totalLabel.string=[NSString stringWithFormat:@"%d",total];
 }
 
 

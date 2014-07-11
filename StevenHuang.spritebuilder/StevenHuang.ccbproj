@@ -84,8 +84,6 @@
 		<dict/>
 		<key>StevenHuangResources</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>

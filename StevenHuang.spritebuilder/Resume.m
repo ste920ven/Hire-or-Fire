@@ -13,7 +13,6 @@
     NSString *phoneNumber;
     NSString *education;
     NSDictionary *experience;
-    
     NSInteger age;
     NSString *name;
     NSInteger birthdate;
@@ -21,6 +20,7 @@
     NSInteger birthyear;
     NSString * address;
     
+    int correctFactor;
     RuleBook * rulebook;
     NSDictionary* root;
     NSDateComponents* now;
@@ -36,6 +36,10 @@
 #define SCHOOL_SIZE 14
 
 -(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root rules:(CCNode *)_rules{
+    
+#pragma mark TODO temp
+    correctFactor=10000;
+    
     self.correctCount=0;
     self.totalCount=0;
     now=_now;
@@ -44,7 +48,7 @@
 }
 
 -(void)createDay:(int) maxDays{
-    birthdate=arc4random()%maxDays+1;
+    birthdate=arc4random_uniform(maxDays+1);
 }
 
 -(void)createNew{
@@ -57,25 +61,26 @@
     education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
     
     //generate random phone number
-    phoneNumber=[NSString stringWithFormat:@"%d-%d-%d",arc4random_uniform(1000),arc4random()%1000,arc4random()%10000];
+    
+    phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
     
     //generate random address
-    address=[NSString stringWithFormat:@"%d %@ %@",arc4random()%ADDRESS_NUM_SIZE+1,root[@"Address1"][arc4random()%ADDRESS_BODY_SIZE]
-             ,root[@"Address2"][arc4random()%ADDRESS_END_SIZE]];
+    address=[NSString stringWithFormat:@"%d %@ %@",arc4random_uniform(ADDRESS_NUM_SIZE+1),root[@"Address1"][arc4random_uniform(ADDRESS_BODY_SIZE)]
+             ,root[@"Address2"][arc4random_uniform(ADDRESS_END_SIZE)]];
     
     //generate random name
-    name=[NSString stringWithFormat:@"%@ %@",root[@"firstNames"][arc4random()%FIRSTNAME_SIZE]
-          ,root[@"lastNames"][arc4random()%LASTNAME_SIZE] ];
+    name=[NSString stringWithFormat:@"%@ %@",root[@"firstNames"][arc4random_uniform(FIRSTNAME_SIZE)]
+          ,root[@"lastNames"][arc4random_uniform(LASTNAME_SIZE)] ];
     
     //    //generate random gender
-    //    int gender=arc4random()%2;
+    //    int gender=arc4random_uniform()%2;
     //    if(gender)
     //        self.male=true;
     
     //generate random birthday
     NSInteger year = [now year];
-    birthyear=year-(arc4random()%BIRTHDAY_RANGE+5);
-    int month=arc4random()%12;
+    birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE+5));
+    int month=arc4random_uniform(12);
     switch(month){
         case 0:
             birthmonth=@"January";
@@ -135,15 +140,40 @@
     }else if([now month]<month)
         --age;
     
+    //choose if resume will be correct or incorrect
+    if(arc4random_uniform(10000)>correctFactor){
+        self.correct=false;
+    }else{
+        self.correct=true;
+        ++self.correctCount;
+    }
+    
     //apply rules
-    for(NSString* rule in rulebook.rules)
+    int wrongRuleIndex;
+    if(self.correct)
+        wrongRuleIndex=INT_MAX;
+    else{
+        int numRules = [rulebook.rules count];
+        wrongRuleIndex = arc4random_uniform(numRules);
+    }
+    int i=0;
+    for(NSString* rule in rulebook.rules){
+        bool wrong=false;
+        if(i==wrongRuleIndex)
+            wrong=true;
         switch ([rulebook.rules[rule] intValue]) {
             case MAXAGE:
-                if(age>[rule intValue])
+                if(wrong){
+                    if(age>[rule intValue])
+                        birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
+                }else if(age>[rule intValue])
                     birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
                 break;
             case MINAGE:
-                if(age>[rule intValue])
+                if(wrong){
+                    if(age>[rule intValue])
+                        birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
+                }else if(age>[rule intValue])
                     birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
                 break;
             case NAME:
@@ -151,16 +181,24 @@
             case ADDRESS:
                 break  ;
             case EDUCATION:
-                if([education rangeOfString:rule].location == NSNotFound)
+                if(wrong){
+                    while([education rangeOfString:rule].location != NSNotFound)
+                        education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
+                }else if([education rangeOfString:rule].location == NSNotFound)
                     education=[NSString stringWithFormat:@"%@ Univeristy",rule];
                 break;
             case PHONE:
-                if([phoneNumber rangeOfString:rule].location != 0)
-                    phoneNumber=[NSString stringWithFormat:@"%@-%d-%d",rule,arc4random()%1000,arc4random()%10000];
+                if(wrong){
+                    while([phoneNumber rangeOfString:rule].location == 0)
+                        phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
+                }else if([phoneNumber rangeOfString:rule].location != 0)
+                    phoneNumber=[NSString stringWithFormat:@"%@-%.3d-%.4d",rule,arc4random_uniform(1000),arc4random_uniform(10000)];
                 break;
             case EXPERIENCE:
                 break;
         }
+        ++i;
+    }
     
     //display all info
     _birthdateLabel.string=[NSString stringWithFormat:@"%@ %d, %d",birthmonth,birthdate,birthyear];
@@ -168,6 +206,8 @@
     _addressLabel.string=address;
     _phoneNumberLabel.string=phoneNumber;
     _educationLabel.string=education;
+    
+    _experiencesLabel.string=[NSString stringWithFormat:@"%d",self.correct];
     
     //move new resume to position
     self.position=ccp(.6,.5);
