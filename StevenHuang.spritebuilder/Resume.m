@@ -153,51 +153,54 @@
     if(self.correct)
         wrongRuleIndex=INT_MAX;
     else{
-        int numRules = [rulebook.rules count];
+        int numRules = [rulebook.rules count];//counts keys
         wrongRuleIndex = arc4random_uniform(numRules);
     }
     int i=0;
-    for(NSString* rule in rulebook.rules){
+    for(NSString* ruleType in rulebook.rules){
         bool wrong=false;
         if(i==wrongRuleIndex)
             wrong=true;
-        switch ([rulebook.rules[rule] intValue]) {
-            case MAXAGE:
-                if(wrong){
-                    if(age>[rule intValue])
-                        birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
-                }else if(age>[rule intValue])
-                    birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
-                break;
-            case MINAGE:
-                if(wrong){
-                    if(age>[rule intValue])
-                        birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
-                }else if(age>[rule intValue])
-                    birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
-                break;
-            case NAME:
-                break;
-            case ADDRESS:
-                break  ;
-            case EDUCATION:
-                if(wrong){
-                    while([education rangeOfString:rule].location != NSNotFound)
-                        education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
-                }else if([education rangeOfString:rule].location == NSNotFound)
-                    education=[NSString stringWithFormat:@"%@ Univeristy",rule];
-                break;
-            case PHONE:
-                if(wrong){
-                    while([phoneNumber rangeOfString:rule].location == 0)
-                        phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
-                }else if([phoneNumber rangeOfString:rule].location != 0)
-                    phoneNumber=[NSString stringWithFormat:@"%@-%.3d-%.4d",rule,arc4random_uniform(1000),arc4random_uniform(10000)];
-                break;
-            case EXPERIENCE:
-                break;
+        NSArray* rule=rulebook.rules[ruleType];
+        for(NSString* item in rule){
+            switch ([ruleType intValue]) {
+                case MAXAGE:
+                    if(wrong){
+                        if(age>[item intValue])
+                            birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[item intValue]-5)+[item intValue]);
+                    }else if(age>[item intValue])
+                        birthyear=year-(arc4random_uniform([item intValue]-5)+5);
+                    break;
+                case MINAGE:
+                    if(wrong){
+                        if(age>[item intValue])
+                            birthyear=year-(arc4random_uniform([item intValue]-5)+5);
+                    }else if(age>[item intValue])
+                        birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[item intValue]-5)+[item intValue]);
+                    break;
+                case NAME:
+                    break;
+                case ADDRESS:
+                    break  ;
+                case EDUCATION:
+                    if(wrong){
+                        while([education rangeOfString:item].location != NSNotFound)
+                            education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
+                    }else if([education rangeOfString:item].location == NSNotFound)
+                        education=[NSString stringWithFormat:@"%@ Univeristy",item];
+                    break;
+                case PHONE:
+                    if(wrong){
+                        while([phoneNumber rangeOfString:item].location == 0)
+                            phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
+                    }else if([phoneNumber rangeOfString:item].location != 0)
+                        phoneNumber=[NSString stringWithFormat:@"%@-%.3d-%.4d",item,arc4random_uniform(1000),arc4random_uniform(10000)];
+                    break;
+                case EXPERIENCE:
+                    break;
+            }
+            ++i;
         }
-        ++i;
     }
     
     //display all info

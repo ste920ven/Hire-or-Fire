@@ -17,31 +17,39 @@
     int counter=0;
     NSMutableString *tmp =[NSMutableString string];
     self.rules=self.Leveldata[level];
-    for (NSString* rule in self.rules){
+    for (NSString* ruleType in self.rules){
         counter++;
         [tmp appendFormat:@"%d. ",counter];
-        switch ([self.rules[rule] intValue]) {
+        NSArray* rule=self.rules[ruleType];
+        switch ([ruleType intValue]) {
             case MAXAGE: //0
-                [tmp appendFormat:@"Must be atleast %@ years old\n",rule];
-                break;
+                for(NSObject* item in rule){
+                    [tmp appendFormat:@"Must be atleast %@ years old\n",item];
+                }break;
             case MINAGE: //1
-                [tmp appendFormat:@"Must be at most %@ years old\n",rule];
-                break;
+                for(NSObject* item in rule){
+                    [tmp appendFormat:@"Must be at most %@ years old\n",item];
+                }break;
             case NAME: //2
-                [tmp appendFormat:@""];
-                break;
+                for(NSObject* item in rule){
+                    [tmp appendFormat:@""];
+                }break;
             case ADDRESS: //3
-                [tmp appendFormat:@""];
-                break;
+                for(NSObject* item in rule){
+                    [tmp appendFormat:@""];
+                }break;
             case EDUCATION: //4
-                [tmp appendFormat:@"Must have gone to %@\n",rule];
-                break;
+                for(NSObject* item in rule){
+                    [tmp appendFormat:@"Must have gone to %@\n",item];
+                }break;
             case PHONE: //5
-                [tmp appendFormat:@"Must be from this areacode (%@)\n",rule];
-                break;
+                for(NSObject* item in rule){
+                    [tmp appendFormat:@"Must be from this areacode (%@)\n",item];
+                }break;
             case EXPERIENCE: //6
-                [tmp appendFormat:@""];
-                break;
+                for(NSObject* item in rule){
+                    [tmp appendFormat:@""];
+                }break;
         }
     }
     _rulesLabel.string=tmp;

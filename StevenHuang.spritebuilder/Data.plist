@@ -5,20 +5,20 @@
 	<key>Levels</key>
 	<array>
 		<dict>
-			<key>718</key>
-			<integer>5</integer>
-			<key>18</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
 			<key>0</key>
 			<array>
-				<integer>18</integer>
+				<string>18</string>
 			</array>
 			<key>5</key>
 			<array>
-				<integer>718</integer>
+				<string>718</string>
 			</array>
+		</dict>
+		<dict>
+			<key>718</key>
+			<string>5</string>
+			<key>18</key>
+			<string>0</string>
 		</dict>
 	</array>
 	<key>ResumeInfo</key>
