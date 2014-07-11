@@ -10,21 +10,21 @@
 
 @implementation RuleBook{
     CCLabelTTF *_rulesLabel;
-    NSDictionary *rules;
 }
 
 -(void)createRulesWithLevel:(int)level{
+#pragma mark TODO do not pass all level data
     int counter=0;
-    NSMutableString *tmp=[NSMutableString string];
-    rules=self.Leveldata[level];
-    for (NSString* rule in rules){
+    NSMutableString *tmp =[NSMutableString string];
+    self.rules=self.Leveldata[level];
+    for (NSString* rule in self.rules){
         counter++;
         [tmp appendFormat:@"%d. ",counter];
-        switch ([rules[rule] intValue]) {
-            case YOUNGAGE: //0
+        switch ([self.rules[rule] intValue]) {
+            case MAXAGE: //0
                 [tmp appendFormat:@"Must be younger than %@\n",rule];
                 break;
-            case OLDAGE: //1
+            case MINAGE: //1
                 [tmp appendFormat:@"Must be older than %@\n",rule];
                 break;
             case NAME: //2

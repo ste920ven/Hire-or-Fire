@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68103C361970185E00D92DBD /* GameplayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68103C351970185E00D92DBD /* GameplayManager.m */; };
 		6813F6EF196DBE400016CE5E /* LevelSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 6813F6EE196DBE400016CE5E /* LevelSelect.m */; };
 		6813F705196ED5000016CE5E /* ScoreScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 6813F704196ED5000016CE5E /* ScoreScreen.m */; };
 		682370761968F9DF00136283 /* Resume.m in Sources */ = {isa = PBXBuildFile; fileRef = 682370751968F9DF00136283 /* Resume.m */; };
@@ -62,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		68103C341970185E00D92DBD /* GameplayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayManager.h; sourceTree = "<group>"; };
+		68103C351970185E00D92DBD /* GameplayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayManager.m; sourceTree = "<group>"; };
 		6813F6ED196DBE400016CE5E /* LevelSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelect.h; path = Source/LevelSelect.h; sourceTree = "<group>"; };
 		6813F6EE196DBE400016CE5E /* LevelSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelect.m; path = Source/LevelSelect.m; sourceTree = "<group>"; };
 		6813F703196ED5000016CE5E /* ScoreScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreScreen.h; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				B7378993180767190076A88C /* MainScene.m */,
 				682370741968F9DF00136283 /* Resume.h */,
 				682370751968F9DF00136283 /* Resume.m */,
+				68103C341970185E00D92DBD /* GameplayManager.h */,
+				68103C351970185E00D92DBD /* GameplayManager.m */,
 				682370781968F9F200136283 /* RuleBook.h */,
 				682370791968F9F200136283 /* RuleBook.m */,
 				6823707B1968FA0500136283 /* Gameplay.h */,
@@ -373,6 +378,7 @@
 				6823707A1968F9F200136283 /* RuleBook.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
+				68103C361970185E00D92DBD /* GameplayManager.m in Sources */,
 				6813F705196ED5000016CE5E /* ScoreScreen.m in Sources */,
 				6813F6EF196DBE400016CE5E /* LevelSelect.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,

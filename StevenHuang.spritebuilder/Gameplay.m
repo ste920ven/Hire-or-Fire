@@ -20,12 +20,13 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CCTimer *_timer;
     Resume *_resumeNode;
     RuleBook *_rulebookNode;
-    CCNode *_contentNode,*_readyNode,*_scoreScreen;
+    CCNode *_contentNode,*_readyNode,*_scoreScreen,*_noBar;
     CCSprite *_clockhandSprite;
     NSMutableArray *documentArray;
     
     
-    bool ready;
+    bool ready,noBarActive;
+    NSArray *noArray;
     CCNode *selectedObject;
     int roundTime,level;
     NSDictionary *root;
@@ -46,6 +47,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     self.userInteractionEnabled = TRUE;
     
     ready=false;
+    _noBar.zOrder=INT_MAX;
     documentArray=[NSMutableArray array];
     documentArray[0]=_rulebookNode;
     documentArray[1]=_resumeNode;
@@ -53,10 +55,37 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
     root = [NSDictionary dictionaryWithContentsOfFile:path];
     NSDictionary* resumeInfo= root[@"ResumeInfo"];
-    [_resumeNode setup:components rootDir:resumeInfo];
+    [_resumeNode setup:components rootDir:resumeInfo rules:_rulebookNode];
     _rulebookNode.Leveldata=root[@"Levels"];
-#pragma mark TODO change to loading levels
+#pragma mark TODO change to loading levels and num of No
     [_rulebookNode createRulesWithLevel:0];
+    
+    [self setupNoOptions:3];
+}
+
+-(void)setupNoOptions:(int)num{
+    CCNode* no;
+    CCNode* no1;
+    CCNode* no2=[CCBReader load:@"No"];
+    switch (num) {
+        case 3:
+            no=[CCBReader load:@"No"];
+            [_noBar addChild:no];
+        case 2:
+            no1=[CCBReader load:@"No"];
+            [_noBar addChild:no1];
+        case 1:
+            [_noBar addChild:no2];
+            break;
+    }
+    noArray=[NSArray arrayWithObjects:no2,no1,no, nil];
+    int divisions = noArray.count+1;
+    float lastDivision = 0;
+    for(int i=0;i<noArray.count;++i){
+        lastDivision+=_noBar.contentSizeInPoints.height/divisions;
+        ((CCNode*)noArray[i]).position=ccp(5,lastDivision);
+        
+    }
 }
 
 #pragma mark Animations Controls
@@ -75,7 +104,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
         ready=true;
-        [self schedule:@selector(endGame) interval:240.f];
+        [self schedule:@selector(endGame) interval:60.f];
         [self newResume];
         [_readyNode removeFromParent];
         return;
@@ -99,19 +128,31 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     CGPoint newLocation = ccp(touchLocation.x/_contentNode.contentSizeInPoints.width,touchLocation.y/_contentNode.contentSizeInPoints.height);
     selectedObject.position=newLocation;
+    if(touchLocation.x<=20){
+        noBarActive=true;
+        _noBar.position=ccp(0,.05);
+    }else if(noBarActive){
+        _noBar.position=ccp(-80,.05);
+        noBarActive=false;
+    }
 }
 
 -(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
     if(selectedObject==_resumeNode){
         CGPoint touchLocation = [touch locationInNode:_contentNode];
-        if(touchLocation.x<=20 || touchLocation.x>_contentNode.contentSizeInPoints.width-20)
+        if(touchLocation.x<=20){
             [self newResume];
+        }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-20){
+            [self newResume];
+        }
+    }
+    if(noBarActive){
+        _noBar.position=ccp(-80,.05);
+        noBarActive=false;
     }
 }
 
--(void) touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event{
-    
-}
+#pragma mark Game End
 
 -(void) endGame{
     ScoreScreen* screen = (ScoreScreen*)[CCBReader loadAsScene:@"screens/scoreScreen"];
@@ -121,6 +162,5 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     [_contentNode addChild:screen];
     ready=false;
 }
-
 
 @end

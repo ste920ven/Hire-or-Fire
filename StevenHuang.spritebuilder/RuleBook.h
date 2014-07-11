@@ -9,8 +9,8 @@
 #import "CCNode.h"
 
 typedef NS_ENUM(NSInteger, RuleType){
-    YOUNGAGE,
-    OLDAGE,
+    MAXAGE,
+    MINAGE,
     NAME,
     ADDRESS,
     EDUCATION,
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, RuleType){
 @interface RuleBook : CCNode
 
 @property (nonatomic,strong) NSArray* Leveldata;
-
+@property (nonatomic,strong) NSDictionary *rules;
 
 -(void)createRulesWithLevel:(int)level;
 @end

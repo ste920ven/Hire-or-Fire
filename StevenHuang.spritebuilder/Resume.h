@@ -15,7 +15,7 @@
 @property (nonatomic) NSInteger totalCount;
 @property (nonatomic) NSInteger correctCount;
 
--(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root;
+-(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root rules:(CCNode *)_rules;
 -(void)createNew;
 
 @end

@@ -1420,7 +1420,7 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>100</real>
+					<real>300</real>
 					<real>200</real>
 					<integer>0</integer>
 					<integer>0</integer>
@@ -1451,6 +1451,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

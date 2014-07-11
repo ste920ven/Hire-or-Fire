@@ -7,6 +7,7 @@
 //
 
 #import "Resume.h"
+#import "RuleBook.h"
 
 @implementation Resume{
     NSString *phoneNumber;
@@ -20,6 +21,7 @@
     NSInteger birthyear;
     NSString * address;
     
+    RuleBook * rulebook;
     NSDictionary* root;
     NSDateComponents* now;
     CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_phoneNumberLabel,*_experiencesLabel,*_educationLabel;
@@ -33,11 +35,12 @@
 #define BIRTHDAY_RANGE 60
 #define SCHOOL_SIZE 14
 
--(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root{
+-(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root rules:(CCNode *)_rules{
     self.correctCount=0;
     self.totalCount=0;
     now=_now;
     root=_root;
+    rulebook=(RuleBook*)_rules;
 }
 
 -(void)createDay:(int) maxDays{
@@ -131,6 +134,33 @@
             --age;
     }else if([now month]<month)
         --age;
+    
+    //apply rules
+    for(NSString* rule in rulebook.rules)
+        switch ([rulebook.rules[rule] intValue]) {
+            case MAXAGE:
+                if(age>[rule intValue])
+                    birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
+                break;
+            case MINAGE:
+                if(age>[rule intValue])
+                    birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
+                break;
+            case NAME:
+                break;
+            case ADDRESS:
+                break  ;
+            case EDUCATION:
+                if([education rangeOfString:rule].location == NSNotFound)
+                    education=[NSString stringWithFormat:@"%@ Univeristy",rule];
+                break;
+            case PHONE:
+                if([phoneNumber rangeOfString:rule].location != 0)
+                    phoneNumber=[NSString stringWithFormat:@"%@-%d-%d",rule,arc4random()%1000,arc4random()%10000];
+                break;
+            case EXPERIENCE:
+                break;
+        }
     
     //display all info
     _birthdateLabel.string=[NSString stringWithFormat:@"%@ %d, %d",birthmonth,birthdate,birthyear];
