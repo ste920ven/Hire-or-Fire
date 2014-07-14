@@ -10,6 +10,7 @@
 #import "Resume.h"
 #import "RuleBook.h"
 #import "ScoreScreen.h"
+#import "GameplayManager.h"
 
 typedef NS_ENUM(NSInteger, GameMechanics){
     SIGNATURE_GAME,
@@ -32,7 +33,6 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     NSArray *noArray;
     CCNode *selectedObject;
     CGFloat roundTime;
-    int level;
     NSDictionary *root;
     NSDateComponents *components;
 }
@@ -62,10 +62,10 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     root = [NSDictionary dictionaryWithContentsOfFile:path];
     NSDictionary* resumeInfo= root[@"ResumeInfo"];
     [_resumeNode setup:components rootDir:resumeInfo rules:_rulebookNode];
-    _rulebookNode.Leveldata=root[@"Levels"];
-#pragma mark TODO change to loading levels and num of No
-    [_rulebookNode createRulesWithLevel:0];
+    _rulebookNode.Leveldata=root[@"Levels"][[GameplayManager sharedInstance].level];
+    [_rulebookNode createRulesWithLevel:[GameplayManager sharedInstance].level resumeData:resumeInfo];
     
+    #pragma mark TODO change to loading levels and num of No
     [self setupNoOptions:3];
     roundTime=60.f;
 }
@@ -109,7 +109,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 -(void)animateClock:(CGFloat)time{
-    if(framesForClockTick<=0){
+    if(framesForClockTick<=1){
         _clockhandSprite.rotation++;
         framesForClockTick=time/6;
     }else
@@ -169,6 +169,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
             if(_resumeNode.correct==true){
                 _resumeNode.passedCount++;
                 _resumeNode.correctCount++;
+                
             }
             [self newResume];
         }

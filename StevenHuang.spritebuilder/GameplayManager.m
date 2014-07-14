@@ -10,9 +10,24 @@
 
 @implementation GameplayManager
 
+static GameplayManager *sharedInstance = nil;
+
 +(instancetype)sharedInstance{
+    if(sharedInstance==nil){
+        sharedInstance = [[super alloc] init];
+    }
     
-    
+    return sharedInstance;
+}
+
+-(id)init{
+    if(self=[super init ]){
+        
+        
+        
+        
+    }
+    return self;
 }
 
 @end

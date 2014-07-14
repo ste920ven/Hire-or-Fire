@@ -7,7 +7,16 @@
 //
 
 #import "LevelSelect.h"
+#import "GameplayManager.h"
 
 @implementation LevelSelect
+
+
+
+-(void)play{
+    [GameplayManager sharedInstance].level=0;
+    CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene];
+}
 
 @end

@@ -12,6 +12,6 @@
 
 +(instancetype)sharedInstance;
 
-@property (nonatomic,assign) NSInteger idk;
+@property (nonatomic) NSInteger level;
 
 @end

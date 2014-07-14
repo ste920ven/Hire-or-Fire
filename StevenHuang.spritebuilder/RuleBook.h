@@ -24,5 +24,5 @@ typedef NS_ENUM(NSInteger, RuleType){
 @property (nonatomic,strong) NSArray* Leveldata;
 @property (nonatomic,strong) NSDictionary *rules;
 
--(void)createRulesWithLevel:(int)level;
+-(void)createRulesWithLevel:(int)level resumeData:(NSDictionary*)data;
 @end
