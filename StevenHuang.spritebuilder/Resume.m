@@ -213,7 +213,13 @@
     _experiencesLabel.string=[NSString stringWithFormat:@"%d",self.correct];
     
     //move new resume to position
-    self.position=ccp(.6,.5);
+    self.position=ccp(.6,1.5);
+    //CCActionDelay *delay = [CCActionDelay actionWithDuration:0.3f];
+	CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,.6)];
+	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
+	[self runAction:sequence];
+    
+    
     
 }
 

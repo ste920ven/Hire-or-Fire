@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CCSprite *_clockhandSprite;
     NSMutableArray *documentArray;
     
-    bool ready,noBarActive;
+    bool ready,noBarActive,gameOver;
     NSArray *noArray;
     CCNode *selectedObject;
     CGFloat roundTime;
@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     
     score=0;
     ready=false;
+    gameOver=false;
     _noBar.zOrder=INT_MAX;
     documentArray=[NSMutableArray array];
     documentArray[0]=_rulebookNode;
@@ -103,26 +104,28 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 
 #pragma mark Touch Controls
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
-    CGPoint touchLocation = [touch locationInNode:_contentNode];
-    if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
-        ready=true;
-        [self schedule:@selector(endGame) interval:roundTime];
-        [self newResume];
-        [_readyNode removeFromParent];
-        return;
-    }
-    selectedObject=nil;
-    //item on top get priority
-    for(CCNode* documentNode in documentArray){
-        if(CGRectContainsPoint([documentNode boundingBox], touchLocation)){
-            selectedObject=documentNode;
-            break;
+    if(!gameOver){
+        CGPoint touchLocation = [touch locationInNode:_contentNode];
+        if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
+            ready=true;
+            [self schedule:@selector(endGame) interval:roundTime];
+            [self newResume];
+            [_readyNode removeFromParent];
+            return;
         }
-    }
-    selectedObject.zOrder=1;
-    if(selectedObject!=nil){
-    [documentArray removeObject:selectedObject];
-    [documentArray insertObject:selectedObject atIndex:0];
+        selectedObject=nil;
+        //item on top get priority
+        for(CCNode* documentNode in documentArray){
+            if(CGRectContainsPoint([documentNode boundingBox], touchLocation)){
+                selectedObject=documentNode;
+                break;
+            }
+        }
+        selectedObject.zOrder=1;
+        if(selectedObject!=nil){
+            [documentArray removeObject:selectedObject];
+            [documentArray insertObject:selectedObject atIndex:0];
+        }
     }
 }
 
@@ -130,12 +133,14 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     CGPoint newLocation = ccp(touchLocation.x/_contentNode.contentSizeInPoints.width,touchLocation.y/_contentNode.contentSizeInPoints.height);
     selectedObject.position=newLocation;
-    if(touchLocation.x<=20){
-        noBarActive=true;
-        _noBar.position=ccp(0,.05);
-    }else if(noBarActive){
-        _noBar.position=ccp(-80,.05);
-        noBarActive=false;
+    if(selectedObject==_resumeNode){
+        if(touchLocation.x<=20){
+            noBarActive=true;
+            _noBar.position=ccp(0,.05);
+        }else if(noBarActive){
+            _noBar.position=ccp(-80,.05);
+            noBarActive=false;
+        }
     }
 }
 
@@ -161,6 +166,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 #pragma mark Game End
 
 -(void) endGame{
+    gameOver=true;
     ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"screens/scoreScreen"];
     screen.positionType = CCPositionTypeNormalized;
     screen.position = ccp(0.5, 0.5);
