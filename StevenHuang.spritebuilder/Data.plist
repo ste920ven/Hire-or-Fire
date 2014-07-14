@@ -34,7 +34,15 @@
 		</array>
 		<key>Experiences</key>
 		<dict>
-			<key>New item</key>
+			<key>Engineer</key>
+			<array/>
+			<key>Teacher</key>
+			<array/>
+			<key>Doctor</key>
+			<array>
+				<string></string>
+			</array>
+			<key>Training_Wheels</key>
 			<array/>
 		</dict>
 		<key>Address2</key>

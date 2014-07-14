@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, RuleType){
 
 @property (nonatomic,strong) NSArray* Leveldata;
 @property (nonatomic,strong) NSDictionary *rules;
+@property (nonatomic,strong) NSDictionary *specialRules;
 
 -(void)createRulesWithLevel:(int)level resumeData:(NSDictionary*)data;
 @end

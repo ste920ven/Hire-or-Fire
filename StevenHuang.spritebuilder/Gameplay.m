@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CGFloat roundTime;
     NSDictionary *root;
     NSDateComponents *components;
+    
+    CCScene *level;
 }
 
 #pragma mark Setup
@@ -68,6 +70,10 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     #pragma mark TODO change to loading levels and num of No
     [self setupNoOptions:3];
     roundTime=60.f;
+    
+#pragma mark Tutorial
+    level = [CCBReader loadAsScene:@"screens/Tutorial1"];
+    [_contentNode addChild:level];
 }
 
 -(void)setupNoOptions:(int)num{
@@ -125,6 +131,8 @@ typedef NS_ENUM(NSInteger, GameMechanics){
             ready=true;
             [self newResume];
             [_readyNode removeFromParent];
+#pragma mark TUTORIAL
+            [_contentNode removeChild:level];
             return;
         }
         selectedObject=nil;
