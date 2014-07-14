@@ -38,10 +38,11 @@
 -(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root rules:(CCNode *)_rules{
     
 #pragma mark TODO temp
-    correctFactor=10000;
+    correctFactor=5000;
     
     self.correctCount=0;
     self.totalCount=0;
+    self.passedCount=0;
     now=_now;
     root=_root;
     rulebook=(RuleBook*)_rules;

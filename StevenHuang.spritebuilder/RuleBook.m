@@ -24,11 +24,11 @@
         switch ([ruleType intValue]) {
             case MAXAGE: //0
                 for(NSObject* item in rule){
-                    [tmp appendFormat:@"Must be atleast %@ years old\n",item];
+                    [tmp appendFormat:@"Must be at most %@ years old\n",item];
                 }break;
             case MINAGE: //1
                 for(NSObject* item in rule){
-                    [tmp appendFormat:@"Must be at most %@ years old\n",item];
+                    [tmp appendFormat:@"Must be atleast %@ years old\n",item];
                 }break;
             case NAME: //2
                 for(NSObject* item in rule){

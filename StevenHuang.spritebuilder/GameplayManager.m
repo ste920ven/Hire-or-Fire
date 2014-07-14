@@ -10,4 +10,9 @@
 
 @implementation GameplayManager
 
++(instancetype)sharedInstance{
+    
+    
+}
+
 @end

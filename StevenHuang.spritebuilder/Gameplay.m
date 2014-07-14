@@ -17,18 +17,22 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 };
 
 @implementation Gameplay{
-    CCTimer *_timer;
+    //timer vars
+    int framesForClockTick,roundCounter;
+    
+    //spritebuilder vars
     Resume *_resumeNode;
     RuleBook *_rulebookNode;
     CCNode *_contentNode,*_readyNode,*_scoreScreen,*_noBar;
     CCSprite *_clockhandSprite;
+    CCLabelTTF *_currDateLabel;
     NSMutableArray *documentArray;
     
     bool ready,noBarActive,gameOver;
     NSArray *noArray;
     CCNode *selectedObject;
     CGFloat roundTime;
-    int level, score;
+    int level;
     NSDictionary *root;
     NSDateComponents *components;
 }
@@ -37,7 +41,6 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 - (id)init{
     self = [super init];
     if (self) {
-        _timer = [[CCTimer alloc] init];
     }
     return self;
 }
@@ -45,8 +48,8 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
-    
-    score=0;
+
+    roundCounter=0;
     ready=false;
     gameOver=false;
     _noBar.zOrder=INT_MAX;
@@ -54,6 +57,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     documentArray[0]=_rulebookNode;
     documentArray[1]=_resumeNode;
     components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    _currDateLabel.string=[NSString stringWithFormat:@"Today is %d/%d/%d",[components month],[components day],[components year]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
     root = [NSDictionary dictionaryWithContentsOfFile:path];
     NSDictionary* resumeInfo= root[@"ResumeInfo"];
@@ -63,7 +67,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     [_rulebookNode createRulesWithLevel:0];
     
     [self setupNoOptions:3];
-    roundTime=120.f;
+    roundTime=60.f;
 }
 
 -(void)setupNoOptions:(int)num{
@@ -98,8 +102,19 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 
 -(void)update:(CCTime)delta{
     if(ready){
-        _clockhandSprite.rotation++;
+        //clock
+        [self animateClock:roundTime];
+        [self endGame];
     }
+}
+
+-(void)animateClock:(CGFloat)time{
+    if(framesForClockTick<=0){
+        _clockhandSprite.rotation++;
+        framesForClockTick=time/6;
+    }else
+        --framesForClockTick;
+    
 }
 
 #pragma mark Touch Controls
@@ -108,7 +123,6 @@ typedef NS_ENUM(NSInteger, GameMechanics){
         CGPoint touchLocation = [touch locationInNode:_contentNode];
         if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
             ready=true;
-            [self schedule:@selector(endGame) interval:roundTime];
             [self newResume];
             [_readyNode removeFromParent];
             return;
@@ -149,11 +163,13 @@ typedef NS_ENUM(NSInteger, GameMechanics){
         CGPoint touchLocation = [touch locationInNode:_contentNode];
         if(touchLocation.x<=20){
             if(_resumeNode.correct==false)
-                ++score;
+                ++_resumeNode.correctCount;
             [self newResume];
         }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-20){
-            if(_resumeNode.correct==true)
-                ++score;
+            if(_resumeNode.correct==true){
+                _resumeNode.passedCount++;
+                _resumeNode.correctCount++;
+            }
             [self newResume];
         }
     }
@@ -166,16 +182,18 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 #pragma mark Game End
 
 -(void) endGame{
-    gameOver=true;
-    ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"screens/scoreScreen"];
-    screen.positionType = CCPositionTypeNormalized;
-    screen.position = ccp(0.5, 0.5);
-    screen.zOrder = INT_MAX;
-    [screen setScreenWithScore:score message:@"Level Passed" total:_resumeNode.totalCount];
-#pragma mark TODO diasble touch in the back
-    
-    [_contentNode addChild:screen];
-    ready=false;
+    if(roundCounter==roundTime*60){
+        NSLog([NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"money"]]);
+        gameOver=true;
+        ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"screens/scoreScreen"];
+        screen.positionType = CCPositionTypeNormalized;
+        screen.position = ccp(0.5, 0.5);
+        screen.zOrder = INT_MAX;
+        [screen setScreenWithScore:_resumeNode.passedCount message:@"Level Passed" total:_resumeNode.totalCount];
+        [_contentNode addChild:screen];
+        ready=false;
+    }else
+        roundCounter++;
 }
 
 @end

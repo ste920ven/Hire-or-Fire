@@ -12,6 +12,7 @@
 
 
 @property (assign) bool correct;
+@property (nonatomic) NSInteger passedCount;
 @property (nonatomic) NSInteger totalCount;
 @property (nonatomic) NSInteger correctCount;
 
