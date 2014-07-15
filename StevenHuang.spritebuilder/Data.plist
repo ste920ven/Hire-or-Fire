@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LevelsSpecial</key>
+	<array/>
 	<key>Levels</key>
 	<array>
 		<array>
@@ -34,13 +36,21 @@
 		</array>
 		<key>Experiences</key>
 		<dict>
-			<key>Engineer</key>
-			<array/>
-			<key>Teacher</key>
-			<array/>
-			<key>Doctor</key>
+			<key>Medical</key>
 			<array>
-				<string></string>
+				<string>Doctor</string>
+				<string>Nurse</string>
+				<string>Veternarian</string>
+			</array>
+			<key>Education</key>
+			<array>
+				<string>Teacher</string>
+				<string>Tutor</string>
+			</array>
+			<key>Sanatation</key>
+			<array>
+				<string>Janitor</string>
+				<string>Maid</string>
 			</array>
 			<key>Training_Wheels</key>
 			<array/>

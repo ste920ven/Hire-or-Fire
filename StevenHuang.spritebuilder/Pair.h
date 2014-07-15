@@ -10,6 +10,6 @@
 
 @interface Pair : NSObject
 
-@property (nonatomic, assign) NSInteger integer;
-@property (nonatomic, assign) BOOL boolean;
+@property (nonatomic, strong) NSString *string;
+@property (assign) BOOL boolean;
 @end

@@ -45,6 +45,12 @@
             }case EXPERIENCE:{ //6
                 [tmp appendFormat:@""];
                 break;
+            }case ADDRESS_TYPE:{
+            
+                break;
+            }case EDUCATION_LEVEL:{
+                
+                break;
             }
         }
         [self.rules setValue:entry forKey:[NSString stringWithFormat:@"%@",ruleType]];
@@ -52,4 +58,4 @@
     }
 }
 
-    @end
+@end

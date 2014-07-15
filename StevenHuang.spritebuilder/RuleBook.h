@@ -9,13 +9,15 @@
 #import "CCNode.h"
 
 typedef NS_ENUM(NSInteger, RuleType){
-    MAXAGE,
-    MINAGE,
-    NAME,
-    ADDRESS,
-    EDUCATION,
-    PHONE,
-    EXPERIENCE
+    MAXAGE,     //0
+    MINAGE,     //1
+    NAME,       //2
+    ADDRESS,    //3
+    EDUCATION,  //4
+    PHONE,      //5
+    EXPERIENCE, //6
+    ADDRESS_TYPE,//7
+    EDUCATION_LEVEL //8
 };
 
 

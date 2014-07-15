@@ -199,6 +199,13 @@
                     break;
                 case EXPERIENCE:
                     break;
+                case ADDRESS_TYPE:
+                    
+                    break;
+                case EDUCATION_LEVEL:
+                    
+                    break;
+                    
             }
             ++i;
         }
