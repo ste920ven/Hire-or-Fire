@@ -33,7 +33,8 @@
 -(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root rules:(CCNode *)_rules{
     
 #pragma mark TODO temp
-    correctFactor=10000;
+    
+    correctFactor=0000;
     
     self.correctCount=0;
     self.totalCount=0;
@@ -41,6 +42,8 @@
     now=_now;
     root=_root;
     rulebook=(RuleBook*)_rules;
+    experience1=[[Tuple alloc] init];
+    experience2=[[Tuple alloc] init];
 }
 
 -(void)createDay:(int) maxDays{
@@ -133,12 +136,10 @@
     NSArray* keys = [tmpDict allKeys];
     NSString* key = keys[arc4random_uniform(EXPERIENCE_SIZE)];
     
-    experience1=[[Tuple alloc] init];
     experience1.first=key;
     experience1.second=tmpDict[key][arc4random_uniform([tmpDict[key] count])];
     
-    key = keys[arc4random_uniform([keys count])];
-    experience2=[[Tuple alloc] init];
+    key = keys[arc4random_uniform([keys count]-1)];
     experience2.first=key;
     experience2.second=tmpDict[key][arc4random_uniform([tmpDict[key] count])];;
     
@@ -205,20 +206,20 @@
                 }else if([phoneNumber rangeOfString:rule].location != 0)
                     phoneNumber=[NSString stringWithFormat:@"%@-%.3d-%.4d",rule,arc4random_uniform(1000),arc4random_uniform(10000)];
                 break;
-            case EXPERIENCE_FIELD:{
+            case EXPERIENCE_FIELD:
                 if([experience1.first isEqualToString:rule])
                     experience1.boolean=YES;
                 if([experience2.first isEqualToString:rule])
                     experience2.boolean=YES;
                 if(wrong){
                     if(experience1.boolean==YES){
-                         NSArray* keys = [root[@"Experiences"] allKeys];
+                        NSArray* keys = [root[@"Experiences"] allKeys];
                         while([experience1.first isEqualToString:rule])
                             experience1.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
                         experience1.second=root[@"Experiences"][experience1.first][arc4random_uniform([root[@"Experiences"][rule] count])];
                         experience1.boolean=NO;
                     }if(experience2.boolean==YES){
-                         NSArray* keys = [root[@"Experiences"] allKeys];
+                        NSArray* keys = [root[@"Experiences"] allKeys];
                         while([experience2.first isEqualToString:rule])
                             experience2.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
                         experience2.second=root[@"Experiences"][experience2.first][arc4random_uniform([root[@"Experiences"][rule] count])];
@@ -236,23 +237,38 @@
                     }
                 }
                 break;
-            }case EXPERIENCE_JOB:
-#pragma mark TODO
+            case EXPERIENCE_JOB:{
                 if([experience1.second isEqualToString:rule])
-                    experience1.boolean=true;
+                    experience1.boolean=YES;
                 if([experience2.second isEqualToString:rule])
-                    experience2.boolean=true;
+                    experience2.boolean=YES;
+                NSString *field=keys[0];
+                for(NSString * key in root[@"Experiences"] ){
+                    if([root[@"Experiences"][key] indexOfObject:rule]!=NSNotFound)
+                        field=key;
+                }
                 if(wrong){
-                    
+                    if(experience1.boolean==YES){
+                        while([experience1.second isEqualToString:rule])
+                            experience1.second=root[@"Experiences"][experience1.first][arc4random_uniform([root[@"Experiences"][experience1.first] count])];
+                        experience1.boolean=NO;
+                    }
+                    if(experience2.boolean==YES){
+                        while([experience2.second isEqualToString:rule])
+                            experience2.second=root[@"Experiences"][experience2.first][arc4random_uniform([root[@"Experiences"][experience2.first] count])];
+                        experience2.boolean=NO;
+                    }
                 }else {
-                    if(experience1.boolean==false){
-                        
-                    }if(experience2.boolean==false){
-                        
+                    if(experience1.boolean==NO){
+                        experience1.first=field;
+                        experience1.second=rule;
+                    }if(experience2.boolean==NO){
+                        experience2.first=field;
+                        experience2.second=rule;
                     }
                 }
                 break;
-            case EXPERIENCE_LOCATION:
+            }case EXPERIENCE_LOCATION:
                 
                 break;
             case ADDRESS_TYPE:
