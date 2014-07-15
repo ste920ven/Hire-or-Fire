@@ -9,23 +9,33 @@
 #import "CCNode.h"
 
 typedef NS_ENUM(NSInteger, RuleType){
-    MAXAGE,     //0
-    MINAGE,     //1
-    NAME,       //2
-    ADDRESS,    //3
-    EDUCATION,  //4
-    PHONE,      //5
-    EXPERIENCE, //6
-    ADDRESS_TYPE,//7
-    EDUCATION_LEVEL //8
+    MAXAGE,             //0
+    MINAGE,             //1
+    NAME,               //2
+    ADDRESS,            //3
+    EDUCATION,          //4
+    PHONE,              //5
+    EXPERIENCE_FIELD,   //6
+    EXPERIENCE_JOB,     //7
+    EXPERIENCE_LOCATION,//8
+    ADDRESS_TYPE,       //9
+    EDUCATION_LEVEL     //10
 };
 
+#define ADDRESS_NUM_SIZE 1500
+#define ADDRESS_BODY_SIZE 50
+#define ADDRESS_END_SIZE 3
+#define FIRSTNAME_SIZE 200
+#define LASTNAME_SIZE 200
+#define BIRTHDAY_RANGE 60
+#define SCHOOL_SIZE 14
+#define EXPERIENCE_SIZE 3
 
 @interface RuleBook : CCNode
 
 @property (nonatomic,strong) NSArray* Leveldata;
-@property (nonatomic,strong) NSDictionary *rules;
-@property (nonatomic,strong) NSDictionary *specialRules;
+@property (nonatomic,strong) NSMutableDictionary *rules;
+@property (nonatomic,strong) NSMutableDictionary *specialRules;
 
 -(void)createRulesWithLevel:(int)level resumeData:(NSDictionary*)data;
 @end

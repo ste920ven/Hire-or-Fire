@@ -14,6 +14,9 @@
 			<integer>3</integer>
 			<integer>4</integer>
 		</array>
+		<array>
+			<integer>9</integer>
+		</array>
 	</array>
 	<key>ResumeInfo</key>
 	<dict>
@@ -36,7 +39,7 @@
 		</array>
 		<key>Experiences</key>
 		<dict>
-			<key>Medical</key>
+			<key>Medicine</key>
 			<array>
 				<string>Doctor</string>
 				<string>Nurse</string>
@@ -53,7 +56,11 @@
 				<string>Maid</string>
 			</array>
 			<key>Training_Wheels</key>
-			<array/>
+			<array>
+				<string>Manufactorer</string>
+				<string>Assembliler</string>
+				<string>Tester</string>
+			</array>
 		</dict>
 		<key>Address2</key>
 		<array>

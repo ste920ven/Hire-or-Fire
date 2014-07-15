@@ -8,37 +8,32 @@
 
 #import "Resume.h"
 #import "RuleBook.h"
+#import "Tuple.h"
 
 @implementation Resume{
     NSString *phoneNumber;
     NSString *education;
-    NSDictionary *experience;
+    Tuple *experience1;
+    Tuple *experience2;
     NSInteger age;
     NSString *name;
     NSInteger birthdate;
     NSString *birthmonth;
     NSInteger birthyear;
-    NSString * address;
+    NSString * addressEnd;
+    NSString * addressBegin;
     
     int correctFactor;
     RuleBook * rulebook;
     NSDictionary* root;
     NSDateComponents* now;
-    CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_phoneNumberLabel,*_experiencesLabel,*_educationLabel;
+    CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_phoneNumberLabel,*_experience1Label,*_experience2Label,*_educationLabel;
 }
-
-#define ADDRESS_NUM_SIZE 1500
-#define ADDRESS_BODY_SIZE 50
-#define ADDRESS_END_SIZE 3
-#define FIRSTNAME_SIZE 200
-#define LASTNAME_SIZE 200
-#define BIRTHDAY_RANGE 60
-#define SCHOOL_SIZE 14
 
 -(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root rules:(CCNode *)_rules{
     
 #pragma mark TODO temp
-    correctFactor=5000;
+    correctFactor=10000;
     
     self.correctCount=0;
     self.totalCount=0;
@@ -66,8 +61,8 @@
     phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
     
     //generate random address
-    address=[NSString stringWithFormat:@"%d %@ %@",arc4random_uniform(ADDRESS_NUM_SIZE+1),root[@"Address1"][arc4random_uniform(ADDRESS_BODY_SIZE)]
-             ,root[@"Address2"][arc4random_uniform(ADDRESS_END_SIZE)]];
+    addressBegin=[NSString stringWithFormat:@"%d %@",arc4random_uniform(ADDRESS_NUM_SIZE+1),root[@"Address1"][arc4random_uniform(ADDRESS_BODY_SIZE)]];
+    addressEnd=root[@"Address2"][arc4random_uniform(ADDRESS_END_SIZE)];
     
     //generate random name
     name=[NSString stringWithFormat:@"%@ %@",root[@"firstNames"][arc4random_uniform(FIRSTNAME_SIZE)]
@@ -133,6 +128,20 @@
             break;
     }
     
+    //randomly generate experiences
+    NSDictionary *tmpDict=root[@"Experiences"];
+    NSArray* keys = [tmpDict allKeys];
+    NSString* key = keys[arc4random_uniform(EXPERIENCE_SIZE)];
+    
+    experience1=[[Tuple alloc] init];
+    experience1.first=key;
+    experience1.second=tmpDict[key][arc4random_uniform([tmpDict[key] count])];
+    
+    key = keys[arc4random_uniform([keys count])];
+    experience2=[[Tuple alloc] init];
+    experience2.first=key;
+    experience2.second=tmpDict[key][arc4random_uniform([tmpDict[key] count])];;
+    
     //calculate age
     age=year-birthyear;
     if([now month]==month+1){
@@ -162,63 +171,115 @@
         bool wrong=false;
         if(i==wrongRuleIndex)
             wrong=true;
-        NSArray* rule=rulebook.rules[ruleType];
-        for(NSString* item in rule){
-            switch ([ruleType intValue]) {
-                case MAXAGE:
-                    if(wrong){
-                        if(age>[item intValue])
-                            birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[item intValue]-5)+[item intValue]);
-                    }else if(age>[item intValue])
-                        birthyear=year-(arc4random_uniform([item intValue]-5)+5);
-                    break;
-                case MINAGE:
-                    if(wrong){
-                        if(age>[item intValue])
-                            birthyear=year-(arc4random_uniform([item intValue]-5)+5);
-                    }else if(age>[item intValue])
-                        birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[item intValue]-5)+[item intValue]);
-                    break;
-                case NAME:
-                    break;
-                case ADDRESS:
-                    break  ;
-                case EDUCATION:
-                    if(wrong){
-                        while([education rangeOfString:item].location != NSNotFound)
-                            education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
-                    }else if([education rangeOfString:item].location == NSNotFound)
-                        education=[NSString stringWithFormat:@"%@ Univeristy",item];
-                    break;
-                case PHONE:
-                    if(wrong){
-                        while([phoneNumber rangeOfString:item].location == 0)
-                            phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
-                    }else if([phoneNumber rangeOfString:item].location != 0)
-                        phoneNumber=[NSString stringWithFormat:@"%@-%.3d-%.4d",item,arc4random_uniform(1000),arc4random_uniform(10000)];
-                    break;
-                case EXPERIENCE:
-                    break;
-                case ADDRESS_TYPE:
+        NSString* rule=rulebook.rules[ruleType];
+        switch ([ruleType intValue]) {
+            case MAXAGE:
+                if(wrong){
+                    if(age>[rule intValue])
+                        birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
+                }else if(age>[rule intValue])
+                    birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
+                break;
+            case MINAGE:
+                if(wrong){
+                    if(age>[rule intValue])
+                        birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
+                }else if(age>[rule intValue])
+                    birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
+                break;
+            case NAME:
+                break;
+            case ADDRESS:
+                break  ;
+            case EDUCATION:
+                if(wrong){
+                    while([education rangeOfString:rule].location != NSNotFound)
+                        education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
+                }else if([education rangeOfString:rule].location == NSNotFound)
+                    education=[NSString stringWithFormat:@"%@ Univeristy",rule];
+                break;
+            case PHONE:
+                if(wrong){
+                    while([phoneNumber rangeOfString:rule].location == 0)
+                        phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
+                }else if([phoneNumber rangeOfString:rule].location != 0)
+                    phoneNumber=[NSString stringWithFormat:@"%@-%.3d-%.4d",rule,arc4random_uniform(1000),arc4random_uniform(10000)];
+                break;
+            case EXPERIENCE_FIELD:{
+                if([experience1.first isEqualToString:rule])
+                    experience1.boolean=YES;
+                if([experience2.first isEqualToString:rule])
+                    experience2.boolean=YES;
+                if(wrong){
+                    if(experience1.boolean==YES){
+                         NSArray* keys = [root[@"Experiences"] allKeys];
+                        while([experience1.first isEqualToString:rule])
+                            experience1.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
+                        experience1.second=root[@"Experiences"][experience1.first][arc4random_uniform([root[@"Experiences"][rule] count])];
+                        experience1.boolean=NO;
+                    }if(experience2.boolean==YES){
+                         NSArray* keys = [root[@"Experiences"] allKeys];
+                        while([experience2.first isEqualToString:rule])
+                            experience2.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
+                        experience2.second=root[@"Experiences"][experience2.first][arc4random_uniform([root[@"Experiences"][rule] count])];
+                        experience2.boolean=NO;
+                    }
+                }else{
+                    if(experience1.boolean==NO){
+                        experience1.first=rule;
+                        experience1.second=root[@"Experiences"][rule][arc4random_uniform([root[@"Experiences"][rule] count])];
+                        experience1.boolean=YES;
+                    }if(experience2.boolean==NO){
+                        experience2.first=rule;
+                        experience2.second=root[@"Experiences"][rule][arc4random_uniform([root[@"Experiences"][rule] count])];
+                        experience2.boolean=YES;
+                    }
+                }
+                break;
+            }case EXPERIENCE_JOB:
+#pragma mark TODO
+                if([experience1.second isEqualToString:rule])
+                    experience1.boolean=true;
+                if([experience2.second isEqualToString:rule])
+                    experience2.boolean=true;
+                if(wrong){
                     
-                    break;
-                case EDUCATION_LEVEL:
-                    
-                    break;
-                    
-            }
-            ++i;
+                }else {
+                    if(experience1.boolean==false){
+                        
+                    }if(experience2.boolean==false){
+                        
+                    }
+                }
+                break;
+            case EXPERIENCE_LOCATION:
+                
+                break;
+            case ADDRESS_TYPE:
+                if(wrong){
+                    while([addressEnd isEqualToString:rule])
+                        addressEnd=root[@"Address2"][arc4random_uniform(ADDRESS_END_SIZE)];
+                }else
+                    if(![addressEnd isEqualToString:rule])
+                        addressEnd=rule;
+                break;
+            case EDUCATION_LEVEL:
+                
+                break;
+                
         }
+        ++i;
     }
     
     //display all info
     _birthdateLabel.string=[NSString stringWithFormat:@"%@ %d, %d",birthmonth,birthdate,birthyear];
     _nameLabel.string=name;
-    _addressLabel.string=address;
+    _addressLabel.string=[NSString stringWithFormat:@"%@ %@",addressBegin,addressEnd];
     _phoneNumberLabel.string=phoneNumber;
     _educationLabel.string=education;
     
-    _experiencesLabel.string=[NSString stringWithFormat:@"%d",self.correct];
+    _experience1Label.string=[NSString stringWithFormat:@"%@, %@",experience1.first,experience1.second];
+    _experience2Label.string=[NSString stringWithFormat:@"%@, %@",experience2.first,experience2.second];
     
     //move new resume to position
     self.position=ccp(.6,1.5);
@@ -226,8 +287,6 @@
 	CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,.6)];
 	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
 	[self runAction:sequence];
-    
-    
     
 }
 

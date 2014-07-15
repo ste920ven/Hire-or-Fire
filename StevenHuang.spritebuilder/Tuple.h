@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Pair : NSObject
+@interface Tuple : NSObject
 
-@property (nonatomic, strong) NSString *string;
+@property (nonatomic, strong) NSString *first;
+@property (nonatomic,strong) NSString *second;
 @property (assign) BOOL boolean;
 @end

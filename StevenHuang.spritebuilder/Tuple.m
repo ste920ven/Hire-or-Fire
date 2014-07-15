@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "Pair.h"
+#import "Tuple.h"
 
-@implementation Pair
+@implementation Tuple
 
 @end

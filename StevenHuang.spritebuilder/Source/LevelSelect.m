@@ -14,7 +14,7 @@
 
 
 -(void)play{
-    [GameplayManager sharedInstance].level=0;
+    [GameplayManager sharedInstance].level=2;
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
