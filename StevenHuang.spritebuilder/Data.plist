@@ -7,14 +7,15 @@
 	<key>Levels</key>
 	<array>
 		<array>
-			<integer>0</integer>
+			<integer>1</integer>
 			<integer>5</integer>
 		</array>
 		<array>
-			<integer>3</integer>
+			<integer>6</integer>
 			<integer>4</integer>
 		</array>
 		<array>
+			<string>0</string>
 			<integer>7</integer>
 		</array>
 	</array>
@@ -36,6 +37,13 @@
 			<string>Riverdell</string>
 			<string>Cedarwood</string>
 			<string>Colby</string>
+		</array>
+		<key>Locations</key>
+		<array>
+			<string>Poogle Inc</string>
+			<string>Mercy Hospital</string>
+			<string>Latin Dance School</string>
+			<string>White House</string>
 		</array>
 		<key>Experiences</key>
 		<dict>

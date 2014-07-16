@@ -34,7 +34,7 @@
     
 #pragma mark TODO temp
     
-    correctFactor=0000;
+    correctFactor=4000;
     
     self.correctCount=0;
     self.totalCount=0;
@@ -174,39 +174,43 @@
             wrong=true;
         NSString* rule=rulebook.rules[ruleType];
         switch ([ruleType intValue]) {
-            case MAXAGE:
+            case MAXAGE:{
                 if(wrong){
                     if(age>[rule intValue])
                         birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
                 }else if(age>[rule intValue])
                     birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
                 break;
-            case MINAGE:
+            }
+            case MINAGE:{
                 if(wrong){
                     if(age>[rule intValue])
                         birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
                 }else if(age>[rule intValue])
                     birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
                 break;
+            }
             case NAME:
                 break;
             case ADDRESS:
                 break  ;
-            case EDUCATION:
+            case EDUCATION:{
                 if(wrong){
                     while([education rangeOfString:rule].location != NSNotFound)
                         education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
                 }else if([education rangeOfString:rule].location == NSNotFound)
                     education=[NSString stringWithFormat:@"%@ Univeristy",rule];
                 break;
-            case PHONE:
+            }
+            case PHONE:{
                 if(wrong){
                     while([phoneNumber rangeOfString:rule].location == 0)
                         phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
                 }else if([phoneNumber rangeOfString:rule].location != 0)
                     phoneNumber=[NSString stringWithFormat:@"%@-%.3d-%.4d",rule,arc4random_uniform(1000),arc4random_uniform(10000)];
                 break;
-            case EXPERIENCE_FIELD:
+            }
+            case EXPERIENCE_FIELD:{
                 if([experience1.first isEqualToString:rule])
                     experience1.boolean=YES;
                 if([experience2.first isEqualToString:rule])
@@ -216,13 +220,13 @@
                         NSArray* keys = [root[@"Experiences"] allKeys];
                         while([experience1.first isEqualToString:rule])
                             experience1.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
-                        experience1.second=root[@"Experiences"][experience1.first][arc4random_uniform([root[@"Experiences"][rule] count])];
+                        experience1.second=root[@"Experiences"][experience1.first][arc4random_uniform([root[@"Experiences"][experience1.first] count])];
                         experience1.boolean=NO;
                     }if(experience2.boolean==YES){
                         NSArray* keys = [root[@"Experiences"] allKeys];
                         while([experience2.first isEqualToString:rule])
                             experience2.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
-                        experience2.second=root[@"Experiences"][experience2.first][arc4random_uniform([root[@"Experiences"][rule] count])];
+                        experience2.second=root[@"Experiences"][experience2.first][arc4random_uniform([root[@"Experiences"][experience2.first] count])];
                         experience2.boolean=NO;
                     }
                 }else{
@@ -237,6 +241,7 @@
                     }
                 }
                 break;
+            }
             case EXPERIENCE_JOB:{
                 if([experience1.second isEqualToString:rule])
                     experience1.boolean=YES;
@@ -268,7 +273,8 @@
                     }
                 }
                 break;
-            }case EXPERIENCE_LOCATION:
+            }
+            case EXPERIENCE_LOCATION:
                 
                 break;
             case ADDRESS_TYPE:

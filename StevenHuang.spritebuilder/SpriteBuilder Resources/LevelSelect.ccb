@@ -525,7 +525,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string></string>
+						<string>0</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -572,7 +572,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>play</string>
+							<string>play1</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -851,7 +851,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string></string>
+						<string>1</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -898,7 +898,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>play</string>
+							<string>play2</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1177,7 +1177,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string></string>
+						<string>2</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1224,7 +1224,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>play</string>
+							<string>play3</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1503,7 +1503,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string></string>
+						<string>3</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1513,7 +1513,7 @@
 						<key>value</key>
 						<array>
 							<real>0.30937489867210388</real>
-							<real>0.51584506034851074</real>
+							<real>0.51760566234588623</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1550,7 +1550,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>play</string>
+							<string>play4</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1946,7 +1946,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>2.4666666984558105</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

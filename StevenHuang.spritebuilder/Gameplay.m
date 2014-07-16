@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     CCNode *_contentNode,*_readyNode,*_scoreScreen,*_noBar;
     CCSprite *_clockhandSprite;
     CCLabelTTF *_currDateLabel;
-    NSMutableArray *documentArray;
     
     bool ready,noBarActive,gameOver;
     NSArray *noArray;
@@ -50,14 +49,14 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
-
+    
     roundCounter=0;
     ready=false;
     gameOver=false;
     _noBar.zOrder=INT_MAX;
-    documentArray=[NSMutableArray array];
-    documentArray[0]=_rulebookNode;
-    documentArray[1]=_resumeNode;
+    //    documentArray=[NSMutableArray array];
+    //    documentArray[0]=_rulebookNode;
+    //    documentArray[1]=_resumeNode;
     components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     _currDateLabel.string=[NSString stringWithFormat:@"Today is %d/%d/%d",[components month],[components day],[components year]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
@@ -67,7 +66,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     _rulebookNode.Leveldata=root[@"Levels"][[GameplayManager sharedInstance].level];
     [_rulebookNode createRulesWithLevel:[GameplayManager sharedInstance].level resumeData:resumeInfo];
     
-    #pragma mark TODO change to loading levels and num of No
+#pragma mark TODO change to loading levels and num of No
     [self setupNoOptions:3];
     roundTime=60.f;
     
@@ -125,8 +124,9 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 
 #pragma mark Touch Controls
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+    selectedObject=nil;
+    CGPoint touchLocation = [touch locationInNode:_contentNode];
     if(!gameOver){
-        CGPoint touchLocation = [touch locationInNode:_contentNode];
         if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
             ready=true;
             [self newResume];
@@ -135,28 +135,19 @@ typedef NS_ENUM(NSInteger, GameMechanics){
             [_contentNode removeChild:level];
             return;
         }
-        selectedObject=nil;
-        //item on top get priority
-        for(CCNode* documentNode in documentArray){
-            if(CGRectContainsPoint([documentNode boundingBox], touchLocation)){
-                selectedObject=documentNode;
-                break;
-            }
-        }
-        selectedObject.zOrder=1;
-        if(selectedObject!=nil){
-            [documentArray removeObject:selectedObject];
-            [documentArray insertObject:selectedObject atIndex:0];
-        }
     }
+    if(CGRectContainsPoint([_resumeNode boundingBox], touchLocation)){
+        selectedObject=_resumeNode;
+    }
+    
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     CGPoint newLocation = ccp(touchLocation.x/_contentNode.contentSizeInPoints.width,touchLocation.y/_contentNode.contentSizeInPoints.height);
-    selectedObject.position=newLocation;
     if(selectedObject==_resumeNode){
-        if(touchLocation.x<=20){
+        selectedObject.position=newLocation;
+        if(touchLocation.x<=50){
             noBarActive=true;
             _noBar.position=ccp(0,.05);
         }else if(noBarActive){
@@ -169,17 +160,18 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 -(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
     if(selectedObject==_resumeNode){
         CGPoint touchLocation = [touch locationInNode:_contentNode];
-        if(touchLocation.x<=20){
+        if(touchLocation.x<=50){
             if(_resumeNode.correct==false)
                 ++_resumeNode.correctCount;
             [self newResume];
-        }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-20){
+        }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-50){
             if(_resumeNode.correct==true){
                 _resumeNode.passedCount++;
                 _resumeNode.correctCount++;
-                
             }
             [self newResume];
+        }else{
+            _resumeNode.position=ccp(.5,.6);
         }
     }
     if(noBarActive){
@@ -187,12 +179,75 @@ typedef NS_ENUM(NSInteger, GameMechanics){
         noBarActive=false;
     }
 }
+#pragma mark OLD CONTROLS
+//-(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+//    if(!gameOver){
+//        CGPoint touchLocation = [touch locationInNode:_contentNode];
+//        if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
+//            ready=true;
+//            [self newResume];
+//            [_readyNode removeFromParent];
+//#pragma mark TUTORIAL
+//            [_contentNode removeChild:level];
+//            return;
+//        }
+//        selectedObject=nil;
+//        //item on top get priority
+//        for(CCNode* documentNode in documentArray){
+//            if(CGRectContainsPoint([documentNode boundingBox], touchLocation)){
+//                selectedObject=documentNode;
+//                break;
+//            }
+//        }
+//        selectedObject.zOrder=1;
+//        if(selectedObject!=nil){
+//            [documentArray removeObject:selectedObject];
+//            [documentArray insertObject:selectedObject atIndex:0];
+//        }
+//    }
+//}
+//
+//- (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
+//    CGPoint touchLocation = [touch locationInNode:_contentNode];
+//    CGPoint newLocation = ccp(touchLocation.x/_contentNode.contentSizeInPoints.width,touchLocation.y/_contentNode.contentSizeInPoints.height);
+//    selectedObject.position=newLocation;
+//    if(selectedObject==_resumeNode){
+//        if(touchLocation.x<=20){
+//            noBarActive=true;
+//            _noBar.position=ccp(0,.05);
+//        }else if(noBarActive){
+//            _noBar.position=ccp(-80,.05);
+//            noBarActive=false;
+//        }
+//    }
+//}
+//
+//-(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
+//    if(selectedObject==_resumeNode){
+//        CGPoint touchLocation = [touch locationInNode:_contentNode];
+//        if(touchLocation.x<=20){
+//            if(_resumeNode.correct==false)
+//                ++_resumeNode.correctCount;
+//            [self newResume];
+//        }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-20){
+//            if(_resumeNode.correct==true){
+//                _resumeNode.passedCount++;
+//                _resumeNode.correctCount++;
+//
+//            }
+//            [self newResume];
+//        }
+//    }
+//    if(noBarActive){
+//        _noBar.position=ccp(-80,.05);
+//        noBarActive=false;
+//    }
+//}
 
 #pragma mark Game End
 
 -(void) endGame{
     if(roundCounter==roundTime*60){
-        NSLog([NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"money"]]);
         gameOver=true;
         ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"screens/scoreScreen"];
         screen.positionType = CCPositionTypeNormalized;
