@@ -138,10 +138,14 @@
     
     experience1.first=key;
     experience1.second=tmpDict[key][arc4random_uniform([tmpDict[key] count])];
+    experience1.third=root[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
+    experience1.num=(arc4random_uniform(EXPERIENCE_LENGTH_MAX*2)+1)/2.0;
     
     key = keys[arc4random_uniform([keys count]-1)];
     experience2.first=key;
-    experience2.second=tmpDict[key][arc4random_uniform([tmpDict[key] count])];;
+    experience2.second=tmpDict[key][arc4random_uniform([tmpDict[key] count])];
+    experience2.third=root[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
+    experience2.num=(arc4random_uniform(EXPERIENCE_LENGTH_MAX*2)+1)/2.0;
     
     //calculate age
     age=year-birthyear;
@@ -274,10 +278,24 @@
                 }
                 break;
             }
-            case EXPERIENCE_LOCATION:
-                
+            case EXPERIENCE_LOCATION:{
+                if(wrong){
+                    while([experience1.third isEqualToString:rule])
+                        experience1.third=root[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
+                    while([experience2.third isEqualToString:rule])
+                        experience2.third=root[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
+                }else
+                    if(![experience1.third isEqualToString:rule])
+                        experience1.third=rule;
+                //randomize which experience has the correct location
+                if(arc4random()%2==0){
+                    Tuple* tmp=experience1;
+                    experience1=experience2;
+                    experience2=tmp;
+                }
                 break;
-            case ADDRESS_TYPE:
+            }
+            case ADDRESS_TYPE:{
                 if(wrong){
                     while([addressEnd isEqualToString:rule])
                         addressEnd=root[@"Address2"][arc4random_uniform(ADDRESS_END_SIZE)];
@@ -285,10 +303,29 @@
                     if(![addressEnd isEqualToString:rule])
                         addressEnd=rule;
                 break;
+            }
             case EDUCATION_LEVEL:
                 
                 break;
-                
+            case EXPERIENCE_LENGTH:{
+                float tmp = [rule floatValue];
+                if(wrong){
+                    if(experience1.num>=[rule floatValue])
+                        experience1.num=(arc4random_uniform([rule floatValue]*2)+1)/2;
+                    if(experience2.num>=[rule floatValue])
+                        experience2.num=(arc4random_uniform([rule floatValue]*2)+1)/2;
+                }else
+                    if(experience1.num < [rule floatValue])
+                        experience1.num=[rule floatValue];
+                        //randomize which experience has the correct location
+                        if(arc4random()%2==0){
+                            Tuple* tmp=experience1;
+                            experience1=experience2;
+                            experience2=tmp;
+                        }
+
+                break;
+            }
         }
         ++i;
     }
@@ -300,8 +337,13 @@
     _phoneNumberLabel.string=phoneNumber;
     _educationLabel.string=education;
     
-    _experience1Label.string=[NSString stringWithFormat:@"%@, %@",experience1.first,experience1.second];
-    _experience2Label.string=[NSString stringWithFormat:@"%@, %@",experience2.first,experience2.second];
+    NSNumberFormatter * formatter =  [[NSNumberFormatter alloc] init];
+    [formatter setUsesSignificantDigits:YES];
+    [formatter setMinimumSignificantDigits:2];
+    
+    _experience1Label.string=[NSString stringWithFormat:@"%@, %@-%@yrs\n%@",experience1.first,experience1.second,[formatter stringFromNumber:[NSNumber numberWithFloat:experience1.num]],experience1.third];
+    
+    _experience2Label.string=[NSString stringWithFormat:@"%@, %@-%@yrs\n%@",experience2.first,experience2.second,[formatter stringFromNumber:[NSNumber numberWithFloat:experience2.num]],experience2.third];
     
     //move new resume to position
     self.position=ccp(.6,1.5);

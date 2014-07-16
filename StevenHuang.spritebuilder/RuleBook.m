@@ -60,11 +60,12 @@
                 NSArray* keys = [tmpDict allKeys];
                 NSArray* key = keys[arc4random_uniform(EXPERIENCE_SIZE)];
                 entry = tmpDict[key][arc4random_uniform([tmpDict[key] count])];
-                [tmp appendFormat:@"Must have worked as a %@",entry];
+                [tmp appendFormat:@"Must have worked as a %@\n",entry];
                 break;
             }
             case EXPERIENCE_LOCATION:{
-                
+                entry=data[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
+                [tmp appendFormat:@"Must have worked at %@\n",entry];
                 break;
             }
             case ADDRESS_TYPE:{
@@ -74,6 +75,11 @@
             }
             case EDUCATION_LEVEL:{
                 
+                break;
+            }
+            case EXPERIENCE_LENGTH:{
+                entry=[NSString stringWithFormat:@"%d",arc4random_uniform(EXPERIENCE_LENGTH_MAX)+1 ];
+                [tmp appendFormat:@"Must have %@ yrs of experience\n",entry];
                 break;
             }
         }

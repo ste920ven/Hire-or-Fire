@@ -12,5 +12,7 @@
 
 @property (nonatomic, strong) NSString *first;
 @property (nonatomic,strong) NSString *second;
+@property (nonatomic,strong) NSString *third;
+@property (assign) float num;
 @property (assign) BOOL boolean;
 @end
