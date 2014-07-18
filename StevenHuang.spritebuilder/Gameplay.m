@@ -75,7 +75,13 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     [_rulebookNode createRulesWithLevel:[GameplayManager sharedInstance].level resumeData:resumeInfo];
     
 #pragma mark TODO currently set as constants
-    [self setupNoOptions:3];
+    [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"noNumber"];
+    [[NSUserDefaults standardUserDefaults] setValue:@"fire" forKey:@"no1"];
+    [[NSUserDefaults standardUserDefaults] setValue:@"dog" forKey:@"no2"];
+    [[NSUserDefaults standardUserDefaults] setValue:@"shredder" forKey:@"no3"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
     roundTime=60.f;
     
 #pragma mark Tutorial
@@ -85,39 +91,56 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     [_rulebookNode show:true];
 }
 
+-(void)noAnimation:(NSString*)str{
+    CCAnimationManager* animationManager = self.animationManager;
+    [animationManager runAnimationsForSequenceNamed:str];
+}
+
 -(void)setupNoOptions:(int)num{
-    CCNode* no;
-    CCNode* no1;
-    CCNode* no2=[CCBReader load:@"NoChoice"];
+    CCSprite* no;
+    CCSprite* no1;
+    CCSprite* no2=(CCSprite*)[CCBReader load:@"NoChoice"];
     switch (num) {
-        case 3:
-            no=[CCBReader load:@"NoChoice"];
+        case 3:{
+            no=(CCSprite*)[CCBReader load:@"NoChoice"];
             [_noBar addChild:no];
-        case 2:
-            no1=[CCBReader load:@"NoChoice"];
+            [no.animationManager runAnimationsForSequenceNamed:[[NSUserDefaults standardUserDefaults] objectForKey:@"no3"]];
+        }case 2:{
+            no1=(CCSprite*)[CCBReader load:@"NoChoice"];
             [_noBar addChild:no1];
-        case 1:
+            [no1.animationManager runAnimationsForSequenceNamed:[[NSUserDefaults standardUserDefaults] objectForKey:@"no2"]];
+        }case 1:{
             [_noBar addChild:no2];
+            [no2.animationManager runAnimationsForSequenceNamed:[[NSUserDefaults standardUserDefaults] objectForKey:@"no1"]];
             break;
+        }
     }
     noArray=[NSArray arrayWithObjects:no2,no1,no, nil];
     int divisions = noArray.count+1;
     float lastDivision = 0;
     for(int i=0;i<noArray.count;++i){
+        /*
         if(divisions==4){
-            if(i==0)
+            if(i==0){
                 ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
-            if(i==2)
+                ((CCNode*)[noArray[i] children][1]).anchorPoint=ccp(.5,1);
+            }if(i==2){
                 ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
+                ((CCNode*)[noArray[i] children][1]).anchorPoint=ccp(.5,0);
+            }
         }
         if(divisions==3){
-            if(i==0)
+            if(i==0){
                 ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
-            if(i==1)
+                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
+            }if(i==1){
                 ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
+                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
+            }
         }
+         */
         lastDivision+=_noBar.contentSizeInPoints.height/divisions;
-        ((CCNode*)noArray[i]).position=ccp(5,lastDivision);
+        ((CCNode*)noArray[i]).position=ccp(0,lastDivision);
         
     }
 }
@@ -162,7 +185,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
             selectedObject.position=newLocation;
             if(touchLocation.x<=50){
                 noBarActive=true;
-                _noBar.position=ccp(0,.05);
+                _noBar.position=ccp(40,.05);
             }else if(noBarActive){
                 _noBar.position=ccp(-80,.05);
                 noBarActive=false;
@@ -172,7 +195,8 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 -(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
-    if(selectedObject==_resumeNode){
+    if(!rulesActive &&
+       selectedObject==_resumeNode){
         CGPoint touchLocation = [touch locationInNode:_contentNode];
         if(touchLocation.x<=50){
             if(_resumeNode.correct==false)
@@ -297,6 +321,12 @@ typedef NS_ENUM(NSInteger, GameMechanics){
         ready=false;
     }else
         roundCounter++;
+}
+
+-(void) nextLevel{
+   [GameplayManager sharedInstance].level++;
+    CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
 
 @end
