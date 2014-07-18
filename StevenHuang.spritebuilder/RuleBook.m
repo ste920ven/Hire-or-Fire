@@ -12,6 +12,17 @@
     CCLabelTTF *_rulesLabel;
 }
 
+-(void)show:(bool)b{
+    CCActionScaleTo *translation;
+    if(b){
+         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.05,0)];
+    }else{
+         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.05,-60)];
+    }
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
+    [self runAction:sequence];
+}
+
 -(void)createRulesWithLevel:(int)level resumeData:(NSDictionary*)data{
     self.rules=[[NSMutableDictionary alloc] init];
     int counter=0;

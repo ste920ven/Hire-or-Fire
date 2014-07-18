@@ -41,4 +41,5 @@ typedef NS_ENUM(NSInteger, RuleType){
 @property (nonatomic,strong) NSMutableDictionary *specialRules;
 
 -(void)createRulesWithLevel:(int)level resumeData:(NSDictionary*)data;
+-(void)show:(bool)b;
 @end

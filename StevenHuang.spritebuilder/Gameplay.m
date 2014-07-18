@@ -24,11 +24,11 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     //spritebuilder vars
     Resume *_resumeNode;
     RuleBook *_rulebookNode;
-    CCNode *_contentNode,*_readyNode,*_scoreScreen,*_noBar;
+    CCNode *_contentNode,*_scoreScreen,*_noBar;
     CCSprite *_clockhandSprite;
     CCLabelTTF *_currDateLabel;
     
-    bool ready,noBarActive,gameOver;
+    bool ready,noBarActive,gameOver,rulesActive;
     NSArray *noArray;
     CCNode *selectedObject;
     CGFloat roundTime;
@@ -42,6 +42,14 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 - (id)init{
     self = [super init];
     if (self) {
+        
+        UISwipeGestureRecognizer *upSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+        [[CCDirector sharedDirector].view addGestureRecognizer:upSwipe];
+        upSwipe.direction=UISwipeGestureRecognizerDirectionUp;
+        
+        UISwipeGestureRecognizer *downSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+        [[CCDirector sharedDirector].view addGestureRecognizer:downSwipe];
+        downSwipe.direction=UISwipeGestureRecognizerDirectionDown;
     }
     return self;
 }
@@ -66,25 +74,27 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     _rulebookNode.Leveldata=root[@"Levels"][[GameplayManager sharedInstance].level];
     [_rulebookNode createRulesWithLevel:[GameplayManager sharedInstance].level resumeData:resumeInfo];
     
-#pragma mark TODO change to loading levels and num of No
+#pragma mark TODO currently set as constants
     [self setupNoOptions:3];
     roundTime=60.f;
     
 #pragma mark Tutorial
     level = [CCBReader loadAsScene:@"screens/Tutorial1"];
     [_contentNode addChild:level];
+    
+    [_rulebookNode show:true];
 }
 
 -(void)setupNoOptions:(int)num{
     CCNode* no;
     CCNode* no1;
-    CCNode* no2=[CCBReader load:@"No"];
+    CCNode* no2=[CCBReader load:@"NoChoice"];
     switch (num) {
         case 3:
-            no=[CCBReader load:@"No"];
+            no=[CCBReader load:@"NoChoice"];
             [_noBar addChild:no];
         case 2:
-            no1=[CCBReader load:@"No"];
+            no1=[CCBReader load:@"NoChoice"];
             [_noBar addChild:no1];
         case 1:
             [_noBar addChild:no2];
@@ -94,6 +104,18 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     int divisions = noArray.count+1;
     float lastDivision = 0;
     for(int i=0;i<noArray.count;++i){
+        if(divisions==4){
+            if(i==0)
+                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
+            if(i==2)
+                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
+        }
+        if(divisions==3){
+            if(i==0)
+                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
+            if(i==1)
+                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
+        }
         lastDivision+=_noBar.contentSizeInPoints.height/divisions;
         ((CCNode*)noArray[i]).position=ccp(5,lastDivision);
         
@@ -126,16 +148,6 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     selectedObject=nil;
     CGPoint touchLocation = [touch locationInNode:_contentNode];
-    if(!gameOver){
-        if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
-            ready=true;
-            [self newResume];
-            [_readyNode removeFromParent];
-#pragma mark TUTORIAL
-            [_contentNode removeChild:level];
-            return;
-        }
-    }
     if(CGRectContainsPoint([_resumeNode boundingBox], touchLocation)){
         selectedObject=_resumeNode;
     }
@@ -145,14 +157,16 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     CGPoint newLocation = ccp(touchLocation.x/_contentNode.contentSizeInPoints.width,touchLocation.y/_contentNode.contentSizeInPoints.height);
-    if(selectedObject==_resumeNode){
-        selectedObject.position=newLocation;
-        if(touchLocation.x<=50){
-            noBarActive=true;
-            _noBar.position=ccp(0,.05);
-        }else if(noBarActive){
-            _noBar.position=ccp(-80,.05);
-            noBarActive=false;
+    if(!rulesActive){
+        if(selectedObject==_resumeNode){
+            selectedObject.position=newLocation;
+            if(touchLocation.x<=50){
+                noBarActive=true;
+                _noBar.position=ccp(0,.05);
+            }else if(noBarActive){
+                _noBar.position=ccp(-80,.05);
+                noBarActive=false;
+            }
         }
     }
 }
@@ -171,13 +185,38 @@ typedef NS_ENUM(NSInteger, GameMechanics){
             }
             [self newResume];
         }else{
-            _resumeNode.position=ccp(.5,.6);
+            [self resetResume];
         }
     }
     if(noBarActive){
         _noBar.position=ccp(-80,.05);
         noBarActive=false;
     }
+}
+
+-(void)didSwipe:(UISwipeGestureRecognizer*)sender{
+    if(ready)
+        [self resetResume];
+    
+    UISwipeGestureRecognizerDirection direction=sender.direction;
+    
+    if(direction==UISwipeGestureRecognizerDirectionUp){
+        [_rulebookNode show:true];
+        rulesActive=true;
+    }else if(direction==UISwipeGestureRecognizerDirectionDown){
+        [_rulebookNode show:false];
+        if(!ready){
+            [self newResume];
+                ready=true;
+#pragma mark TUTORIAL
+            [_contentNode removeChild:level];
+        }
+        rulesActive=false;
+    }
+}
+
+-(void)resetResume{
+    _resumeNode.position=ccp(.5,.6);
 }
 #pragma mark OLD CONTROLS
 //-(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{

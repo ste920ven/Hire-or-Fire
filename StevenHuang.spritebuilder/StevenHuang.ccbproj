@@ -65,7 +65,7 @@
 	<key>publishToZipFile</key>
 	<false/>
 	<key>resourceAutoScaleFactor</key>
-	<integer>2</integer>
+	<integer>4</integer>
 	<key>resourcePaths</key>
 	<array>
 		<dict>
@@ -86,6 +86,11 @@
 		<dict>
 			<key>isSmartSpriteSheet</key>
 			<true/>
+		</dict>
+		<key>StevenHuangResources/round_box.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>4</integer>
 		</dict>
 		<key>ccbResources</key>
 		<dict>
