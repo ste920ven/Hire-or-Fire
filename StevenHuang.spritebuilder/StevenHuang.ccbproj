@@ -87,11 +87,6 @@
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>
-		<key>StevenHuangResources/round_box.png</key>
-		<dict>
-			<key>scaleFrom</key>
-			<integer>4</integer>
-		</dict>
 		<key>ccbResources</key>
 		<dict>
 			<key>previewFolderHidden</key>

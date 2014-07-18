@@ -85,8 +85,11 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     roundTime=60.f;
     
 #pragma mark Tutorial
-    level = [CCBReader loadAsScene:@"screens/Tutorial1"];
-    [_contentNode addChild:level];
+    
+    if([GameplayManager sharedInstance].level==0){
+        level = [CCBReader loadAsScene:@"screens/Tutorial1"];
+        [_contentNode addChild:level];
+    }
     
     [_rulebookNode show:true];
 }
@@ -316,17 +319,11 @@ typedef NS_ENUM(NSInteger, GameMechanics){
         screen.positionType = CCPositionTypeNormalized;
         screen.position = ccp(0.5, 0.5);
         screen.zOrder = INT_MAX;
-        [screen setScreenWithScore:_resumeNode.passedCount message:@"Level Passed" total:_resumeNode.totalCount];
+        [screen setScreenWithScore:_resumeNode.passedCount message:@"Level Passed" total:_resumeNode.totalCount correct:_resumeNode.correctCount];
         [_contentNode addChild:screen];
         ready=false;
     }else
         roundCounter++;
-}
-
--(void) nextLevel{
-   [GameplayManager sharedInstance].level++;
-    CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
-    [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
 
 @end

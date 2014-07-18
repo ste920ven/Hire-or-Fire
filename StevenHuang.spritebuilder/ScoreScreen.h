@@ -10,6 +10,6 @@
 
 @interface ScoreScreen : CCNode
 
--(void)setScreenWithScore:(int)score message:(NSString*)msg total:(int)total;
+-(void)setScreenWithScore:(int)score message:(NSString*)msg total:(int)total correct:(int)correct;
 
 @end

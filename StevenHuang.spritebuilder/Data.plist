@@ -40,27 +40,50 @@
 		</array>
 		<key>Locations</key>
 		<array>
+			<string>Pear Inc</string>
+			<string>Rural Outfitters</string>
+			<string>Mom and Pop Shop</string>
 			<string>Poogle Inc</string>
 			<string>Mercy Hospital</string>
 			<string>Latin Dance School</string>
 			<string>White House</string>
+			<string>Bob&apos;s Store</string>
 		</array>
 		<key>Experiences</key>
 		<dict>
+			<key>Business</key>
+			<array>
+				<string>Secretary</string>
+				<string>Manager</string>
+				<string>Boss</string>
+				<string>CEO</string>
+				<string>Accountant</string>
+				<string>Trader</string>
+				<string>Stock Broker</string>
+				<string>Banker</string>
+			</array>
 			<key>Medicine</key>
 			<array>
 				<string>Doctor</string>
+				<string>Drug Dealer</string>
 				<string>Nurse</string>
 				<string>Veternarian</string>
+				<string>Surgeon</string>
+				<string>Gynocologist</string>
+				<string>Dentist</string>
 			</array>
 			<key>Education</key>
 			<array>
 				<string>Teacher</string>
+				<string>Principal</string>
+				<string>Teacher Assisant</string>
 				<string>Tutor</string>
+				<string>Director</string>
 			</array>
 			<key>Sanatation</key>
 			<array>
 				<string>Janitor</string>
+				<string>Garbage Man</string>
 				<string>Maid</string>
 			</array>
 			<key>Training_Wheels</key>

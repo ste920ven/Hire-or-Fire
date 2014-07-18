@@ -34,10 +34,10 @@
     
 #pragma mark TODO temp
     
-    correctFactor=4000;
+    correctFactor=6000;
     
     self.correctCount=0;
-    self.totalCount=0;
+    self.totalCount=-1;
     self.passedCount=0;
     now=_now;
     root=_root;
@@ -310,13 +310,13 @@
             case EXPERIENCE_LENGTH:{
                 float tmp = [rule floatValue];
                 if(wrong){
-                    if(experience1.num>=[rule floatValue])
-                        experience1.num=(arc4random_uniform([rule floatValue]*2)+1)/2;
-                    if(experience2.num>=[rule floatValue])
-                        experience2.num=(arc4random_uniform([rule floatValue]*2)+1)/2;
+                    if(experience1.num>=tmp)
+                        experience1.num=(arc4random_uniform(tmp*2)+1)/2.0;
+                    if(experience2.num>=tmp)
+                        experience2.num=(arc4random_uniform(tmp*2)+1)/2.0;
                 }else
-                    if(experience1.num < [rule floatValue])
-                        experience1.num=[rule floatValue];
+                    if(experience1.num < tmp)
+                        experience1.num=tmp;
                         //randomize which experience has the correct location
                         if(arc4random()%2==0){
                             Tuple* tmp=experience1;
