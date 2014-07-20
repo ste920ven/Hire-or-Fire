@@ -11,15 +11,15 @@
 typedef NS_ENUM(NSInteger, RuleType){
     MAXAGE,             //0
     MINAGE,             //1
-    NAME,               //2
-    ADDRESS,            //3
+    NAME,               //2  na
+    ADDRESS,            //3  na
     EDUCATION,          //4
     PHONE,              //5
     EXPERIENCE_FIELD,   //6
     EXPERIENCE_JOB,     //7
     EXPERIENCE_LOCATION,//8
     ADDRESS_TYPE,       //9
-    EDUCATION_LEVEL,     //10
+    EDUCATION_LEVEL,     //10 
     EXPERIENCE_LENGTH   //11
 };
 
@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, RuleType){
 #define BIRTHDAY_RANGE 60
 #define SCHOOL_SIZE 14
 #define EXPERIENCE_SIZE 3
-#define LOCATION_SIZE 4
+#define LOCATION_SIZE 8
 #define EXPERIENCE_LENGTH_MAX 5
 
 @interface RuleBook : CCNode

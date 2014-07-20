@@ -51,8 +51,8 @@
                 break;
             }
             case EDUCATION:{ //4
-                NSString* rule=data[@"Schools"][arc4random_uniform(SCHOOL_SIZE)];
-                [tmp appendFormat:@"Must have attended to %@ University\n",rule];
+                entry=data[@"Schools"][arc4random_uniform(SCHOOL_SIZE)];
+                [tmp appendFormat:@"Must have attended to a %@ school\n",entry];
                 break;
             }
             case PHONE:{ //5
@@ -81,11 +81,12 @@
             }
             case ADDRESS_TYPE:{
                 entry=data[@"Address2"][arc4random_uniform(ADDRESS_END_SIZE)];
-                [tmp appendFormat:@"Must live on a %@",entry];
+                [tmp appendFormat:@"Must live on a %@\n",entry];
                 break;
             }
             case EDUCATION_LEVEL:{
-                
+                entry=data[@"SchoolLevel"][arc4random_uniform(3)+1];
+                [tmp appendFormat:@"Must have attened a minimum level of %@\n",entry];
                 break;
             }
             case EXPERIENCE_LENGTH:{

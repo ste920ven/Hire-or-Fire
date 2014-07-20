@@ -15,12 +15,23 @@
 			<integer>4</integer>
 		</array>
 		<array>
-			<string>0</string>
+			<integer>0</integer>
 			<integer>7</integer>
+		</array>
+		<array>
+			<integer>10</integer>
+			<integer>1</integer>
 		</array>
 	</array>
 	<key>ResumeInfo</key>
 	<dict>
+		<key>SchoolLevel</key>
+		<array>
+			<string>Elementary School</string>
+			<string>Middle School</string>
+			<string>High School</string>
+			<string>University</string>
+		</array>
 		<key>Schools</key>
 		<array>
 			<string>Barnet</string>

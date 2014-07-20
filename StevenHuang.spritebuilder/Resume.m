@@ -13,6 +13,7 @@
 @implementation Resume{
     NSString *phoneNumber;
     NSString *education;
+    NSString *educationLevel;
     Tuple *experience1;
     Tuple *experience2;
     NSInteger age;
@@ -28,13 +29,16 @@
     NSDictionary* root;
     NSDateComponents* now;
     CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_phoneNumberLabel,*_experience1Label,*_experience2Label,*_educationLabel;
+    
+    CCLabelTTF *_debug;
+    int debugInt;
 }
 
 -(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root rules:(CCNode *)_rules{
     
 #pragma mark TODO temp
     
-    correctFactor=6000;
+    correctFactor=5000;
     
     self.correctCount=0;
     self.totalCount=-1;
@@ -57,7 +61,8 @@
     ++self.totalCount;
     
     //generate random school
-    education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
+    education=[NSString stringWithFormat:@"%@",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
+    educationLevel=[NSString stringWithFormat:@"%@",root[@"SchoolLevel"][arc4random_uniform(4)]];
     
     //generate random phone number
     
@@ -70,11 +75,6 @@
     //generate random name
     name=[NSString stringWithFormat:@"%@ %@",root[@"firstNames"][arc4random_uniform(FIRSTNAME_SIZE)]
           ,root[@"lastNames"][arc4random_uniform(LASTNAME_SIZE)] ];
-    
-    //    //generate random gender
-    //    int gender=arc4random_uniform()%2;
-    //    if(gender)
-    //        self.male=true;
     
     //generate random birthday
     NSInteger year = [now year];
@@ -160,7 +160,6 @@
         self.correct=false;
     }else{
         self.correct=true;
-        ++self.correctCount;
     }
     
     //apply rules
@@ -176,6 +175,10 @@
         bool wrong=false;
         if(i==wrongRuleIndex)
             wrong=true;
+#pragma mark DEBUGGING
+        if(wrong){
+            debugInt=[ruleType intValue];
+        }
         NSString* rule=rulebook.rules[ruleType];
         switch ([ruleType intValue]) {
             case MAXAGE:{
@@ -304,9 +307,16 @@
                         addressEnd=rule;
                 break;
             }
-            case EDUCATION_LEVEL:
-                
+            case EDUCATION_LEVEL:{
+                if(wrong){
+                    if([root[@"SchoolLevel"] indexOfObject:rule]<[root[@"SchoolLevel"] indexOfObject:educationLevel])
+                        educationLevel=root[@"SchoolLevel"][arc4random_uniform([root[@"SchoolLevel"] indexOfObject:rule])];
+                }else{
+                    if([root[@"SchoolLevel"] indexOfObject:rule]>[root[@"SchoolLevel"] indexOfObject:educationLevel])
+                        educationLevel=rule;
+                }
                 break;
+            }
             case EXPERIENCE_LENGTH:{
                 float tmp = [rule floatValue];
                 if(wrong){
@@ -335,7 +345,7 @@
     _nameLabel.string=name;
     _addressLabel.string=[NSString stringWithFormat:@"%@ %@",addressBegin,addressEnd];
     _phoneNumberLabel.string=phoneNumber;
-    _educationLabel.string=education;
+    _educationLabel.string=[NSString stringWithFormat:@"%@ %@",education,educationLevel];
     
     NSNumberFormatter * formatter =  [[NSNumberFormatter alloc] init];
     [formatter setUsesSignificantDigits:YES];
@@ -348,9 +358,12 @@
     //move new resume to position
     self.position=ccp(.6,1.5);
     //CCActionDelay *delay = [CCActionDelay actionWithDuration:0.3f];
-	CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,.6)];
+	CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,.5)];
 	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
 	[self runAction:sequence];
+    
+    //debuging info
+    _debug.string=[NSString stringWithFormat:@"correctness: %d, %d",self.correct,debugInt];
     
 }
 
