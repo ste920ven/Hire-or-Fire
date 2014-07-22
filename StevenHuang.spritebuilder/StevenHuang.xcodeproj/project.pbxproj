@@ -16,6 +16,7 @@
 		68653BA1196B357300BB994C /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68653BA0196B357300BB994C /* Data.plist */; };
 		687DCA68197C237200095833 /* StoreScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 687DCA67197C237200095833 /* StoreScreen.m */; };
 		687DCA6C197D4ADD00095833 /* StoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 687DCA6B197D4ADD00095833 /* StoreItem.m */; };
+		689504BD197EDBFF00610181 /* PauseScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 689504BC197EDBFF00610181 /* PauseScreen.m */; };
 		689D831A197474F200312C7F /* Tuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 689D8319197474F200312C7F /* Tuple.m */; };
 		689D83231976E87A00312C7F /* Gameplay+Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 689D83221976E87A00312C7F /* Gameplay+Tutorial.m */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
@@ -84,6 +85,8 @@
 		687DCA67197C237200095833 /* StoreScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreScreen.m; sourceTree = "<group>"; };
 		687DCA6A197D4ADD00095833 /* StoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreItem.h; sourceTree = "<group>"; };
 		687DCA6B197D4ADD00095833 /* StoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreItem.m; sourceTree = "<group>"; };
+		689504BB197EDBFF00610181 /* PauseScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseScreen.h; sourceTree = "<group>"; };
+		689504BC197EDBFF00610181 /* PauseScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseScreen.m; sourceTree = "<group>"; };
 		689D8318197474F200312C7F /* Tuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tuple.h; sourceTree = "<group>"; };
 		689D8319197474F200312C7F /* Tuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tuple.m; sourceTree = "<group>"; };
 		689D83211976E87A00312C7F /* Gameplay+Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Gameplay+Tutorial.h"; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				687DCA6B197D4ADD00095833 /* StoreItem.m */,
 				6813F6ED196DBE400016CE5E /* LevelSelect.h */,
 				6813F6EE196DBE400016CE5E /* LevelSelect.m */,
+				689504BB197EDBFF00610181 /* PauseScreen.h */,
+				689504BC197EDBFF00610181 /* PauseScreen.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				68103C361970185E00D92DBD /* GameplayManager.m in Sources */,
 				689D831A197474F200312C7F /* Tuple.m in Sources */,
 				6813F705196ED5000016CE5E /* ScoreScreen.m in Sources */,
+				689504BD197EDBFF00610181 /* PauseScreen.m in Sources */,
 				6813F6EF196DBE400016CE5E /* LevelSelect.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				6823707D1968FA0500136283 /* Gameplay.m in Sources */,

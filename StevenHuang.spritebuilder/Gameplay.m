@@ -11,6 +11,7 @@
 #import "RuleBook.h"
 #import "ScoreScreen.h"
 #import "GameplayManager.h"
+#import "PauseScreen.h"
 
 typedef NS_ENUM(NSInteger, GameMechanics){
     SIGNATURE_GAME,
@@ -60,11 +61,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     
     roundCounter=0;
     ready=false;
-    gameOver=false;
     _noBar.zOrder=INT_MAX;
-    //    documentArray=[NSMutableArray array];
-    //    documentArray[0]=_rulebookNode;
-    //    documentArray[1]=_resumeNode;
     components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     _currDateLabel.string=[NSString stringWithFormat:@"Today is %d/%d/%d",[components month],[components day],[components year]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
@@ -75,8 +72,8 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     [_rulebookNode createRulesWithLevel:[GameplayManager sharedInstance].level resumeData:resumeInfo];
     
 #pragma mark TODO currently set as constants
-//    [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"noNumber"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
+    //    [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"noNumber"];
+    //    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
     roundTime=60.f;
@@ -97,7 +94,6 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 -(void)setupNoOptions:(int)num{
-    NSString*tmp=[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][0];
     CCSprite* no;
     CCSprite* no1;
     CCNode* no2=[CCBReader load:@"NoChoice"];
@@ -121,24 +117,24 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     float lastDivision = 0;
     for(int i=0;i<noArray.count;++i){
         /*
-        if(divisions==4){
-            if(i==0){
-                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
-                ((CCNode*)[noArray[i] children][1]).anchorPoint=ccp(.5,1);
-            }if(i==2){
-                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
-                ((CCNode*)[noArray[i] children][1]).anchorPoint=ccp(.5,0);
-            }
-        }
-        if(divisions==3){
-            if(i==0){
-                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
-                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
-            }if(i==1){
-                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
-                ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
-            }
-        }
+         if(divisions==4){
+         if(i==0){
+         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
+         ((CCNode*)[noArray[i] children][1]).anchorPoint=ccp(.5,1);
+         }if(i==2){
+         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
+         ((CCNode*)[noArray[i] children][1]).anchorPoint=ccp(.5,0);
+         }
+         }
+         if(divisions==3){
+         if(i==0){
+         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
+         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
+         }if(i==1){
+         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
+         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
+         }
+         }
          */
         lastDivision+=_noBar.contentSizeInPoints.height/divisions;
         ((CCNode*)noArray[i]).position=ccp(0,lastDivision);
@@ -152,7 +148,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 -(void)update:(CCTime)delta{
-    if(ready){
+    if(ready && ![GameplayManager sharedInstance].paused){
         //clock
         [self animateClock:roundTime];
         [self endGame];
@@ -169,6 +165,17 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 #pragma mark Touch Controls
+-(void) pause{
+    
+    PauseScreen* screen = (PauseScreen*)[CCBReader load:@"screens/pauseScreen"];
+    screen.positionType = CCPositionTypeNormalized;
+    screen.position = ccp(0.5, 0.5);
+    screen.zOrder = INT_MAX;
+    [_contentNode addChild:screen];
+    self.userInteractionEnabled = false;
+}
+
+
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     selectedObject=nil;
     CGPoint touchLocation = [touch locationInNode:_contentNode];
@@ -220,23 +227,23 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 -(void)didSwipe:(UISwipeGestureRecognizer*)sender{
-    if(ready)
-        [self resetResume];
-    
-    UISwipeGestureRecognizerDirection direction=sender.direction;
-    
-    if(direction==UISwipeGestureRecognizerDirectionUp){
-        [_rulebookNode show:true];
-        rulesActive=true;
-    }else if(direction==UISwipeGestureRecognizerDirectionDown){
-        [_rulebookNode show:false];
-        if(!ready){
-            [self newResume];
+    if(!gameOver){
+        if(ready)
+            [self resetResume];
+        UISwipeGestureRecognizerDirection direction=sender.direction;
+        if(direction==UISwipeGestureRecognizerDirectionUp){
+            [_rulebookNode show:true];
+            rulesActive=true;
+        }else if(direction==UISwipeGestureRecognizerDirectionDown){
+            [_rulebookNode show:false];
+            if(!ready){
+                [self newResume];
                 ready=true;
 #pragma mark TUTORIAL
-            [_contentNode removeChild:level];
+                [_contentNode removeChild:level];
+            }
+            rulesActive=false;
         }
-        rulesActive=false;
     }
 }
 
@@ -249,6 +256,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 
 -(void) endGame{
     if(roundCounter==roundTime*60){
+        self.userInteractionEnabled = false;
         gameOver=true;
         ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"screens/scoreScreen"];
         screen.positionType = CCPositionTypeNormalized;

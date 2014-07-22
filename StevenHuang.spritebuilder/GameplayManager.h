@@ -13,5 +13,6 @@
 +(instancetype)sharedInstance;
 
 @property (nonatomic) NSInteger level;
+@property (assign) bool paused;
 
 @end

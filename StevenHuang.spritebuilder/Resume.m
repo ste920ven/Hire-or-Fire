@@ -200,13 +200,13 @@
             case NAME:
                 break;
             case ADDRESS:
-                break  ;
+                break;
             case EDUCATION:{
                 if(wrong){
                     while([education rangeOfString:rule].location != NSNotFound)
-                        education=[NSString stringWithFormat:@"%@ Univeristy",root[@"Schools"][arc4random_uniform(SCHOOL_SIZE) ]];
+                        education=root[@"Schools"][arc4random_uniform(SCHOOL_SIZE)];
                 }else if([education rangeOfString:rule].location == NSNotFound)
-                    education=[NSString stringWithFormat:@"%@ Univeristy",rule];
+                    education=rule;
                 break;
             }
             case PHONE:{

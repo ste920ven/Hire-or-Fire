@@ -40,4 +40,9 @@
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
 
+-(void)LevelSelect{
+    CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene];
+}
+
 @end
