@@ -11,6 +11,12 @@
 @implementation MainScene
 
 - (void)play {
+    if([[NSUserDefaults standardUserDefaults]objectForKey:@"noUnlocked"]==nil){
+        [[NSUserDefaults standardUserDefaults] setObject:[[NSArray alloc]init] forKey:@"noUnlocked"];
+    }
+    if([[NSUserDefaults standardUserDefaults]objectForKey:@"noSelected"]==nil){
+        [[NSUserDefaults standardUserDefaults] setObject:[[NSArray alloc]init] forKey:@"noSelected"];
+    }
     CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }

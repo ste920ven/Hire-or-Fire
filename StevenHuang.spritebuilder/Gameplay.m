@@ -24,14 +24,14 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     //spritebuilder vars
     Resume *_resumeNode;
     RuleBook *_rulebookNode;
-    CCNode *_contentNode,*_scoreScreen,*_noBar;
+    CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode;
     CCSprite *_clockhandSprite;
-    CCLabelTTF *_currDateLabel;
+    CCLabelTTF *_currDateLabel,*_bubbleLabel;
     
-    bool ready,noBarActive,gameOver,rulesActive;
+    bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass;
     NSArray *noArray;
     CCNode *selectedObject;
-    CGFloat roundTime;
+    CGFloat roundTime,randomEventChance,penaltyChance,penaltyDelay,randomEventDelay;
     NSDictionary *root;
     NSDateComponents *components;
     
@@ -75,11 +75,8 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     [_rulebookNode createRulesWithLevel:[GameplayManager sharedInstance].level resumeData:resumeInfo];
     
 #pragma mark TODO currently set as constants
-    [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"noNumber"];
-    [[NSUserDefaults standardUserDefaults] setValue:@"fire" forKey:@"no1"];
-    [[NSUserDefaults standardUserDefaults] setValue:@"dog" forKey:@"no2"];
-    [[NSUserDefaults standardUserDefaults] setValue:@"shredder" forKey:@"no3"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"noNumber"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
     roundTime=60.f;
@@ -100,21 +97,22 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 -(void)setupNoOptions:(int)num{
+    NSString*tmp=[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][0];
     CCSprite* no;
     CCSprite* no1;
-    CCSprite* no2=(CCSprite*)[CCBReader load:@"NoChoice"];
+    CCNode* no2=[CCBReader load:@"NoChoice"];
     switch (num) {
         case 3:{
             no=(CCSprite*)[CCBReader load:@"NoChoice"];
             [_noBar addChild:no];
-            [no.animationManager runAnimationsForSequenceNamed:[[NSUserDefaults standardUserDefaults] objectForKey:@"no3"]];
+            [no.animationManager runAnimationsForSequenceNamed:[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][2]];
         }case 2:{
             no1=(CCSprite*)[CCBReader load:@"NoChoice"];
             [_noBar addChild:no1];
-            [no1.animationManager runAnimationsForSequenceNamed:[[NSUserDefaults standardUserDefaults] objectForKey:@"no2"]];
+            [no1.animationManager runAnimationsForSequenceNamed:[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][1]];
         }case 1:{
             [_noBar addChild:no2];
-            [no2.animationManager runAnimationsForSequenceNamed:[[NSUserDefaults standardUserDefaults] objectForKey:@"no1"]];
+            [no2.animationManager runAnimationsForSequenceNamed:[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][0]];
             break;
         }
     }
@@ -243,72 +241,9 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 -(void)resetResume{
-    _resumeNode.position=ccp(.5,.6);
+    _resumeNode.position=ccp(.5,.5);
 }
-#pragma mark OLD CONTROLS
-//-(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
-//    if(!gameOver){
-//        CGPoint touchLocation = [touch locationInNode:_contentNode];
-//        if(!ready && CGRectContainsPoint([_readyNode boundingBox], touchLocation)){
-//            ready=true;
-//            [self newResume];
-//            [_readyNode removeFromParent];
-//#pragma mark TUTORIAL
-//            [_contentNode removeChild:level];
-//            return;
-//        }
-//        selectedObject=nil;
-//        //item on top get priority
-//        for(CCNode* documentNode in documentArray){
-//            if(CGRectContainsPoint([documentNode boundingBox], touchLocation)){
-//                selectedObject=documentNode;
-//                break;
-//            }
-//        }
-//        selectedObject.zOrder=1;
-//        if(selectedObject!=nil){
-//            [documentArray removeObject:selectedObject];
-//            [documentArray insertObject:selectedObject atIndex:0];
-//        }
-//    }
-//}
-//
-//- (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
-//    CGPoint touchLocation = [touch locationInNode:_contentNode];
-//    CGPoint newLocation = ccp(touchLocation.x/_contentNode.contentSizeInPoints.width,touchLocation.y/_contentNode.contentSizeInPoints.height);
-//    selectedObject.position=newLocation;
-//    if(selectedObject==_resumeNode){
-//        if(touchLocation.x<=20){
-//            noBarActive=true;
-//            _noBar.position=ccp(0,.05);
-//        }else if(noBarActive){
-//            _noBar.position=ccp(-80,.05);
-//            noBarActive=false;
-//        }
-//    }
-//}
-//
-//-(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
-//    if(selectedObject==_resumeNode){
-//        CGPoint touchLocation = [touch locationInNode:_contentNode];
-//        if(touchLocation.x<=20){
-//            if(_resumeNode.correct==false)
-//                ++_resumeNode.correctCount;
-//            [self newResume];
-//        }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-20){
-//            if(_resumeNode.correct==true){
-//                _resumeNode.passedCount++;
-//                _resumeNode.correctCount++;
-//
-//            }
-//            [self newResume];
-//        }
-//    }
-//    if(noBarActive){
-//        _noBar.position=ccp(-80,.05);
-//        noBarActive=false;
-//    }
-//}
+
 
 #pragma mark Game End
 
@@ -326,4 +261,18 @@ typedef NS_ENUM(NSInteger, GameMechanics){
         roundCounter++;
 }
 
+#pragma mark minigame handling
+-(void)minigameYes{
+    NSLog(@"penis");
+}
+-(void)minigameNo{
+    minigameNo=true;
+    _bubbleNode.visible=false;
+    penaltyChance=arc4random_uniform(10000);
+}
+-(void)minigamePass{
+    minigamePass=true;
+    _bubbleNode.visible=false;
+    penaltyChance=arc4random_uniform(10000);
+}
 @end

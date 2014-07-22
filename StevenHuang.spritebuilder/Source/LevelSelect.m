@@ -39,4 +39,10 @@
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
 
+-(void)openStore{
+    CCScene *gameplayScene = [CCBReader loadAsScene:@"Store"];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene];
+
+}
+
 @end
