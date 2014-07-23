@@ -11,44 +11,41 @@
 #import "RuleBook.h"
 #import "ScoreScreen.h"
 #import "GameplayManager.h"
-#import "PauseScreen.h"
-
-typedef NS_ENUM(NSInteger, GameMechanics){
-    SIGNATURE_GAME,
-    ALWAYS_CORRRECT
-};
+#import "Minigame.h"
 
 @implementation Gameplay{
     //timer vars
-    int framesForClockTick,roundCounter;
+    int framesForClockTick,minigameCode;
     
     //spritebuilder vars
     Resume *_resumeNode;
     RuleBook *_rulebookNode;
-    CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode;
+    CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode,*_tutorial1,*_tutorial2,*_pauseScreen;
     CCSprite *_clockhandSprite;
     CCLabelTTF *_currDateLabel,*_bubbleLabel;
+    CCButton *_pauseButton;
     
-    bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass;
+    bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass,pushedScene;
     NSArray *noArray;
     CCNode *selectedObject;
     CGFloat roundTime,randomEventChance,penaltyChance,penaltyDelay,randomEventDelay;
     NSDictionary *root;
     NSDateComponents *components;
+    UISwipeGestureRecognizer *downSwipe,*upSwipe;
     
     CCScene *level;
+    ScoreScreen *ss;
 }
 
 #pragma mark Setup
 - (id)init{
     self = [super init];
     if (self) {
-        
-        UISwipeGestureRecognizer *upSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+        upSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
         [[CCDirector sharedDirector].view addGestureRecognizer:upSwipe];
         upSwipe.direction=UISwipeGestureRecognizerDirectionUp;
         
-        UISwipeGestureRecognizer *downSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+        downSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
         [[CCDirector sharedDirector].view addGestureRecognizer:downSwipe];
         downSwipe.direction=UISwipeGestureRecognizerDirectionDown;
     }
@@ -59,7 +56,9 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
     
-    roundCounter=0;
+    randomEventDelay=5.f;
+    
+    [GameplayManager sharedInstance].roundCounter=0;
     ready=false;
     _noBar.zOrder=INT_MAX;
     components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
@@ -81,11 +80,13 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 #pragma mark Tutorial
     
     if([GameplayManager sharedInstance].level==0){
-        level = [CCBReader loadAsScene:@"screens/Tutorial1"];
-        [_contentNode addChild:level];
+        _tutorial1.visible=true;
     }
     
     [_rulebookNode show:true];
+    
+    //choose random event delay
+    
 }
 
 -(void)noAnimation:(NSString*)str{
@@ -148,10 +149,31 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 -(void)update:(CCTime)delta{
-    if(ready && ![GameplayManager sharedInstance].paused){
-        //clock
-        [self animateClock:roundTime];
-        [self endGame];
+    if(![GameplayManager sharedInstance].paused){
+        _pauseButton.enabled = YES;
+        upSwipe.enabled = YES;
+        downSwipe.enabled = YES;
+        self.userInteractionEnabled = TRUE;
+        if(ready){
+            //clock
+            [self animateClock:roundTime];
+            [self endGame];
+            if(randomEventDelay*60==[GameplayManager sharedInstance].roundCounter){
+                NSString *msg;
+                minigameCode=arc4random_uniform(2);
+                switch (minigameCode) {
+                    case 0:
+                        msg=@"I need you to sign some documents for me";
+                        break;
+                    case 1:
+                        msg=@"Quick, delete your emails. The boss is coming to check them";
+                        break;
+                }
+                _bubbleLabel.string=msg;
+                _bubbleNode.visible=true;
+                _bubbleNode.zOrder=INT_MAX;
+            }
+        }
     }
 }
 
@@ -166,12 +188,11 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 
 #pragma mark Touch Controls
 -(void) pause{
-    
-    PauseScreen* screen = (PauseScreen*)[CCBReader load:@"screens/pauseScreen"];
-    screen.positionType = CCPositionTypeNormalized;
-    screen.position = ccp(0.5, 0.5);
-    screen.zOrder = INT_MAX;
-    [_contentNode addChild:screen];
+    upSwipe.enabled = NO;
+    downSwipe.enabled = NO;
+    [GameplayManager sharedInstance].paused=true;
+    _pauseButton.enabled = NO;
+    _pauseScreen.visible=true;
     self.userInteractionEnabled = false;
 }
 
@@ -182,7 +203,6 @@ typedef NS_ENUM(NSInteger, GameMechanics){
     if(CGRectContainsPoint([_resumeNode boundingBox], touchLocation)){
         selectedObject=_resumeNode;
     }
-    
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
@@ -227,9 +247,8 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 }
 
 -(void)didSwipe:(UISwipeGestureRecognizer*)sender{
+    //if(ready)
     if(!gameOver){
-        if(ready)
-            [self resetResume];
         UISwipeGestureRecognizerDirection direction=sender.direction;
         if(direction==UISwipeGestureRecognizerDirectionUp){
             [_rulebookNode show:true];
@@ -240,7 +259,7 @@ typedef NS_ENUM(NSInteger, GameMechanics){
                 [self newResume];
                 ready=true;
 #pragma mark TUTORIAL
-                [_contentNode removeChild:level];
+                [_tutorial1 removeFromParent];
             }
             rulesActive=false;
         }
@@ -255,9 +274,11 @@ typedef NS_ENUM(NSInteger, GameMechanics){
 #pragma mark Game End
 
 -(void) endGame{
-    if(roundCounter==roundTime*60){
+    if([GameplayManager sharedInstance].roundCounter==roundTime*60){
+        _pauseButton.enabled = NO;
         self.userInteractionEnabled = false;
         gameOver=true;
+        
         ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"screens/scoreScreen"];
         screen.positionType = CCPositionTypeNormalized;
         screen.position = ccp(0.5, 0.5);
@@ -266,21 +287,40 @@ typedef NS_ENUM(NSInteger, GameMechanics){
         [_contentNode addChild:screen];
         ready=false;
     }else
-        roundCounter++;
+        [GameplayManager sharedInstance].roundCounter++;
 }
 
 #pragma mark minigame handling
 -(void)minigameYes{
-    NSLog(@"penis");
+    NSLog(@"minigame pass");
+    Minigame *scene = (Minigame*)[CCBReader loadAsScene:@"Minigame"];
+    [scene setGame:minigameCode];
+    [[CCDirector sharedDirector] pushScene:scene];
 }
 -(void)minigameNo{
     minigameNo=true;
     _bubbleNode.visible=false;
+    NSLog(@"minigame no");
     penaltyChance=arc4random_uniform(10000);
 }
 -(void)minigamePass{
     minigamePass=true;
     _bubbleNode.visible=false;
+    NSLog(@"minigame pass");
     penaltyChance=arc4random_uniform(10000);
 }
+
+#pragma mark pause
+-(void)LevelSelect{
+    self.userInteractionEnabled = true;
+    CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene];
+}
+
+-(void)Resume{
+    self.userInteractionEnabled=true;
+    [_pauseScreen removeFromParent];
+    [GameplayManager sharedInstance].paused=false;
+}
+
 @end

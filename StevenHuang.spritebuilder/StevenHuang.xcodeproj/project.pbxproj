@@ -16,9 +16,8 @@
 		68653BA1196B357300BB994C /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68653BA0196B357300BB994C /* Data.plist */; };
 		687DCA68197C237200095833 /* StoreScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 687DCA67197C237200095833 /* StoreScreen.m */; };
 		687DCA6C197D4ADD00095833 /* StoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 687DCA6B197D4ADD00095833 /* StoreItem.m */; };
-		689504BD197EDBFF00610181 /* PauseScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 689504BC197EDBFF00610181 /* PauseScreen.m */; };
 		689D831A197474F200312C7F /* Tuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 689D8319197474F200312C7F /* Tuple.m */; };
-		689D83231976E87A00312C7F /* Gameplay+Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 689D83221976E87A00312C7F /* Gameplay+Tutorial.m */; };
+		68C44DA6197FECC60062720F /* Minigame.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C44DA5197FECC60062720F /* Minigame.m */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -85,12 +84,10 @@
 		687DCA67197C237200095833 /* StoreScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreScreen.m; sourceTree = "<group>"; };
 		687DCA6A197D4ADD00095833 /* StoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreItem.h; sourceTree = "<group>"; };
 		687DCA6B197D4ADD00095833 /* StoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreItem.m; sourceTree = "<group>"; };
-		689504BB197EDBFF00610181 /* PauseScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseScreen.h; sourceTree = "<group>"; };
-		689504BC197EDBFF00610181 /* PauseScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseScreen.m; sourceTree = "<group>"; };
 		689D8318197474F200312C7F /* Tuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tuple.h; sourceTree = "<group>"; };
 		689D8319197474F200312C7F /* Tuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tuple.m; sourceTree = "<group>"; };
-		689D83211976E87A00312C7F /* Gameplay+Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Gameplay+Tutorial.h"; sourceTree = "<group>"; };
-		689D83221976E87A00312C7F /* Gameplay+Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Gameplay+Tutorial.m"; sourceTree = "<group>"; };
+		68C44DA4197FECC60062720F /* Minigame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Minigame.h; sourceTree = "<group>"; };
+		68C44DA5197FECC60062720F /* Minigame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Minigame.m; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
@@ -160,8 +157,6 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				689D83211976E87A00312C7F /* Gameplay+Tutorial.h */,
-				689D83221976E87A00312C7F /* Gameplay+Tutorial.m */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				B7378992180767190076A88C /* MainScene.h */,
@@ -176,6 +171,8 @@
 				689D8319197474F200312C7F /* Tuple.m */,
 				6823707B1968FA0500136283 /* Gameplay.h */,
 				6823707C1968FA0500136283 /* Gameplay.m */,
+				68C44DA4197FECC60062720F /* Minigame.h */,
+				68C44DA5197FECC60062720F /* Minigame.m */,
 				6813F703196ED5000016CE5E /* ScoreScreen.h */,
 				6813F704196ED5000016CE5E /* ScoreScreen.m */,
 				687DCA66197C237200095833 /* StoreScreen.h */,
@@ -184,8 +181,6 @@
 				687DCA6B197D4ADD00095833 /* StoreItem.m */,
 				6813F6ED196DBE400016CE5E /* LevelSelect.h */,
 				6813F6EE196DBE400016CE5E /* LevelSelect.m */,
-				689504BB197EDBFF00610181 /* PauseScreen.h */,
-				689504BC197EDBFF00610181 /* PauseScreen.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -402,14 +397,13 @@
 				682370761968F9DF00136283 /* Resume.m in Sources */,
 				6823707A1968F9F200136283 /* RuleBook.m in Sources */,
 				687DCA6C197D4ADD00095833 /* StoreItem.m in Sources */,
-				689D83231976E87A00312C7F /* Gameplay+Tutorial.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				687DCA68197C237200095833 /* StoreScreen.m in Sources */,
 				68103C361970185E00D92DBD /* GameplayManager.m in Sources */,
+				68C44DA6197FECC60062720F /* Minigame.m in Sources */,
 				689D831A197474F200312C7F /* Tuple.m in Sources */,
 				6813F705196ED5000016CE5E /* ScoreScreen.m in Sources */,
-				689504BD197EDBFF00610181 /* PauseScreen.m in Sources */,
 				6813F6EF196DBE400016CE5E /* LevelSelect.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				6823707D1968FA0500136283 /* Gameplay.m in Sources */,

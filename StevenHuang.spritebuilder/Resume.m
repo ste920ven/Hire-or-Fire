@@ -363,7 +363,7 @@
 	[self runAction:sequence];
     
     //debuging info
-    _debug.string=[NSString stringWithFormat:@"correctness: %d, %d",self.correct,debugInt];
+    //_debug.string=[NSString stringWithFormat:@"correctness: %d, %d",self.correct,debugInt];
     
 }
 

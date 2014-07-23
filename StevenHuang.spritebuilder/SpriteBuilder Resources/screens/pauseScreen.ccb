@@ -831,7 +831,7 @@
 				<key>value</key>
 				<array>
 					<real>256</real>
-					<real>454</real>
+					<real>504</real>
 					<integer>0</integer>
 					<integer>0</integer>
 				</array>
@@ -844,7 +844,7 @@
 				<key>value</key>
 				<array>
 					<real>0.5</real>
-					<real>0.5</real>
+					<real>0.69999998807907104</real>
 				</array>
 			</dict>
 			<dict>
@@ -861,8 +861,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

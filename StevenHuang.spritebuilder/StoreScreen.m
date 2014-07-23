@@ -32,11 +32,11 @@
     self.userInteractionEnabled = TRUE;
     
     //reset unlocked defaults
-    [[NSUserDefaults standardUserDefaults] setObject:[[NSArray alloc]init] forKey:@"noSelected"];
-    [[NSUserDefaults standardUserDefaults] setObject:[[NSArray alloc]init] forKey:@"noUnlocked"];
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"noNumber"];
-    [[NSUserDefaults standardUserDefaults] setInteger:1000 forKey:@"money"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    [[NSUserDefaults standardUserDefaults] setObject:[[NSArray alloc]init] forKey:@"noSelected"];
+//    [[NSUserDefaults standardUserDefaults] setObject:[[NSArray alloc]init] forKey:@"noUnlocked"];
+//    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"noNumber"];
+//    [[NSUserDefaults standardUserDefaults] setInteger:1000 forKey:@"money"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
     noOptions=[[_scrollView contentNode] children];
     noUnlocked=[NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:@"noUnlocked"]];
@@ -51,8 +51,8 @@
             [item check:true];
     }
     
-    _money.string=[NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"money"] ];
-    _selectedAmountLabel.string=[NSString stringWithFormat:@"%d",selectedAmountCount];
+    _money.string=[NSString stringWithFormat:@"$%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"money"] ];
+    _selectedAmountLabel.string=[NSString stringWithFormat:@"%d/3",selectedAmountCount];
 }
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
@@ -77,13 +77,13 @@
                     --selectedAmountCount;
                 }
             }
-            _selectedAmountLabel.string=[NSString stringWithFormat:@"%d",selectedAmountCount];
+            _selectedAmountLabel.string=[NSString stringWithFormat:@"%d/3",selectedAmountCount];
             if([noUnlocked indexOfObject:item.title]==NSNotFound){
                 if([item buy]){
                     [item greyOut];
                     [noUnlocked addObject:item.title];
                     [[NSUserDefaults standardUserDefaults] setObject:noUnlocked forKey:@"noUnlocked"];
-                    _money.string=[NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"money"] ];
+                    _money.string=[NSString stringWithFormat:@"$%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"money"] ];
                 }
             }else{
                 

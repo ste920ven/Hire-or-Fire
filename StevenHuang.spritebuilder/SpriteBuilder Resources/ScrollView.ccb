@@ -323,7 +323,7 @@
 						<key>type</key>
 						<integer>0</integer>
 						<key>value</key>
-						<string>0</string>
+						<string>1000</string>
 					</dict>
 				</array>
 				<key>displayName</key>
@@ -408,7 +408,7 @@
 						<key>type</key>
 						<integer>0</integer>
 						<key>value</key>
-						<string>0</string>
+						<string>2000</string>
 					</dict>
 				</array>
 				<key>displayName</key>
@@ -493,7 +493,7 @@
 						<key>type</key>
 						<integer>0</integer>
 						<key>value</key>
-						<string>0</string>
+						<string>10000</string>
 					</dict>
 				</array>
 				<key>displayName</key>
@@ -578,7 +578,7 @@
 						<key>type</key>
 						<integer>0</integer>
 						<key>value</key>
-						<string>0</string>
+						<string>4000</string>
 					</dict>
 				</array>
 				<key>displayName</key>

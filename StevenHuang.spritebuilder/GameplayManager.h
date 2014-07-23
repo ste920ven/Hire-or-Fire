@@ -14,5 +14,6 @@
 
 @property (nonatomic) NSInteger level;
 @property (assign) bool paused;
+@property (assign) int roundCounter;
 
 @end

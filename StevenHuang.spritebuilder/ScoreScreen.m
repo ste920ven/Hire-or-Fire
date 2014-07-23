@@ -10,7 +10,6 @@
 #import "GameplayManager.h"
 
 @implementation ScoreScreen{
-    
     CCLabelTTF *_moneyLabel,*_moneyEarnedLabel,*_scoreLabel,*_messageLabel,*_totalLabel,*_correctLabel;
     CCButton *_nextLevelButton;
 }
@@ -35,9 +34,14 @@
 }
 
 -(void) nextLevel{
+    if([GameplayManager sharedInstance].level==3){
+        CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
+        [[CCDirector sharedDirector] replaceScene:gameplayScene];
+    }else{
     [GameplayManager sharedInstance].level++;
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
+    }
 }
 
 -(void)LevelSelect{
