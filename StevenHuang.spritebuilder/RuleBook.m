@@ -15,9 +15,9 @@
 -(void)show:(bool)b{
     CCActionScaleTo *translation;
     if(b){
-         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.05,0)];
+         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,0)];
     }else{
-         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.05,-60)];
+         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,-60)];
     }
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
     [self runAction:sequence];

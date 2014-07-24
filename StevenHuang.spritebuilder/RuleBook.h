@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "CCNode.h"
+#import "CCSprite.h"
 
 typedef NS_ENUM(NSInteger, RuleType){
     MAXAGE,             //0
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, RuleType){
 #define LOCATION_SIZE 8
 #define EXPERIENCE_LENGTH_MAX 5
 
-@interface RuleBook : CCNode
+@interface RuleBook : CCSprite
 
 @property (nonatomic,strong) NSArray* Leveldata;
 @property (nonatomic,strong) NSMutableDictionary *rules;

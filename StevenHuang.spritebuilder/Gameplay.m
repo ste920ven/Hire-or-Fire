@@ -137,7 +137,11 @@
          }
          }
          */
-        lastDivision+=_noBar.contentSizeInPoints.height/divisions;
+        
+        lastDivision+=1.f/divisions;
+        //lastDivision+=_noBar.contentSize.height/divisions;
+        ((CCNode*)noArray[i]).positionType=CCPositionTypeNormalized;
+        ((CCNode*)noArray[i]).zOrder=INT_MAX;;
         ((CCNode*)noArray[i]).position=ccp(0,lastDivision);
         
     }
@@ -192,6 +196,7 @@
     downSwipe.enabled = NO;
     [GameplayManager sharedInstance].paused=true;
     _pauseButton.enabled = NO;
+    _resumeNode.zOrder=-1;
     _pauseScreen.visible=true;
     self.userInteractionEnabled = false;
 }
@@ -213,9 +218,9 @@
             selectedObject.position=newLocation;
             if(touchLocation.x<=50){
                 noBarActive=true;
-                _noBar.position=ccp(40,.05);
+                _noBar.position=ccp(0,48);
             }else if(noBarActive){
-                _noBar.position=ccp(-80,.05);
+                _noBar.position=ccp(-120,48);
                 noBarActive=false;
             }
         }
@@ -241,7 +246,7 @@
         }
     }
     if(noBarActive){
-        _noBar.position=ccp(-80,.05);
+        _noBar.position=ccp(-120,48);
         noBarActive=false;
     }
 }
@@ -249,6 +254,7 @@
 -(void)didSwipe:(UISwipeGestureRecognizer*)sender{
     //if(ready)
     if(!gameOver){
+        [self resetResume];
         UISwipeGestureRecognizerDirection direction=sender.direction;
         if(direction==UISwipeGestureRecognizerDirectionUp){
             [_rulebookNode show:true];
@@ -293,9 +299,9 @@
 #pragma mark minigame handling
 -(void)minigameYes{
     NSLog(@"minigame pass");
-    Minigame *scene = (Minigame*)[CCBReader loadAsScene:@"Minigame"];
-    [scene setGame:minigameCode];
-    [[CCDirector sharedDirector] pushScene:scene];
+    Minigame *mini = (Minigame*)[CCBReader loadAsScene:@"Untitled"];
+    //[mini setGame:minigameCode];
+    [[CCDirector sharedDirector] pushScene:mini];
 }
 -(void)minigameNo{
     minigameNo=true;
@@ -318,8 +324,9 @@
 }
 
 -(void)Resume{
+    _resumeNode.zOrder=0;
     self.userInteractionEnabled=true;
-    [_pauseScreen removeFromParent];
+    _pauseScreen.visible=false;
     [GameplayManager sharedInstance].paused=false;
 }
 

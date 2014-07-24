@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "CCScene.h"
+#import "CCNode.h"
 
-@interface Minigame : CCScene
+@interface Minigame : CCNode
 
 -(void)setGame:(int)i;
 
