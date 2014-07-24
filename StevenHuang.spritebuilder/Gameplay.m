@@ -57,7 +57,7 @@
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
     
-    randomEventDelay=5.f;
+    randomEventDelay=1.f;
     
     [GameplayManager sharedInstance].roundCounter=0;
     ready=false;
@@ -71,10 +71,6 @@
     _rulebookNode.Leveldata=root[@"Levels"][[GameplayManager sharedInstance].level];
     [_rulebookNode createRulesWithLevel:[GameplayManager sharedInstance].level resumeData:resumeInfo];
     
-#pragma mark TODO currently set as constants
-    //    [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"noNumber"];
-    //    [[NSUserDefaults standardUserDefaults] synchronize];
-    
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
     roundTime=60.f;
     
@@ -85,9 +81,6 @@
     }
     
     [_rulebookNode show:true];
-    
-    //choose random event delay
-    
 }
 
 -(void)noAnimation:(NSString*)str{
@@ -165,7 +158,9 @@
             [self endGame];
             if(randomEventDelay*60==[GameplayManager sharedInstance].roundCounter){
                 NSString *msg;
-                minigameCode=arc4random_uniform(2);
+#pragma mark constant
+                minigameCode=1;
+                //minigameCode=arc4random_uniform(2);
                 switch (minigameCode) {
                     case 0:
                         msg=@"I need you to sign some documents for me";
@@ -298,10 +293,11 @@
 #pragma mark minigame handling
 -(void)minigameYes{
     NSLog(@"minigame pass");
-    Minigame *mini = (Minigame*)[CCBReader load:@"Minigame"];
     _bubbleNode.visible=false;
-    //[mini setGame:minigameCode];
-    [self addChild:mini];
+    //[CCBReader load:scene];
+    Minigame* mini=(Minigame*)[CCBReader load:@"EmailGame"];
+     [_popoverNode addChild:mini];
+     [mini setGame:minigameCode];
 }
 -(void)minigameNo{
     minigameNo=true;
