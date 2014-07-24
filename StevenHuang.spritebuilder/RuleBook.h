@@ -20,7 +20,9 @@ typedef NS_ENUM(NSInteger, RuleType){
     EXPERIENCE_LOCATION,//8
     ADDRESS_TYPE,       //9
     EDUCATION_LEVEL,     //10 
-    EXPERIENCE_LENGTH   //11
+    EXPERIENCE_LENGTH,   //11
+    
+    END
 };
 
 #define ADDRESS_NUM_SIZE 1500

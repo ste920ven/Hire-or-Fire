@@ -55,7 +55,6 @@
 }
 
 -(void)createNew{
-    self.zOrder=1;
     
     //increment total counter
     ++self.totalCount;

@@ -12,6 +12,7 @@
 #import "ScoreScreen.h"
 #import "GameplayManager.h"
 #import "Minigame.h"
+#import "PauseScreen.h"
 
 @implementation Gameplay{
     //timer vars
@@ -20,7 +21,7 @@
     //spritebuilder vars
     Resume *_resumeNode;
     RuleBook *_rulebookNode;
-    CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode,*_tutorial1,*_tutorial2,*_pauseScreen;
+    CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode,*_tutorial1,*_tutorial2,*_pauseScreen,*_popoverNode;
     CCSprite *_clockhandSprite;
     CCLabelTTF *_currDateLabel,*_bubbleLabel;
     CCButton *_pauseButton;
@@ -34,7 +35,7 @@
     UISwipeGestureRecognizer *downSwipe,*upSwipe;
     
     CCScene *level;
-    ScoreScreen *ss;
+    PauseScreen *ps;
 }
 
 #pragma mark Setup
@@ -195,9 +196,9 @@
     upSwipe.enabled = NO;
     downSwipe.enabled = NO;
     [GameplayManager sharedInstance].paused=true;
+    PauseScreen *scene=(PauseScreen*)[CCBReader load:@"PauseScreen"];
+    [_popoverNode addChild:scene];
     _pauseButton.enabled = NO;
-    _resumeNode.zOrder=-1;
-    _pauseScreen.visible=true;
     self.userInteractionEnabled = false;
 }
 
@@ -284,13 +285,11 @@
         _pauseButton.enabled = NO;
         self.userInteractionEnabled = false;
         gameOver=true;
+        [GameplayManager sharedInstance].paused=true;
         
-        ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"screens/scoreScreen"];
-        screen.positionType = CCPositionTypeNormalized;
-        screen.position = ccp(0.5, 0.5);
-        screen.zOrder = INT_MAX;
+        ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"ScoreScreen"];
         [screen setScreenWithScore:_resumeNode.passedCount message:@"Level Passed" total:_resumeNode.totalCount correct:_resumeNode.correctCount];
-        [_contentNode addChild:screen];
+        [_popoverNode addChild:screen];
         ready=false;
     }else
         [GameplayManager sharedInstance].roundCounter++;
@@ -299,9 +298,10 @@
 #pragma mark minigame handling
 -(void)minigameYes{
     NSLog(@"minigame pass");
-    Minigame *mini = (Minigame*)[CCBReader loadAsScene:@"Untitled"];
+    Minigame *mini = (Minigame*)[CCBReader load:@"Minigame"];
+    _bubbleNode.visible=false;
     //[mini setGame:minigameCode];
-    [[CCDirector sharedDirector] pushScene:mini];
+    [self addChild:mini];
 }
 -(void)minigameNo{
     minigameNo=true;
@@ -314,20 +314,6 @@
     _bubbleNode.visible=false;
     NSLog(@"minigame pass");
     penaltyChance=arc4random_uniform(10000);
-}
-
-#pragma mark pause
--(void)LevelSelect{
-    self.userInteractionEnabled = true;
-    CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
-    [[CCDirector sharedDirector] replaceScene:gameplayScene];
-}
-
--(void)Resume{
-    _resumeNode.zOrder=0;
-    self.userInteractionEnabled=true;
-    _pauseScreen.visible=false;
-    [GameplayManager sharedInstance].paused=false;
 }
 
 @end
