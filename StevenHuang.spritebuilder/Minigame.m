@@ -73,7 +73,6 @@ typedef NS_ENUM(NSInteger, MINIGAME){
         case DELETE_EMAIL:{
             CGFloat f=touchLocation.x-startLocation.x;
             selectedObject.position=ccp(f,ogPosition.y);
-            
             break;
         }
         case 2:{

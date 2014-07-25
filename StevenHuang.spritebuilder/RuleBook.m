@@ -15,9 +15,9 @@
 -(void)show:(bool)b{
     CCActionScaleTo *translation;
     if(b){
-         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,0)];
+        translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,0)];
     }else{
-         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,-60)];
+        translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,-360)];
     }
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
     [self runAction:sequence];
@@ -31,15 +31,28 @@
         counter++;
         [tmp appendFormat:@"%d. ",counter];
         NSString *entry;
-        switch ([ruleType intValue]) {
+        int num=[ruleType intValue]%100;
+        int b=[ruleType intValue]/100;
+        
+        switch (num) {
             case MAXAGE:{ //0
                 entry=[NSString stringWithFormat:@"%d",arc4random_uniform(50)+10];
-                [tmp appendFormat:@"Must be at most %@ years old\n",entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must be at most %@ years old\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants that are %@ years old or younger are automatically in\n",entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants that are %@ years old or younger are automatically out\n",entry];
                 break;
             }
             case MINAGE:{ //1
                 entry=[NSString stringWithFormat:@"%d",arc4random_uniform(50)+10];
-                [tmp appendFormat:@"Must be atleast %@ years old\n",entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must be atleast %@ years old\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants that are %@ years old or older are automatically in\n",entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants that are %@ years old or older are automatically out\n",entry];
                 break;
             }
             case NAME:{ //2
@@ -52,18 +65,33 @@
             }
             case EDUCATION:{ //4
                 entry=data[@"Schools"][arc4random_uniform(SCHOOL_SIZE)];
-                [tmp appendFormat:@"Must have attended to a %@ school\n",entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must have attended to a %@ school\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants who attended %@ are automatically in\n",entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants who attended %@ are automatically out\n",entry];
                 break;
             }
             case PHONE:{ //5
                 entry=[NSString stringWithFormat:@"%03d",arc4random_uniform(1000)];
-                [tmp appendFormat:@"Must be from this areacode (%3@)\n", entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must be from this areacode (%3@)\n", entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants with the areacode (%3@) are automatically in\n", entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants with the areacode (%3@) are automatically out\n", entry];
                 break;
             }
             case EXPERIENCE_FIELD:{ //6
                 NSArray* keys = [data[@"Experiences"] allKeys];
                 entry = keys[arc4random_uniform(EXPERIENCE_SIZE)];
-                [tmp appendFormat:@"Must have worked in the field of %@\n",entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must have worked in the field of %@\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants who have worked in the field of %@ are automatically in\n", entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants who have worked in the field of %@ are automatically out\n", entry];
                 break;
             }
             case EXPERIENCE_JOB:{
@@ -71,31 +99,58 @@
                 NSArray* keys = [tmpDict allKeys];
                 NSArray* key = keys[arc4random_uniform(EXPERIENCE_SIZE)];
                 entry = tmpDict[key][arc4random_uniform([tmpDict[key] count])];
-                [tmp appendFormat:@"Must have worked as a %@\n",entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must have worked as a %@\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants who have worked as a %@ are automatically in\n", entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants who have worked as a %@ are automatically out\n", entry];
                 break;
             }
             case EXPERIENCE_LOCATION:{
                 entry=data[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
-                [tmp appendFormat:@"Must have worked at %@\n",entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must have worked at %@\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants who have worked at %@ are automatically in\n", entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants who have worked at %@ are automatically out\n", entry];
+                
                 break;
             }
             case ADDRESS_TYPE:{
                 entry=data[@"Address2"][arc4random_uniform(ADDRESS_END_SIZE)];
-                [tmp appendFormat:@"Must live on a %@\n",entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must live on a %@\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants who live on a %@ are automatically in\n", entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants who live on a %@ are automatically out\n", entry];
                 break;
             }
             case EDUCATION_LEVEL:{
                 entry=data[@"SchoolLevel"][arc4random_uniform(3)+1];
-                [tmp appendFormat:@"Must have attened a minimum level of %@\n",entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must have attened a minimum level of %@\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants who have attended a %@ are automatically in\n", entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants who have attended a %@ are automatically out\n", entry];
                 break;
             }
             case EXPERIENCE_LENGTH:{
                 entry=[NSString stringWithFormat:@"%d",arc4random_uniform(EXPERIENCE_LENGTH_MAX)+1 ];
-                [tmp appendFormat:@"Must have %@ yrs of experience\n",entry];
+                if(b==0)
+                    [tmp appendFormat:@"Must have %@ yrs of experience\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants who have %@ years of experience are automatically in\n", entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants who have %@ years of experience are automatically out\n", entry];
                 break;
             }
         }
         [self.rules setValue:entry forKey:[NSString stringWithFormat:@"%@",ruleType]];
+        [tmp appendFormat:@"\n"];
     }
     _rulesLabel.string=tmp;
 }

@@ -9,6 +9,8 @@
 #import "CCSprite.h"
 
 typedef NS_ENUM(NSInteger, RuleType){
+    //0-99 normal, 100-199 special yes, 200-299 special no
+    
     MAXAGE,             //0
     MINAGE,             //1
     NAME,               //2  na
@@ -16,13 +18,11 @@ typedef NS_ENUM(NSInteger, RuleType){
     EDUCATION,          //4
     PHONE,              //5
     EXPERIENCE_FIELD,   //6
-    EXPERIENCE_JOB,     //7
-    EXPERIENCE_LOCATION,//8
+    EXPERIENCE_JOB,     //7  no 8
+    EXPERIENCE_LOCATION,//8  no 7
     ADDRESS_TYPE,       //9
     EDUCATION_LEVEL,     //10 
     EXPERIENCE_LENGTH,   //11
-    
-    END
 };
 
 #define ADDRESS_NUM_SIZE 1500

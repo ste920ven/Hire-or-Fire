@@ -23,6 +23,7 @@
     NSInteger birthyear;
     NSString * addressEnd;
     NSString * addressBegin;
+    int year;
     
     int correctFactor;
     RuleBook * rulebook;
@@ -76,7 +77,7 @@
           ,root[@"lastNames"][arc4random_uniform(LASTNAME_SIZE)] ];
     
     //generate random birthday
-    NSInteger year = [now year];
+    year = [now year];
     birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE+5));
     int month=arc4random_uniform(12);
     switch(month){
@@ -179,163 +180,29 @@
             debugInt=[ruleType intValue];
         }
         NSString* rule=rulebook.rules[ruleType];
-        switch ([ruleType intValue]) {
-            case MAXAGE:{
-                if(wrong){
-                    if(age>[rule intValue])
-                        birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
-                }else if(age>[rule intValue])
-                    birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
-                break;
-            }
-            case MINAGE:{
-                if(wrong){
-                    if(age>[rule intValue])
-                        birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
-                }else if(age>[rule intValue])
-                    birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
-                break;
-            }
-            case NAME:
-                break;
-            case ADDRESS:
-                break;
-            case EDUCATION:{
-                if(wrong){
-                    while([education rangeOfString:rule].location != NSNotFound)
-                        education=root[@"Schools"][arc4random_uniform(SCHOOL_SIZE)];
-                }else if([education rangeOfString:rule].location == NSNotFound)
-                    education=rule;
-                break;
-            }
-            case PHONE:{
-                if(wrong){
-                    while([phoneNumber rangeOfString:rule].location == 0)
-                        phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
-                }else if([phoneNumber rangeOfString:rule].location != 0)
-                    phoneNumber=[NSString stringWithFormat:@"%@-%.3d-%.4d",rule,arc4random_uniform(1000),arc4random_uniform(10000)];
-                break;
-            }
-            case EXPERIENCE_FIELD:{
-                if([experience1.first isEqualToString:rule])
-                    experience1.boolean=YES;
-                if([experience2.first isEqualToString:rule])
-                    experience2.boolean=YES;
-                if(wrong){
-                    if(experience1.boolean==YES){
-                        NSArray* keys = [root[@"Experiences"] allKeys];
-                        while([experience1.first isEqualToString:rule])
-                            experience1.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
-                        experience1.second=root[@"Experiences"][experience1.first][arc4random_uniform([root[@"Experiences"][experience1.first] count])];
-                        experience1.boolean=NO;
-                    }if(experience2.boolean==YES){
-                        NSArray* keys = [root[@"Experiences"] allKeys];
-                        while([experience2.first isEqualToString:rule])
-                            experience2.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
-                        experience2.second=root[@"Experiences"][experience2.first][arc4random_uniform([root[@"Experiences"][experience2.first] count])];
-                        experience2.boolean=NO;
-                    }
-                }else{
-                    if(experience1.boolean==NO){
-                        experience1.first=rule;
-                        experience1.second=root[@"Experiences"][rule][arc4random_uniform([root[@"Experiences"][rule] count])];
-                        experience1.boolean=YES;
-                    }if(experience2.boolean==NO){
-                        experience2.first=rule;
-                        experience2.second=root[@"Experiences"][rule][arc4random_uniform([root[@"Experiences"][rule] count])];
-                        experience2.boolean=YES;
-                    }
-                }
-                break;
-            }
-            case EXPERIENCE_JOB:{
-                if([experience1.second isEqualToString:rule])
-                    experience1.boolean=YES;
-                if([experience2.second isEqualToString:rule])
-                    experience2.boolean=YES;
-                NSString *field=keys[0];
-                for(NSString * key in root[@"Experiences"] ){
-                    if([root[@"Experiences"][key] indexOfObject:rule]!=NSNotFound)
-                        field=key;
-                }
-                if(wrong){
-                    if(experience1.boolean==YES){
-                        while([experience1.second isEqualToString:rule])
-                            experience1.second=root[@"Experiences"][experience1.first][arc4random_uniform([root[@"Experiences"][experience1.first] count])];
-                        experience1.boolean=NO;
-                    }
-                    if(experience2.boolean==YES){
-                        while([experience2.second isEqualToString:rule])
-                            experience2.second=root[@"Experiences"][experience2.first][arc4random_uniform([root[@"Experiences"][experience2.first] count])];
-                        experience2.boolean=NO;
-                    }
-                }else {
-                    if(experience1.boolean==NO){
-                        experience1.first=field;
-                        experience1.second=rule;
-                    }if(experience2.boolean==NO){
-                        experience2.first=field;
-                        experience2.second=rule;
-                    }
-                }
-                break;
-            }
-            case EXPERIENCE_LOCATION:{
-                if(wrong){
-                    while([experience1.third isEqualToString:rule])
-                        experience1.third=root[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
-                    while([experience2.third isEqualToString:rule])
-                        experience2.third=root[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
-                }else
-                    if(![experience1.third isEqualToString:rule])
-                        experience1.third=rule;
-                //randomize which experience has the correct location
-                if(arc4random()%2==0){
-                    Tuple* tmp=experience1;
-                    experience1=experience2;
-                    experience2=tmp;
-                }
-                break;
-            }
-            case ADDRESS_TYPE:{
-                if(wrong){
-                    while([addressEnd isEqualToString:rule])
-                        addressEnd=root[@"Address2"][arc4random_uniform(ADDRESS_END_SIZE)];
-                }else
-                    if(![addressEnd isEqualToString:rule])
-                        addressEnd=rule;
-                break;
-            }
-            case EDUCATION_LEVEL:{
-                if(wrong){
-                    if([root[@"SchoolLevel"] indexOfObject:rule]<[root[@"SchoolLevel"] indexOfObject:educationLevel])
-                        educationLevel=root[@"SchoolLevel"][arc4random_uniform([root[@"SchoolLevel"] indexOfObject:rule])];
-                }else{
-                    if([root[@"SchoolLevel"] indexOfObject:rule]>[root[@"SchoolLevel"] indexOfObject:educationLevel])
-                        educationLevel=rule;
-                }
-                break;
-            }
-            case EXPERIENCE_LENGTH:{
-                float tmp = [rule floatValue];
-                if(wrong){
-                    if(experience1.num>=tmp)
-                        experience1.num=(arc4random_uniform(tmp*2)+1)/2.0;
-                    if(experience2.num>=tmp)
-                        experience2.num=(arc4random_uniform(tmp*2)+1)/2.0;
-                }else
-                    if(experience1.num < tmp)
-                        experience1.num=tmp;
-                        //randomize which experience has the correct location
-                        if(arc4random()%2==0){
-                            Tuple* tmp=experience1;
-                            experience1=experience2;
-                            experience2=tmp;
-                        }
-
-                break;
+        
+        //calculate for special rules
+        int num=[ruleType intValue]%100;
+        int b=[ruleType intValue]/100;
+        if(b==1){
+            if(arc4random_uniform(100)<10){
+                wrong=false;
+                debugInt=[ruleType intValue];
+                self.correct=true;
+            }else{
+                wrong=true;
             }
         }
+        else if(b==2){
+            if(arc4random_uniform(100)<10){
+                wrong=false;
+                debugInt=[ruleType intValue];
+                self.correct=false;
+            }else{
+                wrong=true;
+            }
+        }
+        [self applyRules:num b:wrong str:rule];
         ++i;
     }
     
@@ -362,10 +229,172 @@
 	[self runAction:sequence];
     
     //debuging info
-    //_debug.string=[NSString stringWithFormat:@"correctness: %d, %d",self.correct,debugInt];
+    _debug.string=[NSString stringWithFormat:@"correctness: %d, %d",self.correct,debugInt];
     
 }
 
+
+-(void)applyRules:(int)num b:(bool)wrong str:(NSString*)rule{
+    switch (num) {
+        case MAXAGE:{
+            if(wrong){
+                if(age>[rule intValue])
+                    birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
+            }else if(age>[rule intValue])
+                birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
+            break;
+        }
+        case MINAGE:{
+            if(wrong){
+                if(age>[rule intValue])
+                    birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
+            }else if(age>[rule intValue])
+                birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
+            break;
+        }
+        case NAME:
+            break;
+        case ADDRESS:
+            break;
+        case EDUCATION:{
+            if(wrong){
+                while([education rangeOfString:rule].location != NSNotFound)
+                    education=root[@"Schools"][arc4random_uniform(SCHOOL_SIZE)];
+            }else if([education rangeOfString:rule].location == NSNotFound)
+                education=rule;
+            break;
+        }
+        case PHONE:{
+            if(wrong){
+                while([phoneNumber rangeOfString:rule].location == 0)
+                    phoneNumber=[NSString stringWithFormat:@"%.3d-%.3d-%.4d",arc4random_uniform(1000),arc4random_uniform(1000),arc4random_uniform(10000)];
+            }else if([phoneNumber rangeOfString:rule].location != 0)
+                phoneNumber=[NSString stringWithFormat:@"%@-%.3d-%.4d",rule,arc4random_uniform(1000),arc4random_uniform(10000)];
+            break;
+        }
+        case EXPERIENCE_FIELD:{
+            if([experience1.first isEqualToString:rule])
+                experience1.boolean=YES;
+            if([experience2.first isEqualToString:rule])
+                experience2.boolean=YES;
+            if(wrong){
+                if(experience1.boolean==YES){
+                    NSArray* keys = [root[@"Experiences"] allKeys];
+                    while([experience1.first isEqualToString:rule])
+                        experience1.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
+                    experience1.second=root[@"Experiences"][experience1.first][arc4random_uniform([root[@"Experiences"][experience1.first] count])];
+                    experience1.boolean=NO;
+                }if(experience2.boolean==YES){
+                    NSArray* keys = [root[@"Experiences"] allKeys];
+                    while([experience2.first isEqualToString:rule])
+                        experience2.first=keys[arc4random_uniform(EXPERIENCE_SIZE)];
+                    experience2.second=root[@"Experiences"][experience2.first][arc4random_uniform([root[@"Experiences"][experience2.first] count])];
+                    experience2.boolean=NO;
+                }
+            }else{
+                if(experience1.boolean==NO){
+                    experience1.first=rule;
+                    experience1.second=root[@"Experiences"][rule][arc4random_uniform([root[@"Experiences"][rule] count])];
+                    experience1.boolean=YES;
+                }if(experience2.boolean==NO){
+                    experience2.first=rule;
+                    experience2.second=root[@"Experiences"][rule][arc4random_uniform([root[@"Experiences"][rule] count])];
+                    experience2.boolean=YES;
+                }
+            }
+            break;
+        }
+        case EXPERIENCE_JOB:{
+            if([experience1.second isEqualToString:rule])
+                experience1.boolean=YES;
+            if([experience2.second isEqualToString:rule])
+                experience2.boolean=YES;
+            NSDictionary *tmpDict=root[@"Experiences"];
+            NSArray* keys = [tmpDict allKeys];
+            NSString *field=keys[0];
+            for(NSString * key in root[@"Experiences"] ){
+                if([root[@"Experiences"][key] indexOfObject:rule]!=NSNotFound)
+                    field=key;
+            }
+            if(wrong){
+                if(experience1.boolean==YES){
+                    while([experience1.second isEqualToString:rule])
+                        experience1.second=root[@"Experiences"][experience1.first][arc4random_uniform([root[@"Experiences"][experience1.first] count])];
+                    experience1.boolean=NO;
+                }
+                if(experience2.boolean==YES){
+                    while([experience2.second isEqualToString:rule])
+                        experience2.second=root[@"Experiences"][experience2.first][arc4random_uniform([root[@"Experiences"][experience2.first] count])];
+                    experience2.boolean=NO;
+                }
+            }else {
+                if(experience1.boolean==NO){
+                    experience1.first=field;
+                    experience1.second=rule;
+                }if(experience2.boolean==NO){
+                    experience2.first=field;
+                    experience2.second=rule;
+                }
+            }
+            break;
+        }
+        case EXPERIENCE_LOCATION:{
+            if(wrong){
+                while([experience1.third isEqualToString:rule])
+                    experience1.third=root[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
+                while([experience2.third isEqualToString:rule])
+                    experience2.third=root[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
+            }else
+                if(![experience1.third isEqualToString:rule])
+                    experience1.third=rule;
+            //randomize which experience has the correct location
+            if(arc4random()%2==0){
+                Tuple* tmp=experience1;
+                experience1=experience2;
+                experience2=tmp;
+            }
+            break;
+        }
+        case ADDRESS_TYPE:{
+            if(wrong){
+                while([addressEnd isEqualToString:rule])
+                    addressEnd=root[@"Address2"][arc4random_uniform(ADDRESS_END_SIZE)];
+            }else
+                if(![addressEnd isEqualToString:rule])
+                    addressEnd=rule;
+            break;
+        }
+        case EDUCATION_LEVEL:{
+            if(wrong){
+                if([root[@"SchoolLevel"] indexOfObject:rule]<[root[@"SchoolLevel"] indexOfObject:educationLevel])
+                    educationLevel=root[@"SchoolLevel"][arc4random_uniform([root[@"SchoolLevel"] indexOfObject:rule])];
+            }else{
+                if([root[@"SchoolLevel"] indexOfObject:rule]>[root[@"SchoolLevel"] indexOfObject:educationLevel])
+                    educationLevel=rule;
+            }
+            break;
+        }
+        case EXPERIENCE_LENGTH:{
+            float tmp = [rule floatValue];
+            if(wrong){
+                if(experience1.num>=tmp)
+                    experience1.num=(arc4random_uniform(tmp*2)+1)/2.0;
+                if(experience2.num>=tmp)
+                    experience2.num=(arc4random_uniform(tmp*2)+1)/2.0;
+            }else
+                if(experience1.num < tmp)
+                    experience1.num=tmp;
+            //randomize which experience has the correct location
+            if(arc4random()%2==0){
+                Tuple* tmp=experience1;
+                experience1=experience2;
+                experience2=tmp;
+            }
+            
+            break;
+        }
+    }
+}
 
 
 @end
