@@ -39,7 +39,7 @@
     
 #pragma mark TODO temp
     
-    correctFactor=5000;
+    correctFactor=6000;
     
     self.correctCount=0;
     self.totalCount=-1;
@@ -217,9 +217,9 @@
     [formatter setUsesSignificantDigits:YES];
     [formatter setMinimumSignificantDigits:2];
     
-    _experience1Label.string=[NSString stringWithFormat:@"%@, %@ -%@yrs\n%@",experience1.first,experience1.second,[formatter stringFromNumber:[NSNumber numberWithFloat:experience1.num]],experience1.third];
+    _experience1Label.string=[NSString stringWithFormat:@"%@, %@ - %@yrs\n%@",experience1.first,experience1.second,[formatter stringFromNumber:[NSNumber numberWithFloat:experience1.num]],experience1.third];
     
-    _experience2Label.string=[NSString stringWithFormat:@"%@, %@ -%@yrs\n%@",experience2.first,experience2.second,[formatter stringFromNumber:[NSNumber numberWithFloat:experience2.num]],experience2.third];
+    _experience2Label.string=[NSString stringWithFormat:@"%@, %@ - %@yrs\n%@",experience2.first,experience2.second,[formatter stringFromNumber:[NSNumber numberWithFloat:experience2.num]],experience2.third];
     
     //move new resume to position
     self.position=ccp(.6,1.5);

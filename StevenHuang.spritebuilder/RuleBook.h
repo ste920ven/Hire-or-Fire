@@ -17,12 +17,18 @@ typedef NS_ENUM(NSInteger, RuleType){
     ADDRESS,            //3  na
     EDUCATION,          //4
     PHONE,              //5
-    EXPERIENCE_FIELD,   //6
-    EXPERIENCE_JOB,     //7  no 8
-    EXPERIENCE_LOCATION,//8  no 7
+    EXPERIENCE_FIELD,   //6  no 7
+    EXPERIENCE_JOB,     //7  no 6
+    EXPERIENCE_LOCATION,//8
     ADDRESS_TYPE,       //9
     EDUCATION_LEVEL,     //10 
     EXPERIENCE_LENGTH,   //11
+};
+
+typedef NS_ENUM(NSInteger, Page){
+    RULES,
+    TUTORIAL,
+    MINIGAME_TUTORIAL
 };
 
 #define ADDRESS_NUM_SIZE 1500
@@ -41,6 +47,7 @@ typedef NS_ENUM(NSInteger, RuleType){
 @property (nonatomic,strong) NSArray* Leveldata;
 @property (nonatomic,strong) NSMutableDictionary *rules;
 @property (nonatomic,strong) NSMutableDictionary *specialRules;
+@property (assign)int currPage;
 
 -(void)createRulesWithLevel:(int)level resumeData:(NSDictionary*)data;
 -(void)show:(bool)b;

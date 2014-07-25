@@ -7,16 +7,67 @@
 //
 
 #import "RuleBook.h"
+#import "GameplayManager.h"
+
 
 @implementation RuleBook{
     CCLabelTTF *_rulesLabel;
+    NSString *rulesText,*tutorial,*minigameTutorial;
+    int unlockedNum;
+    bool inUse;
+}
+
+-(void)didLoadFromCCB{
+    self.userInteractionEnabled=true;
+    
+    tutorial=@"HELP\n\t\t\t Hire at least 10 people in one day\n\n\n<----Put here for No\t\t\t Put her for Yes----->\n\n\n\n\n\n\t\t\tClick to cycle through the rules\n\t\t\t\tSwipe down when ready";
+    minigameTutorial=@"MINIGAMES\n\nNo: Don't do it and risk getting a penalty at the end of the day\n\nBuddy!: Pass it onto a coworker and reduce your chance of getting caught but increasing your penalty if you do\n\nDo it: Complete a minigame before you can go back to your normal work";
+    self.currPage=RULES;
+    
+    unlockedNum=2;
+    if([GameplayManager sharedInstance].level>8)
+        unlockedNum++;
+    
+    //show tutorial
+    if([GameplayManager sharedInstance].level==0){
+        _rulesLabel.string=tutorial;
+        self.currPage=TUTORIAL;
+    }
+}
+
+-(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+}
+
+-(void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
+    self.currPage=(++self.currPage)%unlockedNum;
+    [self updatePage];
+}
+
+
+-(void)updatePage{
+    if(inUse){
+        switch (self.currPage) {
+            case RULES:
+                _rulesLabel.string=rulesText;
+                break;
+            case TUTORIAL:
+                _rulesLabel.string=tutorial;
+                break;
+            case MINIGAME_TUTORIAL:
+                _rulesLabel.string=minigameTutorial;
+                break;
+        }
+    }
 }
 
 -(void)show:(bool)b{
+    inUse=b;
+    [self updatePage];
     CCActionScaleTo *translation;
     if(b){
         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,0)];
     }else{
+        self.currPage=RULES;
         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,-360)];
     }
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
@@ -27,6 +78,7 @@
     self.rules=[[NSMutableDictionary alloc] init];
     int counter=0;
     NSMutableString *tmp =[NSMutableString string];
+    [tmp appendFormat:@"RULES\n\n"];
     for (NSString* ruleType in self.Leveldata){
         counter++;
         [tmp appendFormat:@"%d. ",counter];
@@ -152,7 +204,7 @@
         [self.rules setValue:entry forKey:[NSString stringWithFormat:@"%@",ruleType]];
         [tmp appendFormat:@"\n"];
     }
-    _rulesLabel.string=tmp;
+    rulesText=tmp;
 }
 
 @end

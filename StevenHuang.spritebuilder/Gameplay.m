@@ -57,8 +57,6 @@
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
     
-    randomEventDelay=1.f;
-    
     [GameplayManager sharedInstance].roundCounter=0;
     ready=false;
     _noBar.zOrder=INT_MAX;
@@ -74,10 +72,14 @@
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
     roundTime=60.f;
     
-#pragma mark Tutorial
+    if([GameplayManager sharedInstance].level>9){
+        randomEventChance=3000;
+    }
+    if([GameplayManager sharedInstance].level==9)
+        randomEventChance=10000;
     
-    if([GameplayManager sharedInstance].level==0){
-        _tutorial1.visible=true;
+    if(arc4random_uniform(10000)<randomEventChance){
+        randomEventDelay=arc4random_uniform(roundTime/2)+roundTime/4;
     }
     
     [_rulebookNode show:true];
@@ -111,29 +113,7 @@
     int divisions = noArray.count+1;
     float lastDivision = 0;
     for(int i=0;i<noArray.count;++i){
-        /*
-         if(divisions==4){
-         if(i==0){
-         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
-         ((CCNode*)[noArray[i] children][1]).anchorPoint=ccp(.5,1);
-         }if(i==2){
-         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
-         ((CCNode*)[noArray[i] children][1]).anchorPoint=ccp(.5,0);
-         }
-         }
-         if(divisions==3){
-         if(i==0){
-         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
-         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,1);
-         }if(i==1){
-         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
-         ((CCNode*)[noArray[i] children][0]).anchorPoint=ccp(.5,0);
-         }
-         }
-         */
-        
         lastDivision+=1.f/divisions;
-        //lastDivision+=_noBar.contentSize.height/divisions;
         ((CCNode*)noArray[i]).positionType=CCPositionTypeNormalized;
         ((CCNode*)noArray[i]).zOrder=INT_MAX;;
         ((CCNode*)noArray[i]).position=ccp(0,lastDivision);
@@ -158,8 +138,17 @@
             [self endGame];
             if(randomEventDelay*60==[GameplayManager sharedInstance].roundCounter){
                 NSString *msg;
-#pragma mark constant
+                
                 minigameCode=1;
+                if([GameplayManager sharedInstance].level==9){
+                    [self pause];
+                    [_popoverNode removeAllChildren];
+                    _rulebookNode.currPage=MINIGAME_TUTORIAL;
+                    [_rulebookNode show:true];
+                    downSwipe.enabled=true;
+                }
+                
+#pragma mark constant
                 //minigameCode=arc4random_uniform(2);
                 switch (minigameCode) {
                     case 0:
@@ -194,7 +183,6 @@
     PauseScreen *scene=(PauseScreen*)[CCBReader load:@"PauseScreen"];
     [_popoverNode addChild:scene];
     _pauseButton.enabled = NO;
-    self.userInteractionEnabled = false;
 }
 
 
@@ -256,12 +244,12 @@
             [_rulebookNode show:true];
             rulesActive=true;
         }else if(direction==UISwipeGestureRecognizerDirectionDown){
+            self.userInteractionEnabled=true;
+            [GameplayManager sharedInstance].paused=false;
             [_rulebookNode show:false];
             if(!ready){
                 [self newResume];
                 ready=true;
-#pragma mark TUTORIAL
-                [_tutorial1 removeFromParent];
             }
             rulesActive=false;
         }
@@ -294,20 +282,23 @@
 -(void)minigameYes{
     NSLog(@"minigame pass");
     _bubbleNode.visible=false;
+    [GameplayManager sharedInstance].paused=false;
     //[CCBReader load:scene];
     Minigame* mini=(Minigame*)[CCBReader load:@"EmailGame"];
-     [_popoverNode addChild:mini];
-     [mini setGame:minigameCode];
+    [_popoverNode addChild:mini];
+    [mini setGame:minigameCode];
 }
 -(void)minigameNo{
     minigameNo=true;
     _bubbleNode.visible=false;
+    [GameplayManager sharedInstance].paused=false;
     NSLog(@"minigame no");
     penaltyChance=arc4random_uniform(10000);
 }
 -(void)minigamePass{
     minigamePass=true;
     _bubbleNode.visible=false;
+    [GameplayManager sharedInstance].paused=false;
     NSLog(@"minigame pass");
     penaltyChance=arc4random_uniform(10000);
 }
