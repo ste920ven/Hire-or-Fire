@@ -23,13 +23,14 @@
     NSInteger birthyear;
     NSString * addressEnd;
     NSString * addressBegin;
-    int year;
+    int year,actAmt;
+    NSMutableArray *activities;
     
     int correctFactor;
     RuleBook * rulebook;
     NSDictionary* root;
     NSDateComponents* now;
-    CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_phoneNumberLabel,*_experience1Label,*_experience2Label,*_educationLabel;
+    CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_phoneNumberLabel,*_experience1Label,*_experience2Label,*_educationLabel,*_activitiesLabel;
     
     CCLabelTTF *_debug;
     int debugInt;
@@ -49,6 +50,7 @@
     rulebook=(RuleBook*)_rules;
     experience1=[[Tuple alloc] init];
     experience2=[[Tuple alloc] init];
+    activities=[NSMutableArray array];
 }
 
 -(void)createDay:(int) maxDays{
@@ -147,6 +149,15 @@
     experience2.third=root[@"Locations"][arc4random_uniform(LOCATION_SIZE)];
     experience2.num=(arc4random_uniform(EXPERIENCE_LENGTH_MAX*2)+1)/2.0;
     
+    //create activities
+    actAmt=arc4random_uniform(5)+1;
+    [activities removeAllObjects];
+    for(int i=0;i<actAmt;++i){
+        NSString *tmp=root[@"Activities"][arc4random_uniform(ACTIVITIES_SIZE)];
+        if(![activities containsObject:tmp])
+            [activities addObject:tmp];
+    }
+    
     //calculate age
     age=year-birthyear;
     if([now month]==month+1){
@@ -212,6 +223,12 @@
     _addressLabel.string=[NSString stringWithFormat:@"%@ %@",addressBegin,addressEnd];
     _phoneNumberLabel.string=phoneNumber;
     _educationLabel.string=[NSString stringWithFormat:@"%@ %@",education,educationLevel];
+    NSMutableString *tmp=[NSMutableString stringWithString:@"Likes "];
+    for(NSString *item in activities){
+        [tmp appendFormat:@"%@, ",item];
+    }
+    NSString *s=[tmp substringToIndex:[tmp length]-2];
+    _activitiesLabel.string=s;
     
     NSNumberFormatter * formatter =  [[NSNumberFormatter alloc] init];
     [formatter setUsesSignificantDigits:YES];
@@ -391,6 +408,16 @@
                 experience2=tmp;
             }
             
+            break;
+        }
+        case ACTIVITIES:{
+            if(wrong){
+                int index=[activities indexOfObject:rule];
+                while([activities containsObject:rule])
+                    [activities replaceObjectAtIndex:index withObject:root[@"Activities"][arc4random_uniform(ACTIVITIES_SIZE)]];
+            }else
+                if(![activities containsObject:rule])
+                    [activities replaceObjectAtIndex:arc4random_uniform(actAmt) withObject:rule];
             break;
         }
     }

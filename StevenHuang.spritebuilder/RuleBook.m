@@ -111,7 +111,6 @@
                 [tmp appendFormat:@""];
                 break;
             }case ADDRESS:{ //3
-#pragma mark TODO
                 [tmp appendFormat:@"Must live in this zipcode: %5@", entry];
                 break;
             }
@@ -199,6 +198,15 @@
                 if(b==2)
                     [tmp appendFormat:@"Applicants who have %@ years of experience are automatically out\n", entry];
                 break;
+            }
+            case ACTIVITIES:{
+                entry=data[@"Activities"][arc4random_uniform(ACTIVITIES_SIZE)];
+                if(b==0)
+                    [tmp appendFormat:@"Must be interested in %@\n",entry];
+                if(b==1)
+                    [tmp appendFormat:@"Applicants who like %@ are automatically in\n", entry];
+                if(b==2)
+                    [tmp appendFormat:@"Applicants who like %@ are automatically out\n", entry];
             }
         }
         [self.rules setValue:entry forKey:[NSString stringWithFormat:@"%@",ruleType]];

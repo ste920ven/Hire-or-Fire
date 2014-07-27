@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, RuleType){
     ADDRESS_TYPE,       //9
     EDUCATION_LEVEL,     //10 
     EXPERIENCE_LENGTH,   //11
+    ACTIVITIES          //12
 };
 
 typedef NS_ENUM(NSInteger, Page){
@@ -41,6 +42,7 @@ typedef NS_ENUM(NSInteger, Page){
 #define EXPERIENCE_SIZE 3
 #define LOCATION_SIZE 8
 #define EXPERIENCE_LENGTH_MAX 5
+#define ACTIVITIES_SIZE 195
 
 @interface RuleBook : CCSprite
 
