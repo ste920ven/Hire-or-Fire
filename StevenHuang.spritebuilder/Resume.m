@@ -239,11 +239,13 @@
     _experience2Label.string=[NSString stringWithFormat:@"%@, %@ - %@yrs\n%@",experience2.first,experience2.second,[formatter stringFromNumber:[NSNumber numberWithFloat:experience2.num]],experience2.third];
     
     //move new resume to position
-    self.position=ccp(.6,1.5);
-    //CCActionDelay *delay = [CCActionDelay actionWithDuration:0.3f];
-	CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,.5)];
-	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
-	[self runAction:sequence];
+//    self.position=ccp(.6,1.5);
+//    //CCActionDelay *delay = [CCActionDelay actionWithDuration:0.3f];
+//	CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,.5)];
+//	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
+//	[self runAction:sequence];
+    
+    self.position=ccp(.5,.5);
     
     //debuging info
     _debug.string=[NSString stringWithFormat:@"correctness: %d, %d",self.correct,debugInt];

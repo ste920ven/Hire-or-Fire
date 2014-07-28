@@ -973,7 +973,7 @@
 								<string>Text</string>
 								<key>value</key>
 								<array>
-									<string>Field, Job, Location</string>
+									<string>Job, Location</string>
 									<false/>
 								</array>
 							</dict>
@@ -1109,6 +1109,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -1307,7 +1309,7 @@
 								<string>Text</string>
 								<key>value</key>
 								<array>
-									<string>Field, Job, Location</string>
+									<string>Job, Location</string>
 									<false/>
 								</array>
 							</dict>

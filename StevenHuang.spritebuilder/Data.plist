@@ -173,7 +173,6 @@
 			<string>drinking coffee</string>
 			<string>eating</string>
 			<string>embroidery</string>
-			<string>foreign language learning</string>
 			<string>gaming</string>
 			<string>gambling</string>
 			<string>genealogy</string>
@@ -189,7 +188,6 @@
 			<string>origami</string>
 			<string>painting</string>
 			<string>ping pong</string>
-			<string>playing musical instruments</string>
 			<string>pottery</string>
 			<string>puzzles</string>
 			<string>quilting</string>
@@ -275,7 +273,6 @@
 			<string>vintage cars</string>
 			<string>vintage clothing</string>
 			<string>antiquities</string>
-			<string>flower collecting and pressing</string>
 			<string>fossil hunting</string>
 			<string>insect collecting</string>
 			<string>metal detecting</string>
@@ -382,6 +379,7 @@
 		<key>Locations</key>
 		<array>
 			<string>Pear Inc</string>
+			<string>The General Store</string>
 			<string>Rural Outfitters</string>
 			<string>Mom and Pop Shop</string>
 			<string>Poogle Inc</string>
@@ -392,8 +390,35 @@
 		</array>
 		<key>Experiences</key>
 		<dict>
+			<key>Stealth</key>
+			<array>
+				<string>Stalker</string>
+				<string>Hitman</string>
+				<string>Ninja</string>
+				<string>Sniper</string>
+				<string>Ghost Imitator</string>
+			</array>
+			<key>Entertainment</key>
+			<array>
+				<string>Singer</string>
+				<string>Dancer</string>
+				<string>Escort</string>
+				<string>Clown</string>
+				<string>Bass Player</string>
+			</array>
+			<key>Nature</key>
+			<array>
+				<string>Bird Watcher</string>
+				<string>Hippie</string>
+				<string>Evironmental Lawyer</string>
+				<string>Farmer</string>
+				<string>Zoo Keeper</string>
+				<string>Mountain Man</string>
+				<string>Penguin Researcher</string>
+			</array>
 			<key>Business</key>
 			<array>
+				<string>Con Artist</string>
 				<string>Secretary</string>
 				<string>Manager</string>
 				<string>Boss</string>

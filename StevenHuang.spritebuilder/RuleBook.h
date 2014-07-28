@@ -39,10 +39,10 @@ typedef NS_ENUM(NSInteger, Page){
 #define LASTNAME_SIZE 200
 #define BIRTHDAY_RANGE 60
 #define SCHOOL_SIZE 14
-#define EXPERIENCE_SIZE 3
-#define LOCATION_SIZE 8
+#define EXPERIENCE_SIZE 8
+#define LOCATION_SIZE 9
 #define EXPERIENCE_LENGTH_MAX 5
-#define ACTIVITIES_SIZE 195
+#define ACTIVITIES_SIZE 192
 
 @interface RuleBook : CCSprite
 

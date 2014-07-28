@@ -9,17 +9,17 @@
 #import "Minigame.h"
 
 typedef NS_ENUM(NSInteger, MINIGAME){
-    SIGNATURE_GAME,
+    PAPER_SHUFFLING,
     DELETE_EMAIL
 };
 
 @implementation Minigame{
     int gameCode, counter;
-    CCNode *selectedObject;
+    CCNode *selectedObject,*_key;
     CGPoint startLocation,ogPosition;
     bool done;
     NSMutableArray *arr;
-    CCNodeColor *_emailParent;
+    CCNode *_contentNode;
 }
 
 -(void)didLoadFromCCB{
@@ -34,11 +34,18 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 -(void)setGame:(int)i{
     gameCode=i;
     switch (gameCode) {
-        case SIGNATURE_GAME:{
+        case PAPER_SHUFFLING:{
+            arr=[NSMutableArray array];
+            for(int i=0;i<20;i++){
+                CCColor *color=[CCColor colorWithRed:arc4random_uniform(255)/255.f green:arc4random_uniform(255)/255.f blue:arc4random_uniform(255)/255.f];
+                CCNodeColor *tmp=[CCNodeColor nodeWithColor:color width:arc4random_uniform(100)+50 height:arc4random_uniform(100)+100];
+                tmp.position=ccp(arc4random_uniform(150),arc4random_uniform(350));
+                [_contentNode addChild:tmp];
+            }
             break;
         }
         case DELETE_EMAIL:{
-            arr=[NSMutableArray arrayWithArray:[_emailParent children]];
+            arr=[NSMutableArray arrayWithArray:[_contentNode children]];
             for(int i=0;i<[arr count];i++){
                 ((CCLabelTTF*) [((CCNode*)arr[i]) children][1]).string=[NSString stringWithFormat:@"%d",i];
             }
@@ -48,13 +55,14 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 }
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
-    startLocation=[touch locationInNode:_emailParent];
+    startLocation=[touch locationInNode:_contentNode];
     switch (gameCode) {
-        case SIGNATURE_GAME:{
+        case PAPER_SHUFFLING:{
+            [self shuffleTouchBegan];
             break;
         }
         case DELETE_EMAIL:{
-            startLocation=ccp(startLocation.x,_emailParent.contentSize.height-startLocation.y);
+            startLocation=ccp(startLocation.x,_contentNode.contentSize.height-startLocation.y);
             [self emailTouchBegan];
             break;
         }
@@ -65,9 +73,12 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
-    CGPoint touchLocation = [touch locationInNode:_emailParent];
+    CGPoint touchLocation = [touch locationInNode:_contentNode];
     switch (gameCode) {
-        case SIGNATURE_GAME:{
+        case PAPER_SHUFFLING:{
+            float x=touchLocation.x-startLocation.x;
+            float y=touchLocation.y-startLocation.y;
+            selectedObject.position=ccp(ogPosition.x+x,ogPosition.y+y);
             break;
         }
         case DELETE_EMAIL:{
@@ -82,9 +93,11 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 }
 
 -(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
-    CGPoint touchLocation = [touch locationInNode:_emailParent];
+    CGPoint touchLocation = [touch locationInNode:_contentNode];
     switch (gameCode) {
-        case SIGNATURE_GAME:{
+        case PAPER_SHUFFLING:{
+            if(selectedObject!=nil && selectedObject==_key)
+                done=true;
             break;
         }
         case DELETE_EMAIL:{
@@ -103,7 +116,16 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     }
 }
 
-#pragma mark game 1 - signing game
+#pragma mark game 1 - paper shuffling game
+-(void)shuffleTouchBegan{
+    for(CCNode* item in [_contentNode children]){
+        if(CGRectContainsPoint([item boundingBox], startLocation)){
+            selectedObject=item;
+            ogPosition=selectedObject.position;
+        }
+    }
+}
+
 
 #pragma mark game 2 - email game
 -(void)emailTouchBegan{
