@@ -10,12 +10,13 @@
 
 typedef NS_ENUM(NSInteger, MINIGAME){
     PAPER_SHUFFLING,
-    DELETE_EMAIL
+    DELETE_EMAIL,
+    TAPPING,
 };
 
 @implementation Minigame{
     int gameCode, counter;
-    CCNode *selectedObject,*_key;
+    CCNode *selectedObject,*_key,*_popoverNode;
     CGPoint startLocation,ogPosition;
     bool done;
     NSMutableArray *arr;
@@ -35,11 +36,11 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     gameCode=i;
     switch (gameCode) {
         case PAPER_SHUFFLING:{
-            arr=[NSMutableArray array];
-            for(int i=0;i<20;i++){
+            CGSize contentSize=[_contentNode contentSizeInPoints];
+            for(int i=0;i<15;i++){
                 CCColor *color=[CCColor colorWithRed:arc4random_uniform(255)/255.f green:arc4random_uniform(255)/255.f blue:arc4random_uniform(255)/255.f];
-                CCNodeColor *tmp=[CCNodeColor nodeWithColor:color width:arc4random_uniform(100)+50 height:arc4random_uniform(100)+100];
-                tmp.position=ccp(arc4random_uniform(150),arc4random_uniform(350));
+                CCNodeColor *tmp=[CCNodeColor nodeWithColor:color width:(arc4random_uniform(40)+20)*contentSize.width/100 height:(arc4random_uniform(30)+30)*contentSize.height/100];
+                tmp.position=ccp(arc4random_uniform(contentSize.width),arc4random_uniform(contentSize.height));
                 [_contentNode addChild:tmp];
             }
             break;
@@ -50,6 +51,16 @@ typedef NS_ENUM(NSInteger, MINIGAME){
                 ((CCLabelTTF*) [((CCNode*)arr[i]) children][1]).string=[NSString stringWithFormat:@"%d",i];
             }
             break;
+        }
+        case TAPPING:{
+            arr=[NSMutableArray array];
+            for(int i=0;i<15;++i){
+                CCColor *color=[CCColor colorWithRed:20/255.f green:20/255.f blue:20/255.f];
+                CCNodeColor *tmp=[CCNodeColor nodeWithColor:color width:50 height:50];
+                tmp.position=ccp(arc4random_uniform(150),arc4random_uniform(350));
+                [_contentNode addChild:tmp];
+                [arr addObject:tmp];
+            }
         }
     }
 }
@@ -66,7 +77,8 @@ typedef NS_ENUM(NSInteger, MINIGAME){
             [self emailTouchBegan];
             break;
         }
-        case 2:{
+        case TAPPING:{
+            [self shuffleTouchBegan];
             break;
         }
     }
@@ -84,9 +96,6 @@ typedef NS_ENUM(NSInteger, MINIGAME){
         case DELETE_EMAIL:{
             CGFloat f=touchLocation.x-startLocation.x;
             selectedObject.position=ccp(f,ogPosition.y);
-            break;
-        }
-        case 2:{
             break;
         }
     }
@@ -107,7 +116,11 @@ typedef NS_ENUM(NSInteger, MINIGAME){
                 [self getNewEmail];
             break;
         }
-        case 2:{
+        case TAPPING:{
+            [selectedObject removeFromParent];
+            [arr removeObject:selectedObject];
+            if([arr count]==0)
+                [self exit];
             break;
         }
     }
@@ -141,7 +154,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 
 -(void)emailTouchEnd{
     selectedObject.position=ogPosition;
-    if(counter==20)
+    if(counter==10)
         [self exit];
 }
 
@@ -155,7 +168,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     }
     
     ((CCNode*)arr[num]).position=ccp(tmp.x,tmp.y+100);
-    CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.2f position:tmp];
+    CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.1f position:tmp];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
     [(CCNode*)arr[num] runAction:sequence];
     
@@ -166,6 +179,8 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     counter++;
     selectedObject=nil;
 }
+
+#pragma mark tap game
 
 
 @end

@@ -63,20 +63,6 @@
         NSString *str=[NSString stringWithFormat:@"{{%f,%f},{%f,%f}}",item.position.x,item.position.y,item.contentSize.width,item.contentSize.height];
         CGRect r=CGRectFromString(str);
         if(CGRectContainsPoint(r, newtouchLocation)){
-            if([noSelected indexOfObject:item.title]==NSNotFound){
-                if(selectedAmountCount<3){
-                    [noSelected addObject:item.title];
-                    [item check:true];
-                    ++selectedAmountCount;
-                }
-            }
-            else{
-                if(selectedAmountCount>1){
-                    [noSelected removeObject:item.title];
-                    [item check:false];
-                    --selectedAmountCount;
-                }
-            }
             _selectedAmountLabel.string=[NSString stringWithFormat:@"%d/3",selectedAmountCount];
             if([noUnlocked indexOfObject:item.title]==NSNotFound){
                 if([item buy]){
@@ -86,7 +72,20 @@
                     _money.string=[NSString stringWithFormat:@"$%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"money"] ];
                 }
             }else{
-                
+                if([noSelected indexOfObject:item.title]==NSNotFound){
+                    if(selectedAmountCount<3){
+                        [noSelected addObject:item.title];
+                        [item check:true];
+                        ++selectedAmountCount;
+                    }
+                }
+                else{
+                    if(selectedAmountCount>1){
+                        [noSelected removeObject:item.title];
+                        [item check:false];
+                        --selectedAmountCount;
+                    }
+                }
             }
             break;
         }

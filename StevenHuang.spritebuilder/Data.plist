@@ -5,8 +5,7 @@
 	<key>Levels</key>
 	<array>
 		<array>
-			<integer>11</integer>
-			<integer>5</integer>
+			<integer>0</integer>
 		</array>
 		<array>
 			<integer>6</integer>
@@ -18,7 +17,7 @@
 		</array>
 		<array>
 			<integer>1</integer>
-			<integer>4</integer>
+			<integer>5</integer>
 		</array>
 		<array>
 			<integer>10</integer>
@@ -451,12 +450,6 @@
 				<string>Janitor</string>
 				<string>Garbage Man</string>
 				<string>Maid</string>
-			</array>
-			<key>Training_Wheels</key>
-			<array>
-				<string>Manufactorer</string>
-				<string>Assembliler</string>
-				<string>Tester</string>
 			</array>
 		</dict>
 		<key>Address2</key>
@@ -962,5 +955,11 @@
 			<string>Beryl</string>
 		</array>
 	</dict>
+	<key>Training_Wheels</key>
+	<array>
+		<string>Manufactorer</string>
+		<string>Assembliler</string>
+		<string>Tester</string>
+	</array>
 </dict>
 </plist>

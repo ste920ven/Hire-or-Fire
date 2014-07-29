@@ -58,6 +58,7 @@
     self.userInteractionEnabled = TRUE;
     
     [GameplayManager sharedInstance].roundCounter=0;
+    rulesActive=true;
     ready=false;
     _noBar.zOrder=INT_MAX;
     components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
@@ -83,9 +84,8 @@
     if([GameplayManager sharedInstance].level==9)
         randomEventChance=10000;
     
-    randomEventDelay=1.f;
-    
-    /*
+//    randomEventDelay=1.f;
+
     if(arc4random_uniform(10000)<randomEventChance){
         randomEventDelay=arc4random_uniform(roundTime/2)+roundTime/4;
     }
@@ -159,17 +159,15 @@
                 NSString *msg;
                 
                 //constant
-                minigameCode=0;
+                minigameCode=2;
                 if([GameplayManager sharedInstance].level==9){
-                    [self pause];
-                    [_popoverNode removeAllChildren];
+                    [GameplayManager sharedInstance].paused=true;
                     _rulebookNode.currPage=MINIGAME_TUTORIAL;
                     [_rulebookNode show:true];
                     downSwipe.enabled=true;
                 }
                 
-#pragma mark constant
-                //minigameCode=arc4random_uniform(2);
+                //minigameCode=arc4random_uniform(3);
                 switch (minigameCode) {
                     case 0:
                         msg=@"Grab your car keys. I need you to run an errand.";
@@ -243,6 +241,8 @@
                 ++_resumeNode.correctCount;
             [self newResume];
         }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-50){
+            //select "no" option
+            
             if(_resumeNode.correct==true){
                 _resumeNode.passedCount++;
                 _resumeNode.correctCount++;
@@ -262,10 +262,10 @@
     if(!gameOver){
         [self resetResume];
         UISwipeGestureRecognizerDirection direction=sender.direction;
-        if(direction==UISwipeGestureRecognizerDirectionUp){
-            [_rulebookNode show:true];
+        if(direction==UISwipeGestureRecognizerDirectionUp && !rulesActive){
             rulesActive=true;
-        }else if(direction==UISwipeGestureRecognizerDirectionDown){
+            [_rulebookNode show:true];
+        }else if(direction==UISwipeGestureRecognizerDirectionDown && rulesActive){
             self.userInteractionEnabled=true;
             [GameplayManager sharedInstance].paused=false;
             [_rulebookNode show:false];
@@ -308,9 +308,20 @@
     [GameplayManager sharedInstance].paused=false;
     //[CCBReader load:scene];
     downSwipe.enabled=false;
-    upSwipe.enabled=true;
-    Minigame* mini=(Minigame*)[CCBReader load:@"ShuffleGame"];
-    [_popoverNode addChild:mini];
+    upSwipe.enabled=false;
+    Minigame* mini;
+    switch (minigameCode) {
+        case 0:
+            mini=(Minigame*)[CCBReader load:@"ShuffleGame"];
+            break;
+        case 1:
+            mini=(Minigame*)[CCBReader load:@"EmailGame"];
+            break;
+        case 2:
+            mini=(Minigame*)[CCBReader load:@"ShuffleGame"];
+            break;
+    }
+        [_popoverNode addChild:mini];
     [mini setGame:minigameCode];
 }
 -(void)minigameNo{
