@@ -20,6 +20,9 @@
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"noSelected"]==nil){
         [[NSUserDefaults standardUserDefaults] setObject:@[@"shredder"] forKey:@"noSelected"];
     }
+    if([[NSUserDefaults standardUserDefaults] integerForKey:@"level"]==nil){
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"level"];
+    }
     CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }

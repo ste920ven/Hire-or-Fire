@@ -23,7 +23,7 @@
     RuleBook *_rulebookNode;
     CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode,*_tutorial1,*_tutorial2,*_pauseScreen,*_popoverNode,*_correctBarLeft,*_correctBarRight;
     CCSprite *_clockhandSprite;
-    CCLabelTTF *_currDateLabel,*_bubbleLabel;
+    CCLabelTTF *_bubbleLabel;
     CCButton *_pauseButton;
     
     bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass,pushedScene;
@@ -31,8 +31,8 @@
     CCNode *selectedObject;
     CGFloat roundTime,randomEventChance,penaltyChance,penaltyDelay,randomEventDelay;
     NSDictionary *root;
-    NSDateComponents *components;
     UISwipeGestureRecognizer *downSwipe,*upSwipe;
+    CGPoint startLocation;
     
     CCScene *level;
     PauseScreen *ps;
@@ -57,18 +57,19 @@
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
     
+    _tmpResume.cascadeOpacityEnabled=true;
+    _resumeNode.cascadeOpacityEnabled=true;
     [GameplayManager sharedInstance].roundCounter=0;
     rulesActive=true;
     ready=false;
     _noBar.zOrder=INT_MAX;
-    components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    _currDateLabel.string=[NSString stringWithFormat:@"Today is %d/%d/%d",[components month],[components day],[components year]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
     root = [NSDictionary dictionaryWithContentsOfFile:path];
     NSDictionary* resumeInfo= root[@"ResumeInfo"];
     
-    [_tmpResume setup:components rootDir:resumeInfo rules:_rulebookNode];
-    [_resumeNode setup:components rootDir:resumeInfo rules:_rulebookNode];
+    
+    [_tmpResume setup:resumeInfo rules:_rulebookNode];
+    [_resumeNode setup:resumeInfo rules:_rulebookNode];
     
     _rulebookNode.Leveldata=root[@"Levels"][[GameplayManager sharedInstance].level];
     NSArray* arr=_rulebookNode.Leveldata;
@@ -131,19 +132,18 @@
 
 #pragma mark Animations Controls
 -(void)newResume{
+    _tmpResume.opacity=1;
     _resumeNode.zOrder=0;
     _tmpResume.zOrder=1;
     Resume *tmp=_resumeNode;
     _resumeNode=_tmpResume;
     _tmpResume=tmp;
     [_tmpResume createNew];
-    _tmpResume.opacity=0;
 }
 
--(void)fadeResume{
-    //[_resumeNode runAction:[CCActionFadeTo actionWithDuration:.1f opacity:.5] ];
-    //int i=_tmpResume.opacity;
-    //_tmpResume.opacity+=.1f;
+-(void)fadeResume:(UITouch *)touch{
+    float percent=2*fabsf([touch locationInNode:self].x-startLocation.x) / [self contentSizeInPoints].width;
+    _tmpResume.opacity=percent;
 }
 
 -(void)update:(CCTime)delta{
@@ -197,6 +197,20 @@
     }
 }
 
+-(void)animateNoBar:(BOOL)b{
+    if(b && !noBarActive){
+        [_noBar stopAllActions];
+        CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.1f position:ccp(0,48)];
+        [_noBar runAction:translation];
+        noBarActive=true;
+    }else if(!b){
+        [_noBar stopAllActions];
+        CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.1f position:ccp(-120,48)];
+        [_noBar runAction:translation];
+        noBarActive=false;
+    }
+}
+
 -(void)animateClock:(CGFloat)time{
     if(framesForClockTick<=1){
         _clockhandSprite.rotation++;
@@ -208,7 +222,7 @@
 -(void)showFeedback:(BOOL)b{
     feedbackTick=10;
     if(b)
-    [self.animationManager runAnimationsForSequenceNamed:@"correct"];
+        [self.animationManager runAnimationsForSequenceNamed:@"correct"];
     else
         [self.animationManager runAnimationsForSequenceNamed:@"wrong"];
     _correctBarLeft.visible=true;
@@ -228,25 +242,26 @@
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     selectedObject=nil;
-    CGPoint touchLocation = [touch locationInNode:_contentNode];
-    if(CGRectContainsPoint([_resumeNode boundingBox], touchLocation)){
+    startLocation = [touch locationInNode:_contentNode];
+    if(CGRectContainsPoint([_resumeNode boundingBox], startLocation)){
         selectedObject=_resumeNode;
     }
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
-    [self fadeResume];
+    [self fadeResume:touch];
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     CGPoint newLocation = ccp(touchLocation.x/_contentNode.contentSizeInPoints.width,touchLocation.y/_contentNode.contentSizeInPoints.height);
     if(!rulesActive){
         if(selectedObject==_resumeNode){
             selectedObject.position=newLocation;
+            float x=newLocation.x-startLocation.x/[self contentSizeInPoints].width;
+            float y=newLocation.y-startLocation.y/[self contentSizeInPoints].height;
+            selectedObject.position=ccp(.5+x,.5+y);
             if(touchLocation.x<=50){
-                noBarActive=true;
-                _noBar.position=ccp(0,48);
+                [self animateNoBar:true];
             }else if(noBarActive){
-                _noBar.position=ccp(-120,48);
-                noBarActive=false;
+                [self animateNoBar:false];
             }
         }
     }
@@ -288,9 +303,13 @@
         }
     }
     if(noBarActive){
-        _noBar.position=ccp(-120,48);
-        noBarActive=false;
+        [self animateNoBar:false];
     }
+}
+
+-(void)touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event{
+    if(noBarActive)
+        [self animateNoBar:false];
 }
 
 -(void)didSwipe:(UISwipeGestureRecognizer*)sender{
@@ -315,6 +334,7 @@
 }
 
 -(void)resetResume{
+    _tmpResume.opacity=0;
     _resumeNode.position=ccp(.5,.5);
 }
 
@@ -329,7 +349,12 @@
         [GameplayManager sharedInstance].paused=true;
         
         ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"ScoreScreen"];
-        [screen setScreenWithScore:_resumeNode.passedCount+_tmpResume.passedCount message:@"Level Passed" total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
+        if(_resumeNode.correctCount+_tmpResume.correctCount>=10){
+            [screen setScreenWithScore:_resumeNode.passedCount+_tmpResume.passedCount message:@"Level Passed" total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
+            [[NSUserDefaults standardUserDefaults] setInteger:[GameplayManager sharedInstance].level+1 forKey:@"level"];
+        }else{
+            [screen setScreenWithScore:_resumeNode.passedCount+_tmpResume.passedCount message:@"Level Failed" total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
+        }
         [_popoverNode addChild:screen];
         ready=false;
     }else

@@ -8,8 +8,12 @@
 
 #import "LevelSelect.h"
 #import "GameplayManager.h"
+#import "LevelButton.h"
 
-@implementation LevelSelect
+@implementation LevelSelect{
+    CCNode *_container;
+    NSArray* levels;
+}
 
 -(void)play1{
     [self play:0];
@@ -40,6 +44,15 @@
 }
 -(void)play10{
     [self play:9];
+}
+
+-(void)didLoadFromCCB{
+    levels=[_container children];
+    for(LevelButton* item in levels){
+        ((CCButton*)[item children][0]).title=[NSString stringWithFormat:@"%d",item.level+1];
+        if(item.level>[[NSUserDefaults standardUserDefaults] integerForKey:@"level"])
+            ((CCButton*)[item children][0]).enabled=false;
+    }
 }
 
 -(void)play:(int)level{

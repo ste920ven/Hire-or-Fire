@@ -18,25 +18,21 @@
     Tuple *experience2;
     NSInteger age;
     NSString *name;
-    NSInteger birthdate;
-    NSString *birthmonth;
-    NSInteger birthyear;
     NSString * addressEnd;
     NSString * addressBegin;
-    int year,actAmt;
+    int actAmt;
     NSMutableArray *activities;
     
     int correctFactor;
     RuleBook * rulebook;
     NSDictionary* root;
-    NSDateComponents* now;
     CCLabelTTF *_nameLabel,*_addressLabel,*_birthdateLabel,*_phoneNumberLabel,*_experience1Label,*_experience2Label,*_educationLabel,*_activitiesLabel;
     
     CCLabelTTF *_debug;
     int debugInt;
 }
 
--(void)setup:(NSDateComponents*)_now rootDir:(NSDictionary*)_root rules:(CCNode *)_rules{
+-(void)setup:(NSDictionary*)_root rules:(CCNode *)_rules{
     
 #pragma mark TODO temp
     
@@ -45,16 +41,11 @@
     self.correctCount=0;
     self.totalCount=-1;
     self.passedCount=0;
-    now=_now;
     root=_root;
     rulebook=(RuleBook*)_rules;
     experience1=[[Tuple alloc] init];
     experience2=[[Tuple alloc] init];
     activities=[NSMutableArray array];
-}
-
--(void)createDay:(int) maxDays{
-    birthdate=arc4random_uniform(maxDays+1);
 }
 
 -(void)createNew{
@@ -77,61 +68,6 @@
     //generate random name
     name=[NSString stringWithFormat:@"%@ %@",root[@"firstNames"][arc4random_uniform(FIRSTNAME_SIZE)]
           ,root[@"lastNames"][arc4random_uniform(LASTNAME_SIZE)] ];
-    
-    //generate random birthday
-    year = [now year];
-    birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE+5));
-    int month=arc4random_uniform(12);
-    switch(month){
-        case 0:
-            birthmonth=@"January";
-            [self createDay:31];
-            break;
-        case 1:
-            birthmonth=@"February";
-            [self createDay:28];
-            break;
-        case 2:
-            birthmonth=@"March";
-            [self createDay:31];
-            break;
-        case 3:
-            birthmonth=@"April";
-            [self createDay:30];
-            break;
-        case 4:
-            birthmonth=@"May";
-            [self createDay:31];
-            break;
-        case 5:
-            birthmonth=@"June";
-            [self createDay:30];
-            break;
-        case 6:
-            birthmonth=@"July";
-            [self createDay:31];
-            break;
-        case 7:
-            birthmonth=@"August";
-            [self createDay:31];
-            break;
-        case 8:
-            birthmonth=@"September";
-            [self createDay:30];
-            break;
-        case 9:
-            birthmonth=@"October";
-            [self createDay:31];
-            break;
-        case 10:
-            birthmonth=@"Novemeber";
-            [self createDay:30];
-            break;
-        case 11:
-            birthmonth=@"December";
-            [self createDay:31];
-            break;
-    }
     
     //randomly generate experiences
     NSDictionary *tmpDict=root[@"Experiences"];
@@ -157,14 +93,6 @@
         if(![activities containsObject:tmp])
             [activities addObject:tmp];
     }
-    
-    //calculate age
-    age=year-birthyear;
-    if([now month]==month+1){
-        if([now day]<birthdate)
-            --age;
-    }else if([now month]<month)
-        --age;
     
     //choose if resume will be correct or incorrect
     if(arc4random_uniform(10000)>correctFactor){
@@ -218,7 +146,6 @@
     }
     
     //display all info
-    _birthdateLabel.string=[NSString stringWithFormat:@"%@ %d, %d",birthmonth,birthdate,birthyear];
     _nameLabel.string=name;
     _addressLabel.string=[NSString stringWithFormat:@"%@ %@",addressBegin,addressEnd];
     _phoneNumberLabel.string=phoneNumber;
