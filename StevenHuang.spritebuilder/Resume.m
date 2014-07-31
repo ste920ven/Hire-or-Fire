@@ -234,9 +234,9 @@
     [formatter setUsesSignificantDigits:YES];
     [formatter setMinimumSignificantDigits:2];
     
-    _experience1Label.string=[NSString stringWithFormat:@"%@, %@ - %@yrs\n%@",experience1.first,experience1.second,[formatter stringFromNumber:[NSNumber numberWithFloat:experience1.num]],experience1.third];
+    _experience1Label.string=[NSString stringWithFormat:@"%@, %@\n%@ - %@yrs",experience1.first,experience1.second,experience1.third,[formatter stringFromNumber:[NSNumber numberWithFloat:experience1.num]]];
     
-    _experience2Label.string=[NSString stringWithFormat:@"%@, %@ - %@yrs\n%@",experience2.first,experience2.second,[formatter stringFromNumber:[NSNumber numberWithFloat:experience2.num]],experience2.third];
+    _experience2Label.string=[NSString stringWithFormat:@"%@, %@\n%@ - %@yrs",experience2.first,experience2.second,experience2.third,[formatter stringFromNumber:[NSNumber numberWithFloat:experience2.num]]];
     
     //move new resume to position
 //    self.position=ccp(.6,1.5);
@@ -249,32 +249,13 @@
     
     //debuging info
     _debug.string=[NSString stringWithFormat:@"correctness: %d, %d",self.correct,debugInt];
+    //_debug.string=@"";
     
 }
 
 
 -(void)applyRules:(int)num b:(bool)wrong str:(NSString*)rule{
     switch (num) {
-        case MAXAGE:{
-            if(wrong){
-                if(age>[rule intValue])
-                    birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
-            }else if(age>[rule intValue])
-                birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
-            break;
-        }
-        case MINAGE:{
-            if(wrong){
-                if(age>[rule intValue])
-                    birthyear=year-(arc4random_uniform([rule intValue]-5)+5);
-            }else if(age>[rule intValue])
-                birthyear=year-(arc4random_uniform(BIRTHDAY_RANGE-[rule intValue]-5)+[rule intValue]);
-            break;
-        }
-        case NAME:
-            break;
-        case ADDRESS:
-            break;
         case EDUCATION:{
             if(wrong){
                 while([education rangeOfString:rule].location != NSNotFound)

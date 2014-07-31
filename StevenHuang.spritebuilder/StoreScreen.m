@@ -56,6 +56,10 @@
 }
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+
+}
+
+-(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:_scrollView];
     //CGRect rect=[_scrollView boundingBox];
     CGPoint newtouchLocation=ccp(touchLocation.x,_scrollView.contentSizeInPoints.height-touchLocation.y);
@@ -90,10 +94,6 @@
             break;
         }
     }
-}
-
--(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
-    
 }
 
 @end

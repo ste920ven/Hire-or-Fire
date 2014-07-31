@@ -16,12 +16,12 @@
 
 @implementation Gameplay{
     //timer vars
-    int framesForClockTick,minigameCode;
+    int framesForClockTick,minigameCode,feedbackTick;
     
     //spritebuilder vars
     Resume *_resumeNode,*_tmpResume;
     RuleBook *_rulebookNode;
-    CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode,*_tutorial1,*_tutorial2,*_pauseScreen,*_popoverNode;
+    CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode,*_tutorial1,*_tutorial2,*_pauseScreen,*_popoverNode,*_correctBarLeft,*_correctBarRight;
     CCSprite *_clockhandSprite;
     CCLabelTTF *_currDateLabel,*_bubbleLabel;
     CCButton *_pauseButton;
@@ -71,6 +71,7 @@
     [_resumeNode setup:components rootDir:resumeInfo rules:_rulebookNode];
     
     _rulebookNode.Leveldata=root[@"Levels"][[GameplayManager sharedInstance].level];
+    NSArray* arr=_rulebookNode.Leveldata;
     [_rulebookNode createRulesWithLevel:[GameplayManager sharedInstance].level resumeData:resumeInfo];
     _rulebookNode.zOrder=INT_MAX-1;
     _popoverNode.zOrder=INT_MAX;
@@ -84,8 +85,8 @@
     if([GameplayManager sharedInstance].level==9)
         randomEventChance=10000;
     
-//    randomEventDelay=1.f;
-
+    //    randomEventDelay=1.f;
+    
     if(arc4random_uniform(10000)<randomEventChance){
         randomEventDelay=arc4random_uniform(roundTime/2)+roundTime/4;
     }
@@ -153,8 +154,18 @@
         self.userInteractionEnabled = TRUE;
         if(ready){
             //clock
+            
             [self animateClock:roundTime];
             [self endGame];
+            
+            //feedback handling
+            if(feedbackTick>0)
+                feedbackTick--;
+            else{
+                _correctBarLeft.visible=false;
+                _correctBarRight.visible=false;
+            }
+            //minigame handling
             if(randomEventDelay*60==[GameplayManager sharedInstance].roundCounter){
                 NSString *msg;
                 
@@ -192,7 +203,16 @@
         framesForClockTick=time/6;
     }else
         --framesForClockTick;
-    
+}
+
+-(void)showFeedback:(BOOL)b{
+    feedbackTick=10;
+    if(b)
+    [self.animationManager runAnimationsForSequenceNamed:@"correct"];
+    else
+        [self.animationManager runAnimationsForSequenceNamed:@"wrong"];
+    _correctBarLeft.visible=true;
+    _correctBarRight.visible=true;
 }
 
 #pragma mark Touch Controls
@@ -236,17 +256,32 @@
     if(!rulesActive &&
        selectedObject==_resumeNode){
         CGPoint touchLocation = [touch locationInNode:_contentNode];
+        //CGPoint newLocation = ccp(touchLocation.x/,touchLocation.y/_contentNode.contentSizeInPoints.height);
         if(touchLocation.x<=50){
-            if(_resumeNode.correct==false)
+            //select "no" option
+            for (int i=0;i<[noArray count];++i){
+                if(touchLocation.y>((CCNode*)noArray[i]).position.y*_contentNode.contentSizeInPoints.height-((CCNode*)noArray[i]).contentSize.height/2 && touchLocation.y<((CCNode*)noArray[i]).position.y*_contentNode.contentSizeInPoints.height+((CCNode*)noArray[i]).contentSize.height/2){
+                    NSString *s=[NSString stringWithFormat:@"item: %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][i]];
+                    NSLog(s);
+                    
+                }
+            }
+            
+            if(_resumeNode.correct==false){
+                [self showFeedback:true];
+                _correctBarLeft.visible=true;
+                NSLog(@"yea");
                 ++_resumeNode.correctCount;
+            }else
+                [self showFeedback:false];
             [self newResume];
         }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-50){
-            //select "no" option
-            
             if(_resumeNode.correct==true){
+                [self showFeedback:true];
                 _resumeNode.passedCount++;
                 _resumeNode.correctCount++;
-            }
+            }else
+                [self showFeedback:false];
             [self newResume];
         }else{
             [self resetResume];
@@ -321,12 +356,13 @@
             mini=(Minigame*)[CCBReader load:@"ShuffleGame"];
             break;
     }
-        [_popoverNode addChild:mini];
+    [_popoverNode addChild:mini];
     [mini setGame:minigameCode];
 }
 -(void)minigameNo{
     minigameNo=true;
     _bubbleNode.visible=false;
+    downSwipe.enabled=true;
     [GameplayManager sharedInstance].paused=false;
     NSLog(@"minigame no");
     penaltyChance=arc4random_uniform(10000);
@@ -334,6 +370,7 @@
 -(void)minigamePass{
     minigamePass=true;
     _bubbleNode.visible=false;
+    downSwipe.enabled=true;
     [GameplayManager sharedInstance].paused=false;
     NSLog(@"minigame pass");
     penaltyChance=arc4random_uniform(10000);

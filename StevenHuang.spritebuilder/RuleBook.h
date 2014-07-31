@@ -11,19 +11,15 @@
 typedef NS_ENUM(NSInteger, RuleType){
     //0-99 normal, 100-199 special yes, 200-299 special no
     
-    MAXAGE,             //0
-    MINAGE,             //1
-    NAME,               //2  na
-    ADDRESS,            //3  na
-    EDUCATION,          //4
-    PHONE,              //5
-    EXPERIENCE_FIELD,   //6  no 7
-    EXPERIENCE_JOB,     //7  no 6
-    EXPERIENCE_LOCATION,//8
-    ADDRESS_TYPE,       //9
-    EDUCATION_LEVEL,     //10 
-    EXPERIENCE_LENGTH,   //11
-    ACTIVITIES          //12
+    EDUCATION,          //0
+    PHONE,              //1
+    EXPERIENCE_FIELD,   //2  no 3
+    EXPERIENCE_JOB,     //3  no 2
+    EXPERIENCE_LOCATION,//4
+    ADDRESS_TYPE,       //5
+    EDUCATION_LEVEL,     //6
+    EXPERIENCE_LENGTH,   //7
+    ACTIVITIES          //8
 };
 
 typedef NS_ENUM(NSInteger, Page){
@@ -39,7 +35,7 @@ typedef NS_ENUM(NSInteger, Page){
 #define LASTNAME_SIZE 200
 #define BIRTHDAY_RANGE 60
 #define SCHOOL_SIZE 14
-#define EXPERIENCE_SIZE 7
+#define EXPERIENCE_SIZE 6
 #define LOCATION_SIZE 9
 #define EXPERIENCE_LENGTH_MAX 5
 #define ACTIVITIES_SIZE 192
