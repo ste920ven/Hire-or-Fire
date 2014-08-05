@@ -801,8 +801,6 @@
 								<string>LevelButton.ccb</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -850,7 +848,7 @@
 								<key>value</key>
 								<array>
 									<real>0.6600000262260437</real>
-									<real>286.88751220703125</real>
+									<real>189.80000305175781</real>
 									<integer>1</integer>
 									<integer>2</integer>
 									<integer>0</integer>
@@ -1000,7 +998,7 @@
 								<key>value</key>
 								<array>
 									<real>0.6600000262260437</real>
-									<real>189.77499389648438</real>
+									<real>286.89999389648438</real>
 									<integer>1</integer>
 									<integer>2</integer>
 									<integer>0</integer>
@@ -1028,6 +1026,8 @@
 								<string>LevelButton.ccb</string>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>

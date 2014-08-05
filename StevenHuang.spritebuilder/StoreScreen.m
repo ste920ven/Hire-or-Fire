@@ -67,7 +67,6 @@
         NSString *str=[NSString stringWithFormat:@"{{%f,%f},{%f,%f}}",item.position.x,item.position.y,item.contentSize.width,item.contentSize.height];
         CGRect r=CGRectFromString(str);
         if(CGRectContainsPoint(r, newtouchLocation)){
-            _selectedAmountLabel.string=[NSString stringWithFormat:@"%d/3",selectedAmountCount];
             if([noUnlocked indexOfObject:item.title]==NSNotFound){
                 if([item buy]){
                     [item greyOut];
@@ -93,6 +92,7 @@
                     }
                 }
             }
+            _selectedAmountLabel.string=[NSString stringWithFormat:@"%d/3",selectedAmountCount];
             break;
         }
     }

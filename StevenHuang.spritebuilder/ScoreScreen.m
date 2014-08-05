@@ -14,13 +14,20 @@
     CCButton *_nextLevelButton;
 }
 
--(void)setScreenWithScore:(int)score message:(NSString*)msg total:(int)total correct:(int)correct{
-    _messageLabel.string=msg;
-    _scoreLabel.string=[NSString stringWithFormat:@"Resumes Passed: %d",score];
+-(void)setScreenWithScore:(int)score message:(bool)msg total:(int)total correct:(int)correct{
+    if(msg){
+    _messageLabel.string=@"Level Passed";
+    }else{
+        _messageLabel.string=@"Level Failed";
+            [_nextLevelButton setTarget:self selector:@selector(replay)];
+            _nextLevelButton.title=@"Replay";
+    }
+    //_scoreLabel.string=[NSString stringWithFormat:@"Total score: %d",score];
+    _scoreLabel.string=@"";
     _totalLabel.string=[NSString stringWithFormat:@"Total Resumes: %d",total];
     _correctLabel.string=[NSString stringWithFormat:@"Correct Resumes: %d",correct];
     
-    int moneyEarned=score*5;
+    int moneyEarned=score;
     _moneyEarnedLabel.string=[NSString stringWithFormat:@"Earned: $%d",moneyEarned];
     
     //update money
@@ -29,8 +36,6 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     _moneyLabel.string=[NSString stringWithFormat:@"Total: $%d",moneyEarned+money];
-    
-    [_nextLevelButton setTarget:self selector:@selector(nextLevel)];
 }
 
 -(void) nextLevel{
@@ -42,6 +47,11 @@
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
     }
+}
+
+-(void) replay{
+    CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
 
 -(void)LevelSelect{

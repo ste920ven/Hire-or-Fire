@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     NSMutableArray *arr;
     CCNode *_contentNode;
     CCLabelTTF *_instructionLabel;
+    float time;
 }
 
 -(void)didLoadFromCCB{
@@ -69,7 +70,9 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 }
 
 -(void)update:(CCTime)delta{
-    
+    time+=delta;
+    if(time>1)
+        _instructionLabel.visible=false;
 }
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{

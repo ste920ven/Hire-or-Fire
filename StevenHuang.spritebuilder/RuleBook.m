@@ -39,6 +39,9 @@
 
 -(void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
     self.currPage=(++self.currPage)%unlockedNum;
+    int i=arc4random_uniform(3)+1;
+    NSString *s=[NSString stringWithFormat:@"Assets/bookFlip%d.wav",i];
+    [[OALSimpleAudio sharedInstance] playBg:s];
     [self updatePage];
 }
 

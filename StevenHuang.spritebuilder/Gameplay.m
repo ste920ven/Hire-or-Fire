@@ -26,10 +26,10 @@
     CCLabelTTF *_bubbleLabel,*_scoreLabel,*_multiplierLabel;
     CCButton *_pauseButton;
     
-    bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass,swipeEnabled;
+    bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass,swipeEnabled,el;
     NSArray *noArray;
     CCNode *selectedObject;
-    CGFloat roundTime,randomEventChance,penaltyChance,penaltyDelay,randomEventDelay;
+    CGFloat roundTime,randomEventChance,randomEventDelay,multiplierTime;
     NSDictionary *root;
     UISwipeGestureRecognizer *downSwipe,*upSwipe;
     CGPoint startLocation;
@@ -84,10 +84,11 @@
     _popoverNode.zOrder=INT_MAX;
     
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
-    roundTime=5.f;
+    roundTime=60.f;
     
     //constant
     goalScore=1000;
+    [[NSUserDefaults standardUserDefaults] setInteger:9 forKey:@"level"];
     
     /*
     if([GameplayManager sharedInstance].level>9){
@@ -169,6 +170,15 @@
             [self animateClock:delta];
             [self endGame];
             [GameplayManager sharedInstance].roundCounter+=delta;
+            
+            //multiplier handling
+            if(multiplierTime<=0){
+                if(streak>2){
+                    _multiplierLabel.visible=false;
+                    streak=1;
+                }
+            }else
+                multiplierTime-=delta;
             
             //feedback handling
             if(feedbackTick>0)
@@ -280,9 +290,8 @@
             //select "no" option
             for (int i=0;i<[noArray count];++i){
                 if(touchLocation.y>((CCNode*)noArray[i]).position.y*_contentNode.contentSizeInPoints.height-((CCNode*)noArray[i]).contentSize.height/2 && touchLocation.y<((CCNode*)noArray[i]).position.y*_contentNode.contentSizeInPoints.height+((CCNode*)noArray[i]).contentSize.height/2){
-                    NSString *s=[NSString stringWithFormat:@"item: %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][i]];
-                    NSLog(s);
-                    
+                    NSString *s=[NSString stringWithFormat:@"Assets/%@.wav",[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][i]];
+                    [[OALSimpleAudio sharedInstance] playBg:s];
                 }
             }
             
@@ -361,6 +370,7 @@
     [self showFeedback:true];
     ++_resumeNode.correctCount;
     if(streak>1){
+        multiplierTime=3.f;
         _multiplierLabel.string=[NSString stringWithFormat:@"x%d",streak];
         _multiplierLabel.visible=true;
     }else{
@@ -383,12 +393,12 @@
         
         ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"ScoreScreen"];
         if(_resumeNode.correctCount+_tmpResume.correctCount>=10){
-            NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:[GameplayManager sharedInstance].level ], @"item", nil];
+            NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:[GameplayManager sharedInstance].level ], @"level", [NSNumber numberWithInt:score], @"score", nil];
             [MGWU logEvent:@"levelcomplete" withParams:params];
-            [screen setScreenWithScore:_resumeNode.passedCount+_tmpResume.passedCount message:@"Level Passed" total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
+            [screen setScreenWithScore:score message:true total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
             [[NSUserDefaults standardUserDefaults] setInteger:[GameplayManager sharedInstance].level+1 forKey:@"level"];
         }else{
-            [screen setScreenWithScore:_resumeNode.passedCount+_tmpResume.passedCount message:@"Level Failed" total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
+            [screen setScreenWithScore:score message:false total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
         }
         [_popoverNode addChild:screen];
         ready=false;
