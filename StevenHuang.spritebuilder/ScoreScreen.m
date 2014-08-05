@@ -39,6 +39,7 @@
 }
 
 -(void) nextLevel{
+     [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     if([GameplayManager sharedInstance].level==9){
         CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
         [[CCDirector sharedDirector] replaceScene:gameplayScene];
@@ -50,11 +51,13 @@
 }
 
 -(void) replay{
+     [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
 
 -(void)LevelSelect{
+     [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }

@@ -12,12 +12,14 @@
 @implementation PauseScreen
 
 -(void)LevelSelect{
+    [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     [GameplayManager sharedInstance].paused=false;
     CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
 
 -(void)Resume{
+    [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     [self removeFromParent];
     self.userInteractionEnabled=true;
     [GameplayManager sharedInstance].paused=false;

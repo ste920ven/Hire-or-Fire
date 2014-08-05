@@ -63,6 +63,7 @@
 }
 
 -(void)openStore{
+     [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Store"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 

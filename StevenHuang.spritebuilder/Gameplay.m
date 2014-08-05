@@ -155,8 +155,9 @@
 }
 
 -(void)fadeResume:(UITouch *)touch{
-    float percent=2*fabsf([touch locationInNode:self].x-startLocation.x) / [self contentSizeInPoints].width;
-    _tmpResume.opacity=percent;
+    float f1=2*fabsf([touch locationInNode:self].x-startLocation.x) / [self contentSizeInPoints].width;
+    float f2=2*fabsf([touch locationInNode:self].y-startLocation.y) / [self contentSizeInPoints].height;
+    _tmpResume.opacity=MAX(f1, f2);
 }
 
 -(void)update:(CCTime)delta{
@@ -246,6 +247,7 @@
 
 #pragma mark Touch Controls
 -(void) pause{
+    [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     swipeEnabled=false;
     [GameplayManager sharedInstance].paused=true;
     PauseScreen *scene=(PauseScreen*)[CCBReader load:@"PauseScreen"];
@@ -259,6 +261,7 @@
     startLocation = [touch locationInNode:_contentNode];
     if(CGRectContainsPoint([_resumeNode boundingBox], startLocation)){
         selectedObject=_resumeNode;
+        [[OALSimpleAudio sharedInstance] playBg:@"Assets/click.wav"];
     }
 }
 
@@ -318,7 +321,7 @@
     
     //rulebook handling
     if(swipeEnabled){
-        if(startLocation.y<[self contentSizeInPoints].height/2 && touchLocation.y-startLocation.y>50 && !rulesActive){
+        if(startLocation.y<[self contentSizeInPoints].height/3 && touchLocation.y-startLocation.y>50 && !rulesActive){
             rulesActive=true;
             [_rulebookNode show:true];
         }else if(touchLocation.y-startLocation.y<-50 && rulesActive){

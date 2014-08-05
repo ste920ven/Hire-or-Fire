@@ -12,7 +12,7 @@
 @implementation LevelButton
 
 -(void)play{
-    
+     [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     [GameplayManager sharedInstance].level=self.level;
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
