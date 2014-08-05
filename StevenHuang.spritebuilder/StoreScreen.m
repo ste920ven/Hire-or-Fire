@@ -74,6 +74,8 @@
                     [noUnlocked addObject:item.title];
                     [[NSUserDefaults standardUserDefaults] setObject:noUnlocked forKey:@"noUnlocked"];
                     _money.string=[NSString stringWithFormat:@"$%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"money"] ];
+                    NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: item.title, @"item", nil];
+                    [MGWU logEvent:@"itemBought" withParams:params];
                 }
             }else{
                 if([noSelected indexOfObject:item.title]==NSNotFound){

@@ -23,16 +23,17 @@
     RuleBook *_rulebookNode;
     CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode,*_tutorial1,*_tutorial2,*_pauseScreen,*_popoverNode,*_correctBarLeft,*_correctBarRight;
     CCSprite *_clockhandSprite;
-    CCLabelTTF *_bubbleLabel;
+    CCLabelTTF *_bubbleLabel,*_scoreLabel;
     CCButton *_pauseButton;
     
-    bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass,pushedScene;
+    bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass,swipeEnabled;
     NSArray *noArray;
     CCNode *selectedObject;
     CGFloat roundTime,randomEventChance,penaltyChance,penaltyDelay,randomEventDelay;
     NSDictionary *root;
     UISwipeGestureRecognizer *downSwipe,*upSwipe;
     CGPoint startLocation;
+    int score;
     
     CCScene *level;
     PauseScreen *ps;
@@ -42,13 +43,13 @@
 - (id)init{
     self = [super init];
     if (self) {
-        upSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
-        [[CCDirector sharedDirector].view addGestureRecognizer:upSwipe];
-        upSwipe.direction=UISwipeGestureRecognizerDirectionUp;
-        
-        downSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
-        [[CCDirector sharedDirector].view addGestureRecognizer:downSwipe];
-        downSwipe.direction=UISwipeGestureRecognizerDirectionDown;
+//        upSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+//        [[CCDirector sharedDirector].view addGestureRecognizer:upSwipe];
+//        upSwipe.direction=UISwipeGestureRecognizerDirectionUp;
+//        
+//        downSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+//        [[CCDirector sharedDirector].view addGestureRecognizer:downSwipe];
+//        downSwipe.direction=UISwipeGestureRecognizerDirectionDown;
     }
     return self;
 }
@@ -59,7 +60,9 @@
     
     _tmpResume.cascadeOpacityEnabled=true;
     _resumeNode.cascadeOpacityEnabled=true;
+    swipeEnabled=true;
     [GameplayManager sharedInstance].roundCounter=0;
+    score=0;
     rulesActive=true;
     ready=false;
     _noBar.zOrder=INT_MAX;
@@ -93,6 +96,8 @@
     }
     //*/
     [_rulebookNode show:true];
+    
+    _scoreLabel.string=@"$0";
 }
 
 -(void)noAnimation:(NSString*)str{
@@ -149,8 +154,7 @@
 -(void)update:(CCTime)delta{
     if(![GameplayManager sharedInstance].paused){
         _pauseButton.enabled = YES;
-        upSwipe.enabled = YES;
-        downSwipe.enabled = YES;
+        swipeEnabled=true;
         self.userInteractionEnabled = TRUE;
         if(ready){
             //clock
@@ -231,8 +235,7 @@
 
 #pragma mark Touch Controls
 -(void) pause{
-    upSwipe.enabled = NO;
-    downSwipe.enabled = NO;
+    swipeEnabled=false;
     [GameplayManager sharedInstance].paused=true;
     PauseScreen *scene=(PauseScreen*)[CCBReader load:@"PauseScreen"];
     [_popoverNode addChild:scene];
@@ -268,9 +271,9 @@
 }
 
 -(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
+     CGPoint touchLocation = [touch locationInNode:_contentNode];
     if(!rulesActive &&
        selectedObject==_resumeNode){
-        CGPoint touchLocation = [touch locationInNode:_contentNode];
         //CGPoint newLocation = ccp(touchLocation.x/,touchLocation.y/_contentNode.contentSizeInPoints.height);
         if(touchLocation.x<=50){
             //select "no" option
@@ -285,8 +288,9 @@
             if(_resumeNode.correct==false){
                 [self showFeedback:true];
                 _correctBarLeft.visible=true;
-                NSLog(@"yea");
                 ++_resumeNode.correctCount;
+                score+=10;
+                _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
             }else
                 [self showFeedback:false];
             [self newResume];
@@ -295,6 +299,8 @@
                 [self showFeedback:true];
                 _resumeNode.passedCount++;
                 _resumeNode.correctCount++;
+                score+=10;
+                _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
             }else
                 [self showFeedback:false];
             [self newResume];
@@ -305,21 +311,13 @@
     if(noBarActive){
         [self animateNoBar:false];
     }
-}
-
--(void)touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event{
-    if(noBarActive)
-        [self animateNoBar:false];
-}
-
--(void)didSwipe:(UISwipeGestureRecognizer*)sender{
-    if(!gameOver){
-        [self resetResume];
-        UISwipeGestureRecognizerDirection direction=sender.direction;
-        if(direction==UISwipeGestureRecognizerDirectionUp && !rulesActive){
+    
+    //rulebook handling
+    if(swipeEnabled){
+        if(startLocation.y<[self contentSizeInPoints].height/2 && touchLocation.y-startLocation.y>50 && !rulesActive){
             rulesActive=true;
             [_rulebookNode show:true];
-        }else if(direction==UISwipeGestureRecognizerDirectionDown && rulesActive){
+        }else if(touchLocation.y-startLocation.y<-50 && rulesActive){
             self.userInteractionEnabled=true;
             [GameplayManager sharedInstance].paused=false;
             [_rulebookNode show:false];
@@ -332,6 +330,32 @@
         }
     }
 }
+
+-(void)touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event{
+    if(noBarActive)
+        [self animateNoBar:false];
+}
+
+//-(void)didSwipe:(UISwipeGestureRecognizer*)sender{
+//    if(!gameOver){
+//        [self resetResume];
+//        UISwipeGestureRecognizerDirection direction=sender.direction;
+//        if(direction==UISwipeGestureRecognizerDirectionUp && !rulesActive){
+//            rulesActive=true;
+//            [_rulebookNode show:true];
+//        }else if(direction==UISwipeGestureRecognizerDirectionDown && rulesActive){
+//            self.userInteractionEnabled=true;
+//            [GameplayManager sharedInstance].paused=false;
+//            [_rulebookNode show:false];
+//            if(!ready){
+//                [self newResume];
+//                [self newResume];
+//                ready=true;
+//            }
+//            rulesActive=false;
+//        }
+//    }
+//}
 
 -(void)resetResume{
     _tmpResume.opacity=0;
@@ -350,6 +374,8 @@
         
         ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"ScoreScreen"];
         if(_resumeNode.correctCount+_tmpResume.correctCount>=10){
+            NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:[GameplayManager sharedInstance].level ], @"item", nil];
+            [MGWU logEvent:@"levelcomplete" withParams:params];
             [screen setScreenWithScore:_resumeNode.passedCount+_tmpResume.passedCount message:@"Level Passed" total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
             [[NSUserDefaults standardUserDefaults] setInteger:[GameplayManager sharedInstance].level+1 forKey:@"level"];
         }else{
@@ -363,12 +389,10 @@
 
 #pragma mark minigame handling
 -(void)minigameYes{
-    NSLog(@"minigame pass");
     _bubbleNode.visible=false;
     [GameplayManager sharedInstance].paused=false;
     //[CCBReader load:scene];
-    downSwipe.enabled=false;
-    upSwipe.enabled=false;
+    swipeEnabled=false;
     Minigame* mini;
     switch (minigameCode) {
         case 0:

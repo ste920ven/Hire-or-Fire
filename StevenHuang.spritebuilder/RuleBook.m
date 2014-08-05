@@ -92,9 +92,9 @@
                 if(b==0)
                     [tmp appendFormat:@"Must have attended to a %@ school\n",entry];
                 if(b==1)
-                    [tmp appendFormat:@"Applicants who attended %@ are automatically in\n",entry];
+                    [tmp appendFormat:@"Accept all who have attended %@\n",entry];
                 if(b==2)
-                    [tmp appendFormat:@"Applicants who attended %@ are automatically out\n",entry];
+                    [tmp appendFormat:@"Deny all who attended %@\n",entry];
                 break;
             }
             case PHONE:{ //1
@@ -102,9 +102,9 @@
                 if(b==0)
                     [tmp appendFormat:@"Must be from this areacode (%3@)\n", entry];
                 if(b==1)
-                    [tmp appendFormat:@"Applicants with the areacode (%3@) are automatically in\n", entry];
+                    [tmp appendFormat:@"Accept all who have the areacode (%3@)\n", entry];
                 if(b==2)
-                    [tmp appendFormat:@"Applicants with the areacode (%3@) are automatically out\n", entry];
+                    [tmp appendFormat:@"Deny all who have  the areacode (%3@)\n", entry];
                 break;
             }
             case EXPERIENCE_FIELD:{ //2
@@ -113,9 +113,9 @@
                 if(b==0)
                     [tmp appendFormat:@"Must have worked in the field of %@\n",entry];
                 if(b==1)
-                    [tmp appendFormat:@"Applicants who have worked in the field of %@ are automatically in\n", entry];
+                    [tmp appendFormat:@"Accept all who have worked in the field of %@\n", entry];
                 if(b==2)
-                    [tmp appendFormat:@"Applicants who have worked in the field of %@ are automatically out\n", entry];
+                    [tmp appendFormat:@"Deny all who have worked in the field of %@\n", entry];
                 break;
             }
             case EXPERIENCE_JOB:{  //3
@@ -126,9 +126,9 @@
                 if(b==0)
                     [tmp appendFormat:@"Must have worked as a %@\n",entry];
                 if(b==1)
-                    [tmp appendFormat:@"Applicants who have worked as a %@ are automatically in\n", entry];
+                    [tmp appendFormat:@"Accept all who have worked as a %@\n", entry];
                 if(b==2)
-                    [tmp appendFormat:@"Applicants who have worked as a %@ are automatically out\n", entry];
+                    [tmp appendFormat:@"Deny all who have worked as a %@\n", entry];
                 break;
             }
             case EXPERIENCE_LOCATION:{  //4
@@ -136,9 +136,9 @@
                 if(b==0)
                     [tmp appendFormat:@"Must have worked at %@\n",entry];
                 if(b==1)
-                    [tmp appendFormat:@"Applicants who have worked at %@ are automatically in\n", entry];
+                    [tmp appendFormat:@"Accept all who have worked at %@\n", entry];
                 if(b==2)
-                    [tmp appendFormat:@"Applicants who have worked at %@ are automatically out\n", entry];
+                    [tmp appendFormat:@"Deny all who have worked at %@\n", entry];
                 
                 break;
             }
@@ -147,19 +147,19 @@
                 if(b==0)
                     [tmp appendFormat:@"Must live on a %@\n",entry];
                 if(b==1)
-                    [tmp appendFormat:@"Applicants who live on a %@ are automatically in\n", entry];
+                    [tmp appendFormat:@"Accept all who live on a %@\n", entry];
                 if(b==2)
-                    [tmp appendFormat:@"Applicants who live on a %@ are automatically out\n", entry];
+                    [tmp appendFormat:@"Deny all who live on a %@\n", entry];
                 break;
             }
             case EDUCATION_LEVEL:{  //6
                 entry=data[@"SchoolLevel"][arc4random_uniform(3)+1];
                 if(b==0)
-                    [tmp appendFormat:@"Must have attened a minimum level of %@\n",entry];
+                    [tmp appendFormat:@"Must have obtained at least a %@ degree\n",entry];
                 if(b==1)
-                    [tmp appendFormat:@"Applicants who have attended a %@ are automatically in\n", entry];
+                    [tmp appendFormat:@"Acecept all who have attended at least a %@\n", entry];
                 if(b==2)
-                    [tmp appendFormat:@"Applicants who have attended a %@ are automatically out\n", entry];
+                    [tmp appendFormat:@"Deny all who have attended at least a %@\n", entry];
                 break;
             }
             case EXPERIENCE_LENGTH:{  //7
@@ -167,9 +167,9 @@
                 if(b==0)
                     [tmp appendFormat:@"Must have %@ yrs of experience\n",entry];
                 if(b==1)
-                    [tmp appendFormat:@"Applicants who have %@ years of experience are automatically in\n", entry];
+                    [tmp appendFormat:@"Accept all who have %@ years of experience\n", entry];
                 if(b==2)
-                    [tmp appendFormat:@"Applicants who have %@ years of experience are automatically out\n", entry];
+                    [tmp appendFormat:@"Deny all who have %@ years of experience\n", entry];
                 break;
             }
             case ACTIVITIES:{  //8
@@ -177,9 +177,9 @@
                 if(b==0)
                     [tmp appendFormat:@"Must be interested in %@\n",entry];
                 if(b==1)
-                    [tmp appendFormat:@"Applicants who like %@ are automatically in\n", entry];
+                    [tmp appendFormat:@"Accept all who like %@\n", entry];
                 if(b==2)
-                    [tmp appendFormat:@"Applicants who like %@ are automatically out\n", entry];
+                    [tmp appendFormat:@"Deny all who like %@\n", entry];
             }
         }
         [self.rules setValue:entry forKey:[NSString stringWithFormat:@"%@",ruleType]];

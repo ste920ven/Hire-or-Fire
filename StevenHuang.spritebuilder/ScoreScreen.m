@@ -34,7 +34,7 @@
 }
 
 -(void) nextLevel{
-    if([GameplayManager sharedInstance].level==3){
+    if([GameplayManager sharedInstance].level==9){
         CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
         [[CCDirector sharedDirector] replaceScene:gameplayScene];
     }else{

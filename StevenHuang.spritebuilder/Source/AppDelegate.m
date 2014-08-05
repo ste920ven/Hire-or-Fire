@@ -32,6 +32,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MGWU loadMGWU:@"aocweoifj430fmawoeihf0prjqp2djsofh4"];
+    
     // Configure Cocos2d with the options set in SpriteBuilder
     NSString* configPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Published-iOS"]; // TODO: add support for Published-Android support
     configPath = [configPath stringByAppendingPathComponent:@"configCocos2d.plist"];
@@ -60,6 +62,7 @@
 - (CCScene*) startScene
 {
     return [CCBReader loadAsScene:@"MainScene"];
+    
 }
 
 -(NSUInteger)supportedInterfaceOrientations

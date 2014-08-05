@@ -370,13 +370,14 @@
 			<string>Northvale</string>
 			<string>Northdale</string>
 			<string>Melrose</string>
-			<string>Eppingswood</string>
+			<string>Epingwood</string>
 			<string>Riverdell</string>
 			<string>Cedarwood</string>
 			<string>Colby</string>
 		</array>
 		<key>Locations</key>
 		<array>
+			<string>Starship Enterprise</string>
 			<string>Tony&apos;s Sandwiches</string>
 			<string>Pear Inc</string>
 			<string>The General Store</string>
@@ -433,7 +434,6 @@
 				<string>Nurse</string>
 				<string>Veternarian</string>
 				<string>Surgeon</string>
-				<string>Gynocologist</string>
 				<string>Dentist</string>
 			</array>
 			<key>Education</key>
