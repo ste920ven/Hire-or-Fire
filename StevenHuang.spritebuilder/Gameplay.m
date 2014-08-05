@@ -33,7 +33,7 @@
     NSDictionary *root;
     UISwipeGestureRecognizer *downSwipe,*upSwipe;
     CGPoint startLocation;
-    int score;
+    int score,streak;
     
     CCScene *level;
     PauseScreen *ps;
@@ -63,6 +63,7 @@
     swipeEnabled=true;
     [GameplayManager sharedInstance].roundCounter=0;
     score=0;
+    streak=1;
     rulesActive=true;
     ready=false;
     _noBar.zOrder=INT_MAX;
@@ -83,6 +84,7 @@
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
     roundTime=60.f;
     
+    /*
     if([GameplayManager sharedInstance].level>9){
         randomEventChance=3000;
     }
@@ -175,12 +177,6 @@
                 
                 //constant
                 minigameCode=2;
-                if([GameplayManager sharedInstance].level==9){
-                    [GameplayManager sharedInstance].paused=true;
-                    _rulebookNode.currPage=MINIGAME_TUTORIAL;
-                    [_rulebookNode show:true];
-                    downSwipe.enabled=true;
-                }
                 
                 //minigameCode=arc4random_uniform(3);
                 switch (minigameCode) {
@@ -227,8 +223,10 @@
     feedbackTick=10;
     if(b)
         [self.animationManager runAnimationsForSequenceNamed:@"correct"];
-    else
+    else{
+        streak=1;
         [self.animationManager runAnimationsForSequenceNamed:@"wrong"];
+    }
     _correctBarLeft.visible=true;
     _correctBarRight.visible=true;
 }
@@ -286,21 +284,15 @@
             }
             
             if(_resumeNode.correct==false){
-                [self showFeedback:true];
                 _correctBarLeft.visible=true;
-                ++_resumeNode.correctCount;
-                score+=10;
-                _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
+                [self correctResume];
             }else
                 [self showFeedback:false];
             [self newResume];
         }else if(touchLocation.x>_contentNode.contentSizeInPoints.width-50){
             if(_resumeNode.correct==true){
-                [self showFeedback:true];
                 _resumeNode.passedCount++;
-                _resumeNode.correctCount++;
-                score+=10;
-                _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
+                [self correctResume];
             }else
                 [self showFeedback:false];
             [self newResume];
@@ -362,6 +354,15 @@
     _resumeNode.position=ccp(.5,.5);
 }
 
+-(void)correctResume{
+    [self showFeedback:true];
+    ++_resumeNode.correctCount;
+    score+=(10*streak);
+    _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
+    if(streak<10)
+    ++streak;
+    
+}
 
 #pragma mark Game End
 
@@ -407,22 +408,6 @@
     }
     [_popoverNode addChild:mini];
     [mini setGame:minigameCode];
-}
--(void)minigameNo{
-    minigameNo=true;
-    _bubbleNode.visible=false;
-    downSwipe.enabled=true;
-    [GameplayManager sharedInstance].paused=false;
-    NSLog(@"minigame no");
-    penaltyChance=arc4random_uniform(10000);
-}
--(void)minigamePass{
-    minigamePass=true;
-    _bubbleNode.visible=false;
-    downSwipe.enabled=true;
-    [GameplayManager sharedInstance].paused=false;
-    NSLog(@"minigame pass");
-    penaltyChance=arc4random_uniform(10000);
 }
 
 @end

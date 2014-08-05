@@ -21,7 +21,6 @@
     self.userInteractionEnabled=true;
     
     tutorial=@"HELP\n\t\t\t Hire at least 10 people in one day\n\n\n<----Put here for No\t\t\t Put her for Yes----->\n\n\n\n\n\n\t\t\tClick to cycle through the rules\n\t\t\t\tSwipe down when ready";
-    minigameTutorial=@"MINIGAMES\n\nNo: Don't do it and risk getting a penalty at the end of the day\n\nBuddy!: Pass it onto a coworker and reduce your chance of getting caught but increasing your penalty if you do\n\nDo it: Complete a minigame before you can go back to your normal work";
     self.currPage=RULES;
     
     unlockedNum=2;
