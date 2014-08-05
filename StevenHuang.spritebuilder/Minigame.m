@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     bool done;
     NSMutableArray *arr;
     CCNode *_contentNode;
+    CCLabelTTF *_instructionLabel;
 }
 
 -(void)didLoadFromCCB{
@@ -43,6 +44,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
                 tmp.position=ccp(arc4random_uniform(contentSize.width),arc4random_uniform(contentSize.height));
                 [_contentNode addChild:tmp];
             }
+            _instructionLabel.string=@"FIND";
             break;
         }
         case DELETE_EMAIL:{
@@ -61,8 +63,13 @@ typedef NS_ENUM(NSInteger, MINIGAME){
                 [_contentNode addChild:tmp];
                 [arr addObject:tmp];
             }
+            _instructionLabel.string=@"TAP";
         }
     }
+}
+
+-(void)update:(CCTime)delta{
+    
 }
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{

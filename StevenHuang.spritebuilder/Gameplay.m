@@ -16,14 +16,14 @@
 
 @implementation Gameplay{
     //timer vars
-    int framesForClockTick,minigameCode,feedbackTick;
+    float framesForClockTick,feedbackTick;
     
     //spritebuilder vars
     Resume *_resumeNode,*_tmpResume;
     RuleBook *_rulebookNode;
     CCNode *_contentNode,*_scoreScreen,*_noBar,*_bubbleNode,*_tutorial1,*_tutorial2,*_pauseScreen,*_popoverNode,*_correctBarLeft,*_correctBarRight;
     CCSprite *_clockhandSprite;
-    CCLabelTTF *_bubbleLabel,*_scoreLabel;
+    CCLabelTTF *_bubbleLabel,*_scoreLabel,*_multiplierLabel;
     CCButton *_pauseButton;
     
     bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass,swipeEnabled;
@@ -33,7 +33,7 @@
     NSDictionary *root;
     UISwipeGestureRecognizer *downSwipe,*upSwipe;
     CGPoint startLocation;
-    int score,streak;
+    int score,streak,goalScore,minigameCode;
     
     CCScene *level;
     PauseScreen *ps;
@@ -71,6 +71,8 @@
     root = [NSDictionary dictionaryWithContentsOfFile:path];
     NSDictionary* resumeInfo= root[@"ResumeInfo"];
     
+    _multiplierLabel.string=@"";
+    _multiplierLabel.visible=false;
     
     [_tmpResume setup:resumeInfo rules:_rulebookNode];
     [_resumeNode setup:resumeInfo rules:_rulebookNode];
@@ -82,7 +84,10 @@
     _popoverNode.zOrder=INT_MAX;
     
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
-    roundTime=60.f;
+    roundTime=5.f;
+    
+    //constant
+    goalScore=1000;
     
     /*
     if([GameplayManager sharedInstance].level>9){
@@ -161,18 +166,19 @@
         if(ready){
             //clock
             
-            [self animateClock:roundTime];
+            [self animateClock:delta];
             [self endGame];
+            [GameplayManager sharedInstance].roundCounter+=delta;
             
             //feedback handling
             if(feedbackTick>0)
-                feedbackTick--;
+                feedbackTick-=delta;
             else{
                 _correctBarLeft.visible=false;
                 _correctBarRight.visible=false;
             }
             //minigame handling
-            if(randomEventDelay*60==[GameplayManager sharedInstance].roundCounter){
+            if(randomEventDelay>=[GameplayManager sharedInstance].roundCounter){
                 NSString *msg;
                 
                 //constant
@@ -212,19 +218,16 @@
 }
 
 -(void)animateClock:(CGFloat)time{
-    if(framesForClockTick<=1){
-        _clockhandSprite.rotation++;
-        framesForClockTick=time/6;
-    }else
-        --framesForClockTick;
+    _clockhandSprite.rotation=[GameplayManager sharedInstance].roundCounter/roundTime*360-90;
 }
 
 -(void)showFeedback:(BOOL)b{
-    feedbackTick=10;
+    feedbackTick=.3;
     if(b)
         [self.animationManager runAnimationsForSequenceNamed:@"correct"];
     else{
         streak=1;
+        _multiplierLabel.visible=false;
         [self.animationManager runAnimationsForSequenceNamed:@"wrong"];
     }
     _correctBarLeft.visible=true;
@@ -357,17 +360,22 @@
 -(void)correctResume{
     [self showFeedback:true];
     ++_resumeNode.correctCount;
+    if(streak>1){
+        _multiplierLabel.string=[NSString stringWithFormat:@"x%d",streak];
+        _multiplierLabel.visible=true;
+    }else{
+        _multiplierLabel.visible=false;
+    }
     score+=(10*streak);
     _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
     if(streak<10)
     ++streak;
-    
 }
 
 #pragma mark Game End
 
 -(void) endGame{
-    if([GameplayManager sharedInstance].roundCounter==roundTime*60){
+    if([GameplayManager sharedInstance].roundCounter>=roundTime){
         _pauseButton.enabled = NO;
         self.userInteractionEnabled = false;
         gameOver=true;
@@ -384,8 +392,7 @@
         }
         [_popoverNode addChild:screen];
         ready=false;
-    }else
-        [GameplayManager sharedInstance].roundCounter++;
+    }
 }
 
 #pragma mark minigame handling
