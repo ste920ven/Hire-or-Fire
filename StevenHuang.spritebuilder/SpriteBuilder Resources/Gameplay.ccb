@@ -555,9 +555,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
-							<false/>
+							<real>0.80000001192092896</real>
+							<real>0.80000001192092896</real>
+							<true/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -569,7 +569,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/no.png</string>
+							<string>StevenHuangResources/x.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -644,7 +644,7 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
+							<real>0.80000001192092896</real>
 							<real>1</real>
 							<false/>
 							<integer>0</integer>
@@ -658,7 +658,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/yes.png</string>
+							<string>StevenHuangResources/check.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2487,8 +2487,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

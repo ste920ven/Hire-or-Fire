@@ -38,7 +38,6 @@
     
     correctFactor=6000;
     
-    self.correctCount=0;
     self.totalCount=-1;
     self.passedCount=0;
     root=_root;

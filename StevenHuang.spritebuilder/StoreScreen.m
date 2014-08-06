@@ -12,13 +12,13 @@
 @implementation StoreScreen{
     CCLabelTTF *_money,*_selectedAmountLabel;
     CCScrollView *_scrollView;
-    CCNode *_worldNode;
     NSMutableArray*noUnlocked,*noSelected;
     NSArray * noOptions;
     int selectedAmountCount;
 }
 
 -(void)levelSelect{
+    [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     //save defaults
     [[NSUserDefaults standardUserDefaults] setObject:noUnlocked forKey:@"noUnlocked"];
     [[NSUserDefaults standardUserDefaults] setObject:noSelected forKey:@"noSelected"];

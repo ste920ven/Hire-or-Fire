@@ -10,6 +10,7 @@
 
 @interface Minigame : CCNode
 
--(void)setGame:(int)i;
+-(void)setGame:(int)i multiplier:(int)n;
+-(int)getScore;
 
 @end

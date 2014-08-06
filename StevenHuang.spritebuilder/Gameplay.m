@@ -26,35 +26,21 @@
     CCLabelTTF *_bubbleLabel,*_scoreLabel,*_multiplierLabel;
     CCButton *_pauseButton;
     
-    bool ready,noBarActive,gameOver,rulesActive,minigameNo,minigamePass,swipeEnabled,el;
+    bool ready,noBarActive,gameOver,rulesActive,swipeEnabled;
     NSArray *noArray;
     CCNode *selectedObject;
     CGFloat roundTime,randomEventChance,randomEventDelay,multiplierTime;
     NSDictionary *root;
     UISwipeGestureRecognizer *downSwipe,*upSwipe;
     CGPoint startLocation;
-    int score,streak,goalScore,minigameCode;
+    int score,streak,goalScore,minigameCode,correct,c;
     
     CCScene *level;
     PauseScreen *ps;
+    Minigame * mini;
 }
 
 #pragma mark Setup
-- (id)init{
-    self = [super init];
-    if (self) {
-//        upSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
-//        [[CCDirector sharedDirector].view addGestureRecognizer:upSwipe];
-//        upSwipe.direction=UISwipeGestureRecognizerDirectionUp;
-//        
-//        downSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
-//        [[CCDirector sharedDirector].view addGestureRecognizer:downSwipe];
-//        downSwipe.direction=UISwipeGestureRecognizerDirectionDown;
-    }
-    return self;
-}
-
-
 -(void) didLoadFromCCB{
     self.userInteractionEnabled = TRUE;
     
@@ -90,19 +76,6 @@
     goalScore=1000;
     [[NSUserDefaults standardUserDefaults] setInteger:9 forKey:@"level"];
     
-    /*
-    if([GameplayManager sharedInstance].level>9){
-        randomEventChance=3000;
-    }
-    if([GameplayManager sharedInstance].level==9)
-        randomEventChance=10000;
-    
-    //    randomEventDelay=1.f;
-    
-    if(arc4random_uniform(10000)<randomEventChance){
-        randomEventDelay=arc4random_uniform(roundTime/2)+roundTime/4;
-    }
-    //*/
     [_rulebookNode show:true];
     
     _scoreLabel.string=@"$0";
@@ -161,56 +134,65 @@
 }
 
 -(void)update:(CCTime)delta{
-    if(![GameplayManager sharedInstance].paused){
-        _pauseButton.enabled = YES;
-        swipeEnabled=true;
-        self.userInteractionEnabled = TRUE;
-        if(ready){
-            //clock
-            
-            [self animateClock:delta];
-            [self endGame];
-            [GameplayManager sharedInstance].roundCounter+=delta;
-            
-            //multiplier handling
-            if(multiplierTime<=0){
-                if(streak>2){
-                    _multiplierLabel.visible=false;
-                    streak=1;
-                }
-            }else
-                multiplierTime-=delta;
-            
-            //feedback handling
-            if(feedbackTick>0)
-                feedbackTick-=delta;
-            else{
-                _correctBarLeft.visible=false;
-                _correctBarRight.visible=false;
-            }
-            //minigame handling
-            if(randomEventDelay>=[GameplayManager sharedInstance].roundCounter){
-                NSString *msg;
+    if(![GameplayManager sharedInstance].minigame){
+        if(![GameplayManager sharedInstance].paused){
+            _pauseButton.enabled = YES;
+            swipeEnabled=true;
+            self.userInteractionEnabled = TRUE;
+            if(ready){
+                //clock
                 
-                //constant
-                minigameCode=2;
+                [self animateClock:delta];
+                [self endGame];
+                [GameplayManager sharedInstance].roundCounter+=delta;
                 
-                //minigameCode=arc4random_uniform(3);
-                switch (minigameCode) {
-                    case 0:
-                        msg=@"Grab your car keys. I need you to run an errand.";
-                        break;
-                    case 1:
-                        msg=@"Quick, delete your emails. The boss is coming to check them";
-                        break;
-                    case 2:
-                        msg=@"I need you to sign some documents for me";
+                //multiplier handling
+                if(multiplierTime<=0){
+                    if(streak>2){
+                        _multiplierLabel.visible=false;
+                        streak=1;
+                    }
+                }else
+                    multiplierTime-=delta;
+                
+                //feedback handling
+                if(feedbackTick>0)
+                    feedbackTick-=delta;
+                else{
+                    _correctBarLeft.visible=false;
+                    _correctBarRight.visible=false;
                 }
-                _bubbleLabel.string=msg;
-                _bubbleNode.visible=true;
-                _bubbleNode.zOrder=INT_MAX;
+                //minigame handling
+                int i=c%10;
+                if(i>5 && arc4random_uniform(100)>(i-5)*10){
+                    //if(c==1){
+                    c=0;
+                    NSString *msg;
+                    
+                    //constant
+                    minigameCode=1;
+                    
+                    //minigameCode=arc4random_uniform(3);
+                    switch (minigameCode) {
+                        case 0:
+                            msg=@"Grab your car keys. I need you to run an errand.";
+                            break;
+                        case 1:
+                            msg=@"Quick, delete your emails. The boss is coming to check them";
+                            break;
+                        case 2:
+                            msg=@"I need you to sign some documents for me";
+                    }
+                    _bubbleLabel.string=msg;
+                    _bubbleNode.visible=true;
+                    _bubbleNode.zOrder=INT_MAX-2;
+                    [self performSelector:@selector(minigameYes) withObject:self afterDelay:2.0];
+                }
             }
         }
+    } else{
+        score+=[mini getScore];
+        _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
     }
 }
 
@@ -285,7 +267,7 @@
 }
 
 -(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
-     CGPoint touchLocation = [touch locationInNode:_contentNode];
+    CGPoint touchLocation = [touch locationInNode:_contentNode];
     if(!rulesActive &&
        selectedObject==_resumeNode){
         //CGPoint newLocation = ccp(touchLocation.x/,touchLocation.y/_contentNode.contentSizeInPoints.height);
@@ -343,27 +325,6 @@
         [self animateNoBar:false];
 }
 
-//-(void)didSwipe:(UISwipeGestureRecognizer*)sender{
-//    if(!gameOver){
-//        [self resetResume];
-//        UISwipeGestureRecognizerDirection direction=sender.direction;
-//        if(direction==UISwipeGestureRecognizerDirectionUp && !rulesActive){
-//            rulesActive=true;
-//            [_rulebookNode show:true];
-//        }else if(direction==UISwipeGestureRecognizerDirectionDown && rulesActive){
-//            self.userInteractionEnabled=true;
-//            [GameplayManager sharedInstance].paused=false;
-//            [_rulebookNode show:false];
-//            if(!ready){
-//                [self newResume];
-//                [self newResume];
-//                ready=true;
-//            }
-//            rulesActive=false;
-//        }
-//    }
-//}
-
 -(void)resetResume{
     _tmpResume.opacity=0;
     _resumeNode.position=ccp(.5,.5);
@@ -371,7 +332,8 @@
 
 -(void)correctResume{
     [self showFeedback:true];
-    ++_resumeNode.correctCount;
+    ++correct;
+    ++c;
     if(streak>1){
         multiplierTime=3.f;
         _multiplierLabel.string=[NSString stringWithFormat:@"x%d",streak];
@@ -382,7 +344,7 @@
     score+=(10*streak);
     _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
     if(streak<10)
-    ++streak;
+        ++streak;
 }
 
 #pragma mark Game End
@@ -395,13 +357,13 @@
         [GameplayManager sharedInstance].paused=true;
         
         ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"ScoreScreen"];
-        if(_resumeNode.correctCount+_tmpResume.correctCount>=10){
+        if(correct>=10){
             NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:[GameplayManager sharedInstance].level ], @"level", [NSNumber numberWithInt:score], @"score", nil];
             [MGWU logEvent:@"levelcomplete" withParams:params];
-            [screen setScreenWithScore:score message:true total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
+            [screen setScreenWithScore:score message:true total:_resumeNode.totalCount+_tmpResume.totalCount correct:correct];
             [[NSUserDefaults standardUserDefaults] setInteger:[GameplayManager sharedInstance].level+1 forKey:@"level"];
         }else{
-            [screen setScreenWithScore:score message:false total:_resumeNode.totalCount+_tmpResume.totalCount correct:_resumeNode.correctCount+_tmpResume.correctCount];
+            [screen setScreenWithScore:score message:false total:_resumeNode.totalCount+_tmpResume.totalCount correct:correct];
         }
         [_popoverNode addChild:screen];
         ready=false;
@@ -412,9 +374,8 @@
 -(void)minigameYes{
     _bubbleNode.visible=false;
     [GameplayManager sharedInstance].paused=false;
-    //[CCBReader load:scene];
+    [GameplayManager sharedInstance].minigame=true;
     swipeEnabled=false;
-    Minigame* mini;
     switch (minigameCode) {
         case 0:
             mini=(Minigame*)[CCBReader load:@"ShuffleGame"];
@@ -427,7 +388,7 @@
             break;
     }
     [_popoverNode addChild:mini];
-    [mini setGame:minigameCode];
+    [mini setGame:minigameCode multiplier:streak];
 }
 
 @end

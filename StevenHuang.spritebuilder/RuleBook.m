@@ -12,7 +12,7 @@
 
 @implementation RuleBook{
     CCLabelTTF *_rulesLabel;
-    NSString *rulesText,*tutorial,*minigameTutorial;
+    NSString *rulesText,*tutorial;
     int unlockedNum;
     bool inUse;
 }
@@ -24,8 +24,6 @@
     self.currPage=RULES;
     
     unlockedNum=2;
-    if([GameplayManager sharedInstance].level>8)
-        unlockedNum++;
     
     //show tutorial
     if([GameplayManager sharedInstance].level==0){
@@ -54,9 +52,6 @@
                 break;
             case TUTORIAL:
                 _rulesLabel.string=tutorial;
-                break;
-            case MINIGAME_TUTORIAL:
-                _rulesLabel.string=minigameTutorial;
                 break;
         }
     }

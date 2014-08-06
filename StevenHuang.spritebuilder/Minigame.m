@@ -7,6 +7,7 @@
 //
 
 #import "Minigame.h"
+#import "GameplayManager.h"
 
 typedef NS_ENUM(NSInteger, MINIGAME){
     PAPER_SHUFFLING,
@@ -15,7 +16,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 };
 
 @implementation Minigame{
-    int gameCode, counter;
+    int gameCode, counter, multiplier, score;
     CCNode *selectedObject,*_key,*_popoverNode;
     CGPoint startLocation,ogPosition;
     bool done;
@@ -31,11 +32,13 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 }
 
 -(void)exit{
+    [GameplayManager sharedInstance].minigame=false;
     [self removeFromParent];
 }
 
--(void)setGame:(int)i{
+-(void)setGame:(int)i multiplier:(int)n{
     gameCode=i;
+    multiplier=n-1;
     switch (gameCode) {
         case PAPER_SHUFFLING:{
             CGSize contentSize=[_contentNode contentSizeInPoints];
@@ -69,10 +72,24 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     }
 }
 
+-(int)getScore{
+    int tmp=score;
+    score=0;
+    return tmp;
+}
+
+-(void)score{
+    score+=multiplier;
+}
+
 -(void)update:(CCTime)delta{
     time+=delta;
-    if(time>1)
+    if(time>1){
         _instructionLabel.visible=false;
+    }
+    if(time>6){
+        [self exit];
+    }
 }
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
@@ -83,7 +100,6 @@ typedef NS_ENUM(NSInteger, MINIGAME){
             break;
         }
         case DELETE_EMAIL:{
-            startLocation=ccp(startLocation.x,_contentNode.contentSize.height-startLocation.y);
             [self emailTouchBegan];
             break;
         }
@@ -153,8 +169,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 #pragma mark game 2 - email game
 -(void)emailTouchBegan{
     for(CCSprite* item in arr){
-        CGFloat rect=item.contentSize.height;
-        if(startLocation.y>item.position.y && startLocation.y<item.position.y+rect && startLocation.x>0 && startLocation.x<200){
+        if(CGRectContainsPoint([item boundingBox], startLocation)){
             selectedObject=item;
             ogPosition=item.position;
             break;
@@ -164,8 +179,8 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 
 -(void)emailTouchEnd{
     selectedObject.position=ogPosition;
-    if(counter==10)
-        [self exit];
+//    if(counter==10)
+//        [self exit];
 }
 
 -(void)getNewEmail{
@@ -186,7 +201,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     [arr removeObjectAtIndex:num];
     [arr addObject:node];
     
-    counter++;
+    [self score];
     selectedObject=nil;
 }
 

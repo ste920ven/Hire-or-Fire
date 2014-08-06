@@ -15,5 +15,6 @@
 @property (nonatomic) NSInteger level;
 @property (assign) bool paused;
 @property (assign) float roundCounter;
+@property (assign) bool minigame;
 
 @end
