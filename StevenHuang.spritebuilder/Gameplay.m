@@ -63,7 +63,8 @@
     [_tmpResume setup:resumeInfo rules:_rulebookNode];
     [_resumeNode setup:resumeInfo rules:_rulebookNode];
     
-    _rulebookNode.Leveldata=root[@"Levels"][[GameplayManager sharedInstance].level];
+    _rulebookNode.Leveldata=root[@"Levels"][[GameplayManager sharedInstance].level][@"Rules"];
+    goalScore=[root[@"Levels"][[GameplayManager sharedInstance].level][@"Score"] intValue];
     NSArray* arr=_rulebookNode.Leveldata;
     [_rulebookNode createRulesWithLevel:[GameplayManager sharedInstance].level resumeData:resumeInfo];
     _rulebookNode.zOrder=INT_MAX-1;
@@ -72,13 +73,11 @@
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
     roundTime=60.f;
     
-    //constant
-    goalScore=1000;
     [[NSUserDefaults standardUserDefaults] setInteger:9 forKey:@"level"];
     
     [_rulebookNode show:true];
     
-    _scoreLabel.string=@"$0";
+    _scoreLabel.string=[NSString stringWithFormat:@"$0 / %d",goalScore];
 }
 
 -(void)noAnimation:(NSString*)str{
@@ -164,7 +163,7 @@
                 }
                 //minigame handling
                 int i=c%10;
-                if(i>5 && arc4random_uniform(100)>(i-5)*10){
+                if(i>5 && arc4random_uniform(10)<=(i-5)*2){
                     //if(c==1){
                     c=0;
                     NSString *msg;
@@ -192,7 +191,7 @@
         }
     } else{
         score+=[mini getScore];
-        _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
+        _scoreLabel.string=[NSString stringWithFormat:@"$%d / %d",score,goalScore];
     }
 }
 
@@ -239,6 +238,7 @@
 
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+    [MGWU logEvent:@"test" withParams:nil];
     selectedObject=nil;
     startLocation = [touch locationInNode:_contentNode];
     if(CGRectContainsPoint([_resumeNode boundingBox], startLocation)){
@@ -336,13 +336,13 @@
     ++c;
     if(streak>1){
         multiplierTime=3.f;
-        _multiplierLabel.string=[NSString stringWithFormat:@"x%d",streak];
+        _multiplierLabel.string=[NSString stringWithFormat:@"x%d",streak/2];
         _multiplierLabel.visible=true;
     }else{
         _multiplierLabel.visible=false;
     }
-    score+=(10*streak);
-    _scoreLabel.string=[NSString stringWithFormat:@"$%d",score];
+    score+=(10*(streak/2));
+    _scoreLabel.string=[NSString stringWithFormat:@"$%d / %d",score,goalScore];
     if(streak<10)
         ++streak;
 }

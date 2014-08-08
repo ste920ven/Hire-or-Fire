@@ -66,7 +66,12 @@
      [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Store"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
+}
 
+-(void)submitForm{
+    [[OALSimpleAudio sharedInstance] playEffect:@"Assets/click1.wav"];
+    CCScene *gameplayScene = [CCBReader loadAsScene:@"FormScene"];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
 
 @end

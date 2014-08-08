@@ -13,10 +13,12 @@
 }
 
 -(void)submit{
-    
+    NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:_nameField.string, @"name", _act1Field, @"act1",_act2Field,@"act2",_act3Field,@"act3",_act4Field, @"act4",_act5Field, @"act5", _ex1Field,@"ex1",_ex2Field,@"ex2", nil];
+    [MGWU logEvent:@"levelcomplete" withParams:params];
 }
 
 -(void)back{
+    [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }

@@ -87,6 +87,13 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     if(time>1){
         _instructionLabel.visible=false;
     }
+    for(int i=5;i>2;--i){
+        if(time>=i){
+            _instructionLabel.visible=true;
+            _instructionLabel.string=[NSString stringWithFormat:@"%d",6-i ];
+            break;
+        }
+    }
     if(time>6){
         [self exit];
     }
@@ -138,7 +145,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
         case DELETE_EMAIL:{
             [self emailTouchEnd];
             CGFloat f=touchLocation.x-startLocation.x;
-            if(f>100 || f<-50)
+            if((f>100 || f<-50) && selectedObject!=nil)
                 [self getNewEmail];
             break;
         }

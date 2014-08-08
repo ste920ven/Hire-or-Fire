@@ -140,124 +140,6 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>3</integer>
-				<key>baseClass</key>
-				<string>CCScrollView</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>CCScrollView</string>
-				<key>memberVarAssignmentName</key>
-				<string></string>
-				<key>memberVarAssignmentType</key>
-				<integer>1</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>name</string>
-						<key>type</key>
-						<string>StringSimple</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>0.0</real>
-							<real>0.0</real>
-							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>contentSize</string>
-						<key>type</key>
-						<string>Size</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<integer>2</integer>
-							<integer>2</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.0</real>
-							<real>0.0</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>contentNode</string>
-						<key>type</key>
-						<string>CCBFile</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>horizontalScrollEnabled</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>verticalScrollEnabled</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>bounces</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>pagingEnabled</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<false/>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>UUID</key>
 				<integer>4</integer>
 				<key>baseClass</key>
 				<string>CCNode</string>
@@ -1109,8 +991,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -1812,7 +1692,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>27.999969482421875</real>
+									<real>28.399969100952148</real>
 									<real>255.39997863769531</real>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -1939,7 +1819,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>29.199970245361328</real>
+									<real>28.399969100952148</real>
 									<real>333.19998168945312</real>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -2066,7 +1946,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>30.999969482421875</real>
+									<real>28.399969100952148</real>
 									<real>306.99996948242188</real>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -2193,7 +2073,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>26.799968719482422</real>
+									<real>28.399969100952148</real>
 									<real>281.19998168945312</real>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -2320,7 +2200,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>26.999969482421875</real>
+									<real>28.399969100952148</real>
 									<real>360.19998168945312</real>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -3141,7 +3021,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string></string>
+		<string>FormScene</string>
 		<key>displayName</key>
 		<string>CCNode</string>
 		<key>memberVarAssignmentName</key>
