@@ -17,13 +17,14 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 
 @implementation Minigame{
     int gameCode, counter, multiplier, score;
-    CCNode *selectedObject,*_key,*_popoverNode;
+    CCNode *selectedObject,*_key,*_gameplayNode;
     CGPoint startLocation,ogPosition;
-    bool done;
+    bool done,curr;
     NSMutableArray *arr;
     CCNode *_contentNode;
     CCLabelTTF *_instructionLabel;
     float time;
+    NSArray *emails;
 }
 
 -(void)didLoadFromCCB{
@@ -33,10 +34,13 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 
 -(void)exit{
     [GameplayManager sharedInstance].minigame=false;
+    CCActionMoveTo *translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(0,0)];
+    [_gameplayNode runAction:translation];
     [self removeFromParent];
 }
 
--(void)setGame:(int)i multiplier:(int)n{
+-(void)setGame:(CCNode*)node code:(int)i multiplier:(int)n{
+    _gameplayNode=node;
     gameCode=i;
     multiplier=n-1;
     switch (gameCode) {
@@ -52,9 +56,15 @@ typedef NS_ENUM(NSInteger, MINIGAME){
             break;
         }
         case DELETE_EMAIL:{
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
+            emails = [NSDictionary dictionaryWithContentsOfFile:path][@"Email text"];
             arr=[NSMutableArray arrayWithArray:[_contentNode children]];
             for(int i=0;i<[arr count];i++){
-                ((CCLabelTTF*) [((CCNode*)arr[i]) children][1]).string=[NSString stringWithFormat:@"%d",i];
+                ((CCLabelTTF*) [((CCNode*)arr[i]) children][0]).string=emails[arc4random_uniform([emails count])];
+                if(arc4random_uniform(2)>0)
+                    [((CCNode*)arr[i]).animationManager runAnimationsForSequenceNamed:@"Right"];
+                else
+                    [((CCNode*)arr[i]).animationManager runAnimationsForSequenceNamed:@"Left"];
             }
             break;
         }
@@ -128,7 +138,14 @@ typedef NS_ENUM(NSInteger, MINIGAME){
         }
         case DELETE_EMAIL:{
             CGFloat f=touchLocation.x-startLocation.x;
-            selectedObject.position=ccp(f,ogPosition.y);
+            if(((CCSprite*)[selectedObject children][1]).opacity>0 && f>0){
+                selectedObject.position=ccp(f,ogPosition.y);
+                curr=true;
+            }
+            else if(((CCSprite*)[selectedObject children][2]).opacity>0 && f<0){
+                selectedObject.position=ccp(f,ogPosition.y);
+                curr=true;
+            }
             break;
         }
     }
@@ -145,7 +162,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
         case DELETE_EMAIL:{
             [self emailTouchEnd];
             CGFloat f=touchLocation.x-startLocation.x;
-            if((f>100 || f<-50) && selectedObject!=nil)
+            if((f>100 || f<-50) && selectedObject!=nil && curr)
                 [self getNewEmail];
             break;
         }
@@ -179,6 +196,7 @@ typedef NS_ENUM(NSInteger, MINIGAME){
         if(CGRectContainsPoint([item boundingBox], startLocation)){
             selectedObject=item;
             ogPosition=item.position;
+            curr=false;
             break;
         }
     }
@@ -186,23 +204,23 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 
 -(void)emailTouchEnd{
     selectedObject.position=ogPosition;
-//    if(counter==10)
-//        [self exit];
 }
 
 -(void)getNewEmail{
     CGPoint tmp=((CCNode*)arr[[arr count]-1 ]).position;
     int num=[arr indexOfObject:selectedObject];
     for(int i=[arr count]-1;i>num;i--){
-        CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.2f position:((CCNode*)arr[i-1]).position];
+        CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.1f position:((CCNode*)arr[i-1]).position];
         CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
         [(CCNode*)arr[i] runAction:sequence];
     }
     
-    ((CCNode*)arr[num]).position=ccp(tmp.x,tmp.y+100);
+    ((CCNode*)arr[num]).position=ccp(tmp.x,tmp.y+50);
     CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.1f position:tmp];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
     [(CCNode*)arr[num] runAction:sequence];
+    //change email text
+    
     
     CCNode* node=arr[num];
     [arr removeObjectAtIndex:num];

@@ -16,5 +16,6 @@
 @property (assign) bool paused;
 @property (assign) float roundCounter;
 @property (assign) bool minigame;
+@property (assign) bool submitted;
 
 @end

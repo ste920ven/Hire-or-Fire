@@ -4,10 +4,88 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		<key>StevenHuangResources/Rectangle-1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1862, 245}, {170, 51}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {170, 51}}</string>
+			<key>sourceSize</key>
+			<string>{170, 51}</string>
+		</dict>
+		<key>StevenHuangResources/Rectangle-3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1862, 190}, {170, 53}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {170, 53}}</string>
+			<key>sourceSize</key>
+			<string>{170, 53}</string>
+		</dict>
+		<key>StevenHuangResources/blue_panel.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{376, 1841}, {551, 190}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {551, 190}}</string>
+			<key>sourceSize</key>
+			<string>{551, 190}</string>
+		</dict>
+		<key>StevenHuangResources/bottom.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1491, 290}, {369, 52}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {369, 52}}</string>
+			<key>sourceSize</key>
+			<string>{371, 52}</string>
+		</dict>
+		<key>StevenHuangResources/browser.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1120, 1}, {369, 636}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {369, 636}}</string>
+			<key>sourceSize</key>
+			<string>{369, 636}</string>
+		</dict>
+		<key>StevenHuangResources/browser_bottom.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1491, 190}, {369, 98}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {369, 98}}</string>
+			<key>sourceSize</key>
+			<string>{369, 98}</string>
+		</dict>
 		<key>StevenHuangResources/bubble.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{567, 1026}, {639, 412}}</string>
+			<string>{{706, 1}, {639, 412}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -20,7 +98,7 @@
 		<key>StevenHuangResources/buttons-12@4x.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{189, 747}, {244, 63}}</string>
+			<string>{{929, 1801}, {244, 63}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -33,11 +111,11 @@
 		<key>StevenHuangResources/buttons-13@4x.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{254, 747}, {244, 58}}</string>
+			<string>{{1491, 572}, {244, 58}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0, 0}, {244, 58}}</string>
 			<key>sourceSize</key>
@@ -46,80 +124,145 @@
 		<key>StevenHuangResources/check.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{801, 747}, {140, 115}}</string>
+			<string>{{1861, 440}, {140, 115}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0, 0}, {140, 115}}</string>
 			<key>sourceSize</key>
 			<string>{140, 115}</string>
 		</dict>
-		<key>StevenHuangResources/clock body.png</key>
+		<key>StevenHuangResources/checkbox.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{314, 974}, {36, 36}}</string>
+			<string>{{1934, 701}, {83, 83}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {36, 36}}</string>
+			<string>{{0, 0}, {83, 83}}</string>
 			<key>sourceSize</key>
-			<string>{36, 36}</string>
+			<string>{83, 83}</string>
 		</dict>
-		<key>StevenHuangResources/clock hand.png</key>
+		<key>StevenHuangResources/checkbox_checked.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 2018}, {18, 11}}</string>
+			<string>{{1737, 613}, {97, 92}}</string>
 			<key>offset</key>
-			<string>{7, 0}</string>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {97, 92}}</string>
+			<key>sourceSize</key>
+			<string>{97, 92}</string>
+		</dict>
+		<key>StevenHuangResources/clipboard.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{189, 1}, {515, 806}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {515, 806}}</string>
+			<key>sourceSize</key>
+			<string>{515, 806}</string>
+		</dict>
+		<key>StevenHuangResources/clipboard_tab.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{610, 809}, {207, 166}}</string>
+			<key>offset</key>
+			<string>{0, 320}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{16, 13}, {18, 11}}</string>
+			<string>{{154, 0}, {207, 166}}</string>
 			<key>sourceSize</key>
-			<string>{36, 36}</string>
+			<string>{515, 806}</string>
 		</dict>
-		<key>StevenHuangResources/dog.png</key>
+		<key>StevenHuangResources/clock.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{541, 915}, {160, 109}}</string>
+			<string>{{1861, 557}, {107, 108}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {107, 108}}</string>
+			<key>sourceSize</key>
+			<string>{107, 108}</string>
+		</dict>
+		<key>StevenHuangResources/clock_half.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{567, 1801}, {38, 73}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {38, 73}}</string>
+			<key>sourceSize</key>
+			<string>{38, 73}</string>
+		</dict>
+		<key>StevenHuangResources/clock_half_fill.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{189, 809}, {211, 419}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {211, 419}}</string>
+			<key>sourceSize</key>
+			<string>{211, 419}</string>
+		</dict>
+		<key>StevenHuangResources/email.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1491, 344}, {368, 125}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {160, 109}}</string>
+			<string>{{0, 0}, {368, 125}}</string>
 			<key>sourceSize</key>
-			<string>{160, 109}</string>
+			<string>{368, 125}</string>
 		</dict>
 		<key>StevenHuangResources/fire.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{541, 747}, {116, 166}}</string>
+			<string>{{706, 720}, {67, 78}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {116, 166}}</string>
+			<string>{{0, 0}, {67, 78}}</string>
 			<key>sourceSize</key>
-			<string>{116, 166}</string>
+			<string>{67, 78}</string>
 		</dict>
-		<key>StevenHuangResources/fire1.png</key>
+		<key>StevenHuangResources/gray_panel.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{742, 1785}, {116, 115}}</string>
+			<string>{{1491, 1}, {545, 187}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
-			<string>{{4, 5}, {116, 115}}</string>
+			<string>{{0, 0}, {545, 187}}</string>
 			<key>sourceSize</key>
-			<string>{124, 124}</string>
+			<string>{545, 187}</string>
 		</dict>
 		<key>StevenHuangResources/green_bar.png</key>
 		<dict>
@@ -134,36 +277,49 @@
 			<key>sourceSize</key>
 			<string>{90, 1024}</string>
 		</dict>
-		<key>StevenHuangResources/laser.png</key>
+		<key>StevenHuangResources/green_label.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{567, 1667}, {124, 124}}</string>
+			<string>{{1491, 471}, {289, 99}}</string>
 			<key>offset</key>
-			<string>{1, 0}</string>
+			<string>{0, 0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{1, 0}, {124, 124}}</string>
+			<string>{{0, 0}, {289, 99}}</string>
 			<key>sourceSize</key>
-			<string>{125, 124}</string>
+			<string>{289, 99}</string>
 		</dict>
-		<key>StevenHuangResources/main.png</key>
+		<key>StevenHuangResources/middle.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{189, 1}, {744, 673}}</string>
+			<string>{{778, 642}, {373, 519}}</string>
 			<key>offset</key>
-			<string>{-12, -175}</string>
+			<string>{0, 0}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0, 351}, {744, 673}}</string>
+			<string>{{0, 0}, {373, 519}}</string>
 			<key>sourceSize</key>
-			<string>{768, 1024}</string>
+			<string>{373, 519}</string>
+		</dict>
+		<key>StevenHuangResources/paper.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{567, 1022}, {373, 777}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {373, 777}}</string>
+			<key>sourceSize</key>
+			<string>{373, 777}</string>
 		</dict>
 		<key>StevenHuangResources/pause.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{742, 1903}, {61, 61}}</string>
+			<string>{{1971, 557}, {61, 61}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -186,10 +342,23 @@
 			<key>sourceSize</key>
 			<string>{94, 1024}</string>
 		</dict>
+		<key>StevenHuangResources/right_arrow.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1836, 666}, {84, 96}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {84, 96}}</string>
+			<key>sourceSize</key>
+			<string>{84, 96}</string>
+		</dict>
 		<key>StevenHuangResources/round_box.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{314, 747}, {225, 225}}</string>
+			<string>{{1491, 632}, {225, 225}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -198,19 +367,6 @@
 			<string>{{0, 0}, {225, 225}}</string>
 			<key>sourceSize</key>
 			<string>{225, 225}</string>
-		</dict>
-		<key>StevenHuangResources/rules copy.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{176, 1841}, {564, 174}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {564, 174}}</string>
-			<key>sourceSize</key>
-			<string>{564, 174}</string>
 		</dict>
 		<key>StevenHuangResources/rules.png</key>
 		<dict>
@@ -228,72 +384,72 @@
 		<key>StevenHuangResources/scissor.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{703, 889}, {124, 124}}</string>
+			<string>{{1782, 471}, {77, 77}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {124, 124}}</string>
+			<string>{{0, 0}, {77, 77}}</string>
 			<key>sourceSize</key>
-			<string>{125, 124}</string>
-		</dict>
-		<key>StevenHuangResources/scissor1.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{693, 1667}, {116, 116}}</string>
-			<key>offset</key>
-			<string>{0, 4}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{4, 0}, {116, 116}}</string>
-			<key>sourceSize</key>
-			<string>{124, 124}</string>
+			<string>{77, 77}</string>
 		</dict>
 		<key>StevenHuangResources/shredder.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 1841}, {173, 175}}</string>
+			<string>{{706, 642}, {76, 69}}</string>
 			<key>offset</key>
-			<string>{1, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{2, 0}, {173, 175}}</string>
-			<key>sourceSize</key>
-			<string>{175, 175}</string>
-		</dict>
-		<key>StevenHuangResources/stomp.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{811, 1667}, {116, 106}}</string>
-			<key>offset</key>
-			<string>{0, 1}</string>
+			<string>{0, 0}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{4, 8}, {116, 106}}</string>
+			<string>{{0, 0}, {76, 69}}</string>
 			<key>sourceSize</key>
-			<string>{124, 124}</string>
+			<string>{76, 69}</string>
 		</dict>
-		<key>StevenHuangResources/wolf.png</key>
+		<key>StevenHuangResources/toilet.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{829, 889}, {124, 124}}</string>
+			<string>{{1782, 550}, {61, 77}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {61, 77}}</string>
+			<key>sourceSize</key>
+			<string>{61, 77}</string>
+		</dict>
+		<key>StevenHuangResources/top.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1841}, {373, 205}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {124, 124}}</string>
+			<string>{{0, 0}, {373, 205}}</string>
 			<key>sourceSize</key>
-			<string>{124, 124}</string>
+			<string>{373, 205}</string>
+		</dict>
+		<key>StevenHuangResources/trash.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1971, 620}, {53, 79}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {53, 79}}</string>
+			<key>sourceSize</key>
+			<string>{53, 79}</string>
 		</dict>
 		<key>StevenHuangResources/x.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{659, 747}, {140, 140}}</string>
+			<string>{{1862, 298}, {140, 140}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>

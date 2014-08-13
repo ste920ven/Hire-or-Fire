@@ -15,6 +15,7 @@
     NSString *rulesText,*tutorial;
     int unlockedNum;
     bool inUse;
+    CGPoint startlocation;
 }
 
 -(void)didLoadFromCCB{
@@ -33,9 +34,13 @@
 }
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+    startlocation=[touch locationInWorld];
 }
 
 -(void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
+    if([touch locationInWorld].y-startlocation.y<-[self contentSizeInPoints].height/4){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Swipe Down" object:self];
+    }
     self.currPage=(++self.currPage)%unlockedNum;
     int i=arc4random_uniform(3)+1;
     NSString *s=[NSString stringWithFormat:@"Assets/bookFlip%d.wav",i];

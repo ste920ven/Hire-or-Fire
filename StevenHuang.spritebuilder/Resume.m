@@ -164,13 +164,6 @@
     
     _experience2Label.string=[NSString stringWithFormat:@"%@, %@\n%@ - %@yrs",experience2.first,experience2.second,experience2.third,[formatter stringFromNumber:[NSNumber numberWithFloat:experience2.num]]];
     
-    //move new resume to position
-//    self.position=ccp(.6,1.5);
-//    //CCActionDelay *delay = [CCActionDelay actionWithDuration:0.3f];
-//	CCActionScaleTo *translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,.5)];
-//	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
-//	[self runAction:sequence];
-    
     self.position=ccp(.5,.5);
     
     //debuging info

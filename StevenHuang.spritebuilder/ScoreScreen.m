@@ -10,7 +10,7 @@
 #import "GameplayManager.h"
 
 @implementation ScoreScreen{
-    CCLabelTTF *_moneyLabel,*_moneyEarnedLabel,*_scoreLabel,*_messageLabel,*_totalLabel,*_correctLabel;
+    CCLabelTTF *_moneyLabel,*_moneyEarnedLabel,*_messageLabel,*_totalLabel,*_correctLabel;
     CCButton *_nextLevelButton;
 }
 
@@ -22,8 +22,7 @@
             [_nextLevelButton setTarget:self selector:@selector(replay)];
             _nextLevelButton.title=@"Replay";
     }
-    //_scoreLabel.string=[NSString stringWithFormat:@"Total score: %d",score];
-    _scoreLabel.string=@"";
+
     _totalLabel.string=[NSString stringWithFormat:@"Total Resumes: %d",total];
     _correctLabel.string=[NSString stringWithFormat:@"Correct Resumes: %d",correct];
     

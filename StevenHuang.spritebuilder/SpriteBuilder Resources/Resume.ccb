@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>16</integer>
+	<integer>18</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -85,10 +85,10 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
-							<integer>2</integer>
-							<integer>2</integer>
+							<real>207.60000610351562</real>
+							<real>308.39999389648438</real>
+							<integer>0</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -99,7 +99,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.5</real>
+							<real>0.52999997138977051</real>
 						</array>
 					</dict>
 					<dict>
@@ -170,8 +170,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>286.52313232421875</real>
+							<real>0.50289350748062134</real>
+							<real>271.85183715820312</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -218,7 +218,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Untitled Folder/julieta-ulanovsky_montserrat/Montserrat-Regular.ttf</string>
+						<string>Fonts/Montserrat-Regular.ttf</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -377,8 +377,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>272.09259033203125</real>
+							<real>0.50289350748062134</real>
+							<real>257.42129516601562</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -425,7 +425,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Untitled Folder/julieta-ulanovsky_montserrat/Montserrat-Regular.ttf</string>
+						<string>Fonts/Montserrat-Regular.ttf</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -597,8 +597,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>237</real>
+							<real>0.49421295523643494</real>
+							<real>222.32870483398438</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -645,7 +645,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Untitled Folder/julieta-ulanovsky_montserrat/Montserrat-Regular.ttf</string>
+						<string>Fonts/Montserrat-Regular.ttf</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -818,7 +818,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>185</real>
+							<real>180.37037658691406</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -865,7 +865,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Untitled Folder/julieta-ulanovsky_montserrat/Montserrat-Regular.ttf</string>
+						<string>Fonts/Montserrat-Regular.ttf</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1037,8 +1037,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>255.30000305175781</real>
+							<real>0.50289350748062134</real>
+							<real>240.62870788574219</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -1085,7 +1085,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Untitled Folder/julieta-ulanovsky_montserrat/Montserrat-Regular.ttf</string>
+						<string>Fonts/Montserrat-Regular.ttf</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1258,7 +1258,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>140</real>
+							<real>141.73611450195312</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -1305,7 +1305,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Untitled Folder/julieta-ulanovsky_montserrat/Montserrat-Regular.ttf</string>
+						<string>Fonts/Montserrat-Regular.ttf</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1477,8 +1477,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>8</real>
-							<real>210</real>
+							<real>5.8379631042480469</real>
+							<real>205.53240966796875</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1525,7 +1525,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Untitled Folder/julieta-ulanovsky_montserrat/Montserrat-Regular.ttf</string>
+						<string>Fonts/Montserrat-Regular.ttf</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1664,6 +1664,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1697,8 +1699,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>8</real>
-							<real>85</real>
+							<real>4.1018524169921875</real>
+							<real>97.305557250976562</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1745,7 +1747,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Untitled Folder/julieta-ulanovsky_montserrat/Montserrat-Regular.ttf</string>
+						<string>Fonts/Montserrat-Regular.ttf</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2124,8 +2126,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>43.194446563720703</real>
+							<real>0.50578707456588745</real>
+							<real>49.921302795410156</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -2172,7 +2174,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Untitled Folder/julieta-ulanovsky_montserrat/Montserrat-Regular.ttf</string>
+						<string>Fonts/Montserrat-Regular.ttf</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2311,8 +2313,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -2354,8 +2354,8 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>200</real>
-					<real>300</real>
+					<real>207.60000610351562</real>
+					<real>308.39999389648438</real>
 					<integer>0</integer>
 					<integer>0</integer>
 				</array>

@@ -8,7 +8,7 @@
 
 #import "CCNode.h"
 
-@interface ScoreScreen : CCNode
+@interface ScoreScreen : CCScene
 
 -(void)setScreenWithScore:(int)score message:(bool)msg total:(int)total correct:(int)correct;
 

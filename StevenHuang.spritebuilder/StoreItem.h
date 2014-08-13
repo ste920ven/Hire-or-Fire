@@ -17,4 +17,6 @@
 -(void)greyOut;
 -(void)check:(bool)b;
 
+-(void)setup:(CCLabelTTF*)money selected:(CCLabelTTF*)s;
+
 @end

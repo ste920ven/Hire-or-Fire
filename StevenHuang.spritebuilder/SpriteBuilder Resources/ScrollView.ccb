@@ -58,7 +58,7 @@
 						<key>type</key>
 						<integer>3</integer>
 						<key>value</key>
-						<string>Shredder</string>
+						<string>Trash Can</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -143,7 +143,7 @@
 						<key>type</key>
 						<integer>3</integer>
 						<key>value</key>
-						<string>Fire</string>
+						<string>Scissor</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -228,7 +228,7 @@
 						<key>type</key>
 						<integer>3</integer>
 						<key>value</key>
-						<string>Puppy</string>
+						<string>Shredder</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -347,7 +347,7 @@
 						<key>type</key>
 						<integer>3</integer>
 						<key>value</key>
-						<string>Scissor</string>
+						<string>Fire</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -439,7 +439,7 @@
 						<key>type</key>
 						<integer>3</integer>
 						<key>value</key>
-						<string>Fire</string>
+						<string>Toilet</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -801,7 +801,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>0.40000000596046448</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
