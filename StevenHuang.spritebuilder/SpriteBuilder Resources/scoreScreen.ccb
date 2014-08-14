@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>20</integer>
+	<integer>23</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -382,9 +382,9 @@
 						<string>Color4</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>0.19375798106193542</real>
-							<real>0.23865132033824921</real>
+							<real>0.33725491166114807</real>
+							<real>0.39215689897537231</real>
+							<real>0.44705885648727417</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -395,9 +395,9 @@
 						<string>Color4</string>
 						<key>value</key>
 						<array>
-							<real>0.10789262503385544</real>
-							<real>0.15995821356773376</real>
-							<real>0.20132584869861603</real>
+							<real>0.0</real>
+							<real>0.68235296010971069</real>
+							<real>0.41176474094390869</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -486,8 +486,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.40000000596046448</real>
+							<real>0.49625000357627869</real>
+							<real>0.57916665077209473</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -562,9 +562,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>0.0</real>
+							<real>0.27843138575553894</real>
+							<real>0.7882353663444519</real>
+							<real>0.68627452850341797</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -706,8 +706,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.64999997615814209</real>
-							<real>0.15000000596046448</real>
+							<real>0.5</real>
+							<real>0.27109998464584351</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -755,8 +755,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>150</real>
+							<real>80</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -801,7 +801,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/Rectangle-3.png</string>
+							<string>StevenHuangResources/red_rectangle.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -812,7 +812,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/Rectangle-1.png</string>
+							<string>StevenHuangResources/red_rectangle_pressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -855,7 +855,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>StevenHuangResources/red_rectangle_pressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -881,7 +881,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>36</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1032,8 +1032,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>0.49625000357627869</real>
+							<real>0.64583331346511841</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1089,7 +1089,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>12</real>
+							<real>18</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1100,6 +1100,19 @@
 						<string>Check</string>
 						<key>value</key>
 						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.27843138575553894</real>
+							<real>0.7882353663444519</real>
+							<real>0.68627452850341797</real>
+							<real>1</real>
+						</array>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1138,8 +1151,8 @@
 						<key>value</key>
 						<array>
 							<real>1</real>
-							<real>1</real>
-							<real>0.0</real>
+							<real>0.97207367420196533</real>
+							<real>0.96712654829025269</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -1239,8 +1252,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.34999999403953552</real>
-							<real>0.15000000596046448</real>
+							<real>0.5</real>
+							<real>0.092499986290931702</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1288,8 +1301,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>100</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1334,7 +1347,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/Rectangle-3.png</string>
+							<string>StevenHuangResources/red_rectangle.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1345,7 +1358,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/Rectangle-1.png</string>
+							<string>StevenHuangResources/red_rectangle_pressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1388,7 +1401,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>StevenHuangResources/red_rectangle_pressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1414,7 +1427,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1565,8 +1578,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.34999999403953552</real>
+							<real>0.49625000357627869</real>
+							<real>0.51249998807907104</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1622,7 +1635,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>12</real>
+							<real>18</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1641,9 +1654,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>0.0</real>
+							<real>0.27843138575553894</real>
+							<real>0.7882353663444519</real>
+							<real>0.68627452850341797</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -1785,8 +1798,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.30000001192092896</real>
+							<real>0.49625000357627869</real>
+							<real>0.44583332538604736</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1842,7 +1855,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>12</real>
+							<real>18</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1861,9 +1874,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>0.0</real>
+							<real>0.27843138575553894</real>
+							<real>0.7882353663444519</real>
+							<real>0.68627452850341797</real>
 							<real>1</real>
 						</array>
 					</dict>

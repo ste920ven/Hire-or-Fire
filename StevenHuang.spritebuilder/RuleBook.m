@@ -14,6 +14,7 @@
     CCLabelTTF *_rulesLabel;
     NSString *rulesText,*tutorial;
     int unlockedNum;
+    CCSprite *_tutorialNode;
     bool inUse;
     CGPoint startlocation;
 }
@@ -21,7 +22,7 @@
 -(void)didLoadFromCCB{
     self.userInteractionEnabled=true;
     
-    tutorial=@"HELP\n\t\t\t Hire at least 10 people in one day\n\n\n<----Put here for No\t\t\t Put her for Yes----->\n\n\n\n\n\n\t\t\tClick to cycle through the rules\n\t\t\t\tSwipe down when ready";
+    tutorial=@"HELP";
     self.currPage=RULES;
     
     unlockedNum=2;
@@ -51,12 +52,14 @@
 
 -(void)updatePage{
     if(inUse){
+        _tutorialNode.visible=false;
         switch (self.currPage) {
             case RULES:
                 _rulesLabel.string=rulesText;
                 break;
             case TUTORIAL:
                 _rulesLabel.string=tutorial;
+                _tutorialNode.visible=true;
                 break;
         }
     }

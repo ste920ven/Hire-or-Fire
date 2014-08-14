@@ -58,7 +58,7 @@
 -(void)LevelSelect{
      [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
-    [[CCDirector sharedDirector] replaceScene:gameplayScene];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionUp duration:.5f]];
 }
 
 @end

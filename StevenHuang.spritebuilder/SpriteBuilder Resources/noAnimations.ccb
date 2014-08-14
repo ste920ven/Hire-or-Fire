@@ -10,13 +10,13 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
 	<integer>0</integer>
 	<key>currentSequenceId</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>docDimensionsType</key>
 	<integer>1</integer>
 	<key>fileType</key>
@@ -57,8 +57,8 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>animations/fire/fire_0000_Layer-167.png</string>
-								<string>Use regular file</string>
+								<string></string>
+								<string></string>
 							</array>
 						</dict>
 						<dict>
@@ -302,8 +302,63 @@
 					<integer>7</integer>
 				</dict>
 			</dict>
-			<key>1</key>
+			<key>2</key>
 			<dict>
+				<key>opacity</key>
+				<dict>
+					<key>keyframes</key>
+					<array>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>1</integer>
+							</dict>
+							<key>name</key>
+							<string>opacity</string>
+							<key>time</key>
+							<real>0.0</real>
+							<key>type</key>
+							<integer>10</integer>
+							<key>value</key>
+							<real>0.5</real>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>1</integer>
+							</dict>
+							<key>name</key>
+							<string>opacity</string>
+							<key>time</key>
+							<real>0.23333333432674408</real>
+							<key>type</key>
+							<integer>10</integer>
+							<key>value</key>
+							<real>1</real>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>1</integer>
+							</dict>
+							<key>name</key>
+							<string>opacity</string>
+							<key>time</key>
+							<real>0.43333333730697632</real>
+							<key>type</key>
+							<integer>10</integer>
+							<key>value</key>
+							<real>0.5</real>
+						</dict>
+					</array>
+					<key>name</key>
+					<string>opacity</string>
+					<key>type</key>
+					<integer>10</integer>
+				</dict>
 				<key>spriteFrame</key>
 				<dict>
 					<key>keyframes</key>
@@ -322,7 +377,25 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>animations/fire/fire_0000_Layer-167.png</string>
+								<string>animations/shredder/shredder1.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.033333335071802139</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>animations/shredder/shredder2.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -340,7 +413,25 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>animations/fire/fire_0001_Layer-166.png</string>
+								<string>animations/shredder/shredder3.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.10000000149011612</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>animations/shredder/shredder4.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -358,7 +449,25 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>animations/fire/fire_0002_Layer-165.png</string>
+								<string>animations/shredder/shredder5.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.1666666716337204</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>animations/shredder/shredder6.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -376,7 +485,25 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>animations/fire/fire_0003_Layer-164.png</string>
+								<string>animations/shredder/shredder7.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.23333333432674408</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>animations/shredder/shredder8.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -394,7 +521,25 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>animations/fire/fire_0004_Layer-163.png</string>
+								<string>animations/shredder/shredder9.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.30000001192092896</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>animations/shredder/shredder10.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -412,7 +557,25 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>animations/fire/fire_0005_Layer-162.png</string>
+								<string>animations/shredder/shredder11.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.36666667461395264</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>animations/shredder/shredder12.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -430,133 +593,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>animations/fire/fire_0006_Layer-161.png</string>
-								<string>Use regular file</string>
-							</array>
-						</dict>
-						<dict>
-							<key>easing</key>
-							<dict>
-								<key>type</key>
-								<integer>0</integer>
-							</dict>
-							<key>name</key>
-							<string>spriteFrame</string>
-							<key>time</key>
-							<real>0.46666666865348816</real>
-							<key>type</key>
-							<integer>7</integer>
-							<key>value</key>
-							<array>
-								<string>animations/fire/fire_0007_Layer-160.png</string>
-								<string>Use regular file</string>
-							</array>
-						</dict>
-						<dict>
-							<key>easing</key>
-							<dict>
-								<key>type</key>
-								<integer>0</integer>
-							</dict>
-							<key>name</key>
-							<string>spriteFrame</string>
-							<key>time</key>
-							<real>0.53333336114883423</real>
-							<key>type</key>
-							<integer>7</integer>
-							<key>value</key>
-							<array>
-								<string>animations/fire/fire_0008_Layer-159.png</string>
-								<string>Use regular file</string>
-							</array>
-						</dict>
-						<dict>
-							<key>easing</key>
-							<dict>
-								<key>type</key>
-								<integer>0</integer>
-							</dict>
-							<key>name</key>
-							<string>spriteFrame</string>
-							<key>time</key>
-							<real>0.60000002384185791</real>
-							<key>type</key>
-							<integer>7</integer>
-							<key>value</key>
-							<array>
-								<string>animations/fire/fire_0009_Layer-158.png</string>
-								<string>Use regular file</string>
-							</array>
-						</dict>
-						<dict>
-							<key>easing</key>
-							<dict>
-								<key>type</key>
-								<integer>0</integer>
-							</dict>
-							<key>name</key>
-							<string>spriteFrame</string>
-							<key>time</key>
-							<real>0.66666668653488159</real>
-							<key>type</key>
-							<integer>7</integer>
-							<key>value</key>
-							<array>
-								<string>animations/fire/fire_0010_Layer-157.png</string>
-								<string>Use regular file</string>
-							</array>
-						</dict>
-						<dict>
-							<key>easing</key>
-							<dict>
-								<key>type</key>
-								<integer>0</integer>
-							</dict>
-							<key>name</key>
-							<string>spriteFrame</string>
-							<key>time</key>
-							<real>0.73333334922790527</real>
-							<key>type</key>
-							<integer>7</integer>
-							<key>value</key>
-							<array>
-								<string>animations/fire/fire_0011_Layer-156.png</string>
-								<string>Use regular file</string>
-							</array>
-						</dict>
-						<dict>
-							<key>easing</key>
-							<dict>
-								<key>type</key>
-								<integer>0</integer>
-							</dict>
-							<key>name</key>
-							<string>spriteFrame</string>
-							<key>time</key>
-							<real>0.80000001192092896</real>
-							<key>type</key>
-							<integer>7</integer>
-							<key>value</key>
-							<array>
-								<string>animations/fire/fire_0012_Layer-155.png</string>
-								<string>Use regular file</string>
-							</array>
-						</dict>
-						<dict>
-							<key>easing</key>
-							<dict>
-								<key>type</key>
-								<integer>0</integer>
-							</dict>
-							<key>name</key>
-							<string>spriteFrame</string>
-							<key>time</key>
-							<real>0.86666667461395264</real>
-							<key>type</key>
-							<integer>7</integer>
-							<key>value</key>
-							<array>
-								<string>animations/fire/fire_0013_Layer-154.png</string>
+								<string>animations/shredder/shredder13.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -573,7 +610,7 @@
 		<key>children</key>
 		<array/>
 		<key>customClass</key>
-		<string></string>
+		<string>noAnimations</string>
 		<key>displayName</key>
 		<string>CCSprite</string>
 		<key>memberVarAssignmentName</key>
@@ -612,7 +649,7 @@
 				<key>value</key>
 				<array>
 					<real>0.5</real>
-					<real>0.0</real>
+					<real>1</real>
 				</array>
 			</dict>
 			<dict>
@@ -631,8 +668,8 @@
 			<dict>
 				<key>baseValue</key>
 				<array>
-					<string>animations/fire/fire_0000_Layer-167.png</string>
-					<string>Use regular file</string>
+					<string></string>
+					<string></string>
 				</array>
 				<key>name</key>
 				<string>spriteFrame</string>
@@ -641,8 +678,18 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>animations/fire/fire_0000_Layer-167.png</string>
+					<string></string>
 				</array>
+			</dict>
+			<dict>
+				<key>baseValue</key>
+				<real>1</real>
+				<key>name</key>
+				<string>opacity</string>
+				<key>type</key>
+				<string>Float</string>
+				<key>value</key>
+				<real>0.5</real>
 			</dict>
 			<dict>
 				<key>name</key>
@@ -654,10 +701,14 @@
 					<real>1</real>
 					<real>1</real>
 					<real>1</real>
-					<real>1</real>
+					<real>0.5</real>
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
+		<key>seqExpanded</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -696,7 +747,7 @@
 	<array>
 		<dict>
 			<key>autoPlay</key>
-			<true/>
+			<false/>
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>
@@ -713,7 +764,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.43333333730697632</real>
+			<real>0.0</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -743,19 +794,127 @@
 			<key>chainedSequenceId</key>
 			<integer>-1</integer>
 			<key>length</key>
-			<real>0.86666667461395264</real>
+			<real>0.43333333730697632</real>
 			<key>name</key>
-			<string>Untitled Timeline</string>
+			<string>Shredder</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.26666668057441711</real>
+			<real>0.43333333730697632</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>512</real>
+			<key>sequenceId</key>
+			<integer>2</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>isExpanded</key>
+				<false/>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<true/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>12</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>-1</integer>
+			<key>length</key>
+			<real>10</real>
+			<key>name</key>
+			<string>Trash Can</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
 			<real>128</real>
 			<key>sequenceId</key>
-			<integer>1</integer>
+			<integer>3</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>isExpanded</key>
+				<false/>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>12</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>-1</integer>
+			<key>length</key>
+			<real>10</real>
+			<key>name</key>
+			<string>Scissor</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>4</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>isExpanded</key>
+				<false/>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>12</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>-1</integer>
+			<key>length</key>
+			<real>10</real>
+			<key>name</key>
+			<string>Toilet</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>5</integer>
 			<key>soundChannel</key>
 			<dict>
 				<key>isExpanded</key>

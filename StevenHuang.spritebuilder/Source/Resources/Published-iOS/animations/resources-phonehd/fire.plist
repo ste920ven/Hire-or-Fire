@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>animations/fire/fire_0000_Layer-167.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 443}, {44, 50}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {44, 50}}</string>
+			<key>sourceSize</key>
+			<string>{44, 50}</string>
+		</dict>
+		<key>animations/fire/fire_0001_Layer-166.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{54, 107}, {50, 95}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {50, 95}}</string>
+			<key>sourceSize</key>
+			<string>{50, 95}</string>
+		</dict>
+		<key>animations/fire/fire_0002_Layer-165.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{106, 105}, {72, 73}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {72, 73}}</string>
+			<key>sourceSize</key>
+			<string>{72, 73}</string>
+		</dict>
+		<key>animations/fire/fire_0003_Layer-164.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{70, 1}, {65, 84}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {65, 84}}</string>
+			<key>sourceSize</key>
+			<string>{65, 84}</string>
+		</dict>
+		<key>animations/fire/fire_0004_Layer-163.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {67, 104}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {67, 104}}</string>
+			<key>sourceSize</key>
+			<string>{67, 104}</string>
+		</dict>
+		<key>animations/fire/fire_0005_Layer-162.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 107}, {51, 102}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {51, 102}}</string>
+			<key>sourceSize</key>
+			<string>{51, 102}</string>
+		</dict>
+		<key>animations/fire/fire_0006_Layer-161.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 211}, {56, 96}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {56, 96}}</string>
+			<key>sourceSize</key>
+			<string>{56, 96}</string>
+		</dict>
+		<key>animations/fire/fire_0007_Layer-160.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 309}, {76, 80}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {76, 80}}</string>
+			<key>sourceSize</key>
+			<string>{76, 80}</string>
+		</dict>
+		<key>animations/fire/fire_0008_Layer-159.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{59, 204}, {77, 64}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {77, 64}}</string>
+			<key>sourceSize</key>
+			<string>{77, 64}</string>
+		</dict>
+		<key>animations/fire/fire_0009_Layer-158.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{137, 1}, {61, 51}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {61, 51}}</string>
+			<key>sourceSize</key>
+			<string>{61, 51}</string>
+		</dict>
+		<key>animations/fire/fire_0010_Layer-157.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 391}, {50, 49}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {50, 49}}</string>
+			<key>sourceSize</key>
+			<string>{50, 49}</string>
+		</dict>
+		<key>animations/fire/fire_0011_Layer-156.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{137, 64}, {51, 31}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {51, 31}}</string>
+			<key>sourceSize</key>
+			<string>{51, 31}</string>
+		</dict>
+		<key>animations/fire/fire_0012_Layer-155.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{78, 87}, {28, 16}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {28, 16}}</string>
+			<key>sourceSize</key>
+			<string>{28, 16}</string>
+		</dict>
+		<key>animations/fire/fire_0013_Layer-154.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{70, 87}, {18, 6}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {18, 6}}</string>
+			<key>sourceSize</key>
+			<string>{18, 6}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{512, 512}</string>
+		<key>textureFileName</key>
+		<string>fire.png</string>
+	</dict>
+</dict>
+</plist>

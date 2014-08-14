@@ -24,7 +24,7 @@
     [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
     [GameplayManager sharedInstance].paused=false;
     CCScene *gameplayScene = [CCBReader loadAsScene:@"LevelSelect"];
-    [[CCDirector sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionLeft duration:.5f]];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionUp duration:.5f]];
 }
 
 -(void)Resume{
@@ -32,6 +32,7 @@
     [self removeFromParent];
     self.userInteractionEnabled=true;
     [GameplayManager sharedInstance].paused=false;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"unPause" object:self];
 }
 
 @end

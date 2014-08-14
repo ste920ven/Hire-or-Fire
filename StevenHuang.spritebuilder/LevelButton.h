@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "CCNode.h"
+#import "CCSprite.h"
 
-@interface LevelButton : CCNode
+@interface LevelButton : CCSprite
 
 @property int level;
+@property bool active;
 
 @end

@@ -18,9 +18,10 @@
 -(void)didLoadFromCCB{
     levels=[[[_container children][0] children][3] children];
     for(LevelButton* item in levels){
-        ((CCButton*)[item children][0]).title=[NSString stringWithFormat:@"%d",item.level+1];
-        if(item.level>[[NSUserDefaults standardUserDefaults] integerForKey:@"level"])
-            ((CCButton*)[item children][0]).enabled=false;
+        ((CCLabelTTF*)[item children][0]).string=[NSString stringWithFormat:@"%d",item.level+1];
+        int i=[[NSUserDefaults standardUserDefaults] integerForKey:@"level"];
+        if(item.level<=[[NSUserDefaults standardUserDefaults] integerForKey:@"level"])
+            item.active=true;
     }
     if([GameplayManager sharedInstance].submitted){
         _popup.visible=true;

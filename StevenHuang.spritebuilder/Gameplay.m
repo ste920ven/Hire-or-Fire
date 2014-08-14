@@ -13,6 +13,8 @@
 #import "GameplayManager.h"
 #import "Minigame.h"
 #import "PauseScreen.h"
+#import "noAnimations.h"
+#import "noChoice.h"
 
 @implementation Gameplay{
     //timer vars
@@ -25,6 +27,7 @@
     CCSprite *_clockhandSprite,*_clockhandSprite2;
     CCLabelTTF *_bubbleLabel,*_scoreLabel,*_multiplierLabel,*_clockLabel;
     CCButton *_pauseButton;
+    noAnimations *_topAnimation,*_botAnimation;
     
     bool ready,noBarActive,gameOver,rulesActive,swipeEnabled;
     NSArray *noArray;
@@ -32,7 +35,7 @@
     CGFloat roundTime,randomEventChance,randomEventDelay,multiplierTime;
     NSDictionary *root;
     CGPoint startLocation;
-    int score,streak,goalScore,minigameCode,correct,c;
+    int score,streak,goalScore,minigameCode,correct,c,two;
     
     CCScene *level;
     PauseScreen *ps;
@@ -73,17 +76,15 @@
     _popoverNode.zOrder=INT_MAX;
     
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
-    roundTime=60.f;
+    roundTime=5.f;
     _clockLabel.string=[NSString stringWithFormat:@"%i",(int)roundTime];
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:9 forKey:@"level"];
     
     [_rulebookNode show:true];
     
     _scoreLabel.string=[NSString stringWithFormat:@"$0 / %d",goalScore];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SwipeDown) name:@"Swipe Down" object:_rulebookNode
-     ];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SwipeDown) name:@"Swipe Down" object:_rulebookNode];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unPause) name:@"unPause" object:nil];
 }
 
 -(void)noAnimation:(NSString*)str{
@@ -122,6 +123,16 @@
 }
 
 #pragma mark Animations Controls
+-(CCActionSequence*)scaleNumber{
+    CCActionScaleTo *scale1=[CCActionScaleTo actionWithDuration:.1f scale:1.5];
+    CCActionScaleTo *scale2=[CCActionScaleTo actionWithDuration:.1f scale:1];
+    return [CCActionSequence actions:scale1,scale2, nil];
+}
+
+-(void)unPause{
+    _pauseButton.enabled = YES;
+}
+
 -(void)newResume{
     _tmpResume.opacity=1;
     _resumeNode.zOrder=0;
@@ -141,7 +152,6 @@
 -(void)update:(CCTime)delta{
     if(![GameplayManager sharedInstance].minigame){
         if(![GameplayManager sharedInstance].paused){
-            _pauseButton.enabled = YES;
             swipeEnabled=true;
             self.userInteractionEnabled = TRUE;
             if(ready){
@@ -155,6 +165,7 @@
                 if(multiplierTime<=0){
                     if(streak>4){
                         _multiplierLabel.visible=false;
+                        two=0;
                         streak=2;
                     }
                 }else
@@ -181,13 +192,13 @@
                         //minigameCode=arc4random_uniform(3);
                         switch (minigameCode) {
                             case 0:
-                                msg=@"Grab your car keys. I need you to run an errand.";
+                                msg=@"'Grab your car keys. I need you to run an errand.'";
                                 break;
                             case 1:
-                                msg=@"Quick, delete your emails. The boss is coming to check them";
+                                msg=@"'Quick, delete your emails. The boss is coming to check them'";
                                 break;
                             case 2:
-                                msg=@"I need you to sign some documents for me";
+                                msg=@"'I need you to sign some documents for me'";
                         }
                         _bubbleLabel.string=msg;
                         _bubbleNode.visible=true;
@@ -198,7 +209,10 @@
             }
         }
     } else{
+        _correctBarLeft.visible=false;
+        _correctBarRight.visible=false;
         score+=[mini getScore];
+        [_scoreLabel runAction:[self scaleNumber]];
         _scoreLabel.string=[NSString stringWithFormat:@"$%d / %d",score,goalScore];
     }
 }
@@ -234,6 +248,7 @@
         [self.animationManager runAnimationsForSequenceNamed:@"correct"];
     else{
         streak=2;
+        two=0;
         _multiplierLabel.visible=false;
         [self.animationManager runAnimationsForSequenceNamed:@"wrong"];
     }
@@ -292,6 +307,7 @@
             for (int i=0;i<[noArray count];++i){
                 if(touchLocation.y>((CCNode*)noArray[i]).position.y*_contentNode.contentSizeInPoints.height-((CCNode*)noArray[i]).contentSize.height/2 && touchLocation.y<((CCNode*)noArray[i]).position.y*_contentNode.contentSizeInPoints.height+((CCNode*)noArray[i]).contentSize.height/2){
                     NSString *s=[NSString stringWithFormat:@"Assets/%@.wav",[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][i]];
+                    [_topAnimation runAnimation:[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][i] ];
                     //[[OALSimpleAudio sharedInstance] playBg:s];
                 }
             }
@@ -322,7 +338,7 @@
         if(touchLocation.y-startLocation.y>[self contentSizeInPoints].height/4 && fabsf(touchLocation.x-startLocation.x)<50 && !rulesActive){
             rulesActive=true;
             [_rulebookNode show:true];
-        }else if(touchLocation.y-startLocation.y>[self contentSizeInPoints].height/4 && fabsf(touchLocation.x-startLocation.x)<50 && rulesActive){
+        }else if(startLocation.y-touchLocation.y>[self contentSizeInPoints].height/4 && fabsf(touchLocation.x-startLocation.x)<50 && rulesActive){
             [self SwipeDown];
         }
     }
@@ -359,12 +375,22 @@
     ++c;
     if(streak>3){
         multiplierTime=3.f;
+        if(two>1){
+            [_multiplierLabel runAction:[self scaleNumber]];
+            two=0;
+        }
         _multiplierLabel.string=[NSString stringWithFormat:@"x%d",streak/2];
         _multiplierLabel.visible=true;
+        
+        //max multiplier
+        if(streak<10)
+            two++;
     }else{
         _multiplierLabel.visible=false;
+        two=0;
     }
     score+=(10*(streak/2));
+    [_scoreLabel runAction:[self scaleNumber]];
     _scoreLabel.string=[NSString stringWithFormat:@"$%d / %d",score,goalScore];
     if(streak<10)
         ++streak;
@@ -394,6 +420,8 @@
         screen.zOrder=INT_MAX;
         CCActionFadeIn *fade=[CCActionFadeIn actionWithDuration:1.f];
         [screen runAction:fade];
+        _tmpResume.opacity=0;
+        _resumeNode.opacity=0;
         ready=false;
     }
 }

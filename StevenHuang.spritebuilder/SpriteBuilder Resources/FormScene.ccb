@@ -1497,8 +1497,6 @@
 								<real>14</real>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -2498,7 +2496,7 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>38.251213073730469</real>
+										<real>49.691211700439453</real>
 										<real>28.166351318359375</real>
 									</array>
 								</dict>
@@ -2544,7 +2542,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>38.251213073730469</real>
+							<real>49.691211700439453</real>
 							<real>28.166351318359375</real>
 							<integer>1</integer>
 							<integer>0</integer>
@@ -2593,8 +2591,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>60</real>
-							<real>40</real>
+							<real>80</real>
+							<real>45</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -2633,13 +2631,21 @@
 					</dict>
 					<dict>
 						<key>name</key>
+						<string>zoomWhenHighlighted</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>name</key>
 						<string>backgroundSpriteFrame|Normal</string>
 						<key>type</key>
 						<string>SpriteFrame</string>
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/Rectangle-3.png</string>
+							<string>StevenHuangResources/red_rectangle.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2650,7 +2656,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/Rectangle-1.png</string>
+							<string>StevenHuangResources/red_rectangle_pressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2693,7 +2699,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>StevenHuangResources/red_rectangle_pressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2719,7 +2725,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2979,7 +2985,7 @@
 						<key>value</key>
 						<array>
 							<real>120</real>
-							<real>40</real>
+							<real>45</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -3018,13 +3024,21 @@
 					</dict>
 					<dict>
 						<key>name</key>
+						<string>zoomWhenHighlighted</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>name</key>
 						<string>backgroundSpriteFrame|Normal</string>
 						<key>type</key>
 						<string>SpriteFrame</string>
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/Rectangle-3.png</string>
+							<string>StevenHuangResources/red_rectangle.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3035,7 +3049,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>StevenHuangResources/Rectangle-1.png</string>
+							<string>StevenHuangResources/red_rectangle_pressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3078,7 +3092,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>StevenHuangResources/red_rectangle_pressed.png</string>
 						</array>
 					</dict>
 					<dict>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>animations/shredder/shredder1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1703, 391}, {297, 64}}</string>
+			<key>offset</key>
+			<string>{0, 256}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 0}, {297, 64}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder10.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1239}, {297, 396}}</string>
+			<key>offset</key>
+			<string>{0, 43}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 47}, {297, 396}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder11.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 829}, {297, 408}}</string>
+			<key>offset</key>
+			<string>{0, -7}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 91}, {297, 408}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder12.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {297, 413}}</string>
+			<key>offset</key>
+			<string>{0, -44}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 126}, {297, 413}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder13.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 416}, {297, 411}}</string>
+			<key>offset</key>
+			<string>{0, -83}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 166}, {297, 411}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1404, 291}, {297, 113}}</string>
+			<key>offset</key>
+			<string>{0, 231}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 0}, {297, 113}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1703, 221}, {297, 168}}</string>
+			<key>offset</key>
+			<string>{0, 204}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 0}, {297, 168}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1703, 1}, {297, 218}}</string>
+			<key>offset</key>
+			<string>{0, 179}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 0}, {297, 218}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1404, 1}, {297, 288}}</string>
+			<key>offset</key>
+			<string>{0, 144}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 0}, {297, 288}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder6.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{668, 1}, {297, 366}}</string>
+			<key>offset</key>
+			<string>{0, 103}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{10, 2}, {297, 366}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder7.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{300, 1}, {297, 366}}</string>
+			<key>offset</key>
+			<string>{0, 93}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{10, 12}, {297, 366}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder8.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1036, 1}, {297, 366}}</string>
+			<key>offset</key>
+			<string>{0, 88}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{10, 17}, {297, 366}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+		<key>animations/shredder/shredder9.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1637}, {297, 370}}</string>
+			<key>offset</key>
+			<string>{0, 81}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10, 22}, {297, 370}}</string>
+			<key>sourceSize</key>
+			<string>{319, 577}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{2048, 2048}</string>
+		<key>textureFileName</key>
+		<string>shredder.png</string>
+	</dict>
+</dict>
+</plist>

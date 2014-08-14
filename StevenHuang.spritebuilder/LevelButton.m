@@ -11,11 +11,26 @@
 
 @implementation LevelButton
 
--(void)play{
+-(void)didLoadFromCCB{
+    self.userInteractionEnabled=true;
+    if(!self.active){
+        [self.animationManager runAnimationsForSequenceNamed:@"disabled"];
+    }
+}
+
+-(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+    if(self.active){
      [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];
+        [self.animationManager runAnimationsForSequenceNamed:@"selected"];
+    }
+}
+
+-(void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
+    if(self.active){
     [GameplayManager sharedInstance].level=self.level;
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
-    [[CCDirector sharedDirector] replaceScene:gameplayScene];
+    [[CCDirector sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:.5f]];
+    }
 }
 
 @end

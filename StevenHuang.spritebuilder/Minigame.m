@@ -93,19 +93,22 @@ typedef NS_ENUM(NSInteger, MINIGAME){
 }
 
 -(void)update:(CCTime)delta{
-    time+=delta;
-    if(time>1){
-        _instructionLabel.visible=false;
-    }
-    for(int i=5;i>2;--i){
-        if(time>=i){
-            _instructionLabel.visible=true;
-            _instructionLabel.string=[NSString stringWithFormat:@"%d",6-i ];
-            break;
+    if(![GameplayManager sharedInstance].paused){
+        time+=delta;
+        if(time>1){
+            _instructionLabel.visible=false;
         }
-    }
-    if(time>6){
-        [self exit];
+        for(int i=5;i>2;--i){
+            if(time>=i){
+                _instructionLabel.visible=true;
+                _instructionLabel.string=[NSString stringWithFormat:@"%d",6-i ];
+                break;
+            }
+        }
+        
+        if(time>6){
+            [self exit];
+        }
     }
 }
 
@@ -220,7 +223,11 @@ typedef NS_ENUM(NSInteger, MINIGAME){
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
     [(CCNode*)arr[num] runAction:sequence];
     //change email text
-    
+    ((CCLabelTTF*) [((CCNode*)arr[num]) children][0]).string=emails[arc4random_uniform([emails count])];
+    if(arc4random_uniform(2)>0)
+        [((CCNode*)arr[num]).animationManager runAnimationsForSequenceNamed:@"Right"];
+    else
+        [((CCNode*)arr[num]).animationManager runAnimationsForSequenceNamed:@"Left"];
     
     CCNode* node=arr[num];
     [arr removeObjectAtIndex:num];
