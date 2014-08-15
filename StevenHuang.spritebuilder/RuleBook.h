@@ -46,6 +46,7 @@ typedef NS_ENUM(NSInteger, Page){
 @property (nonatomic,strong) NSMutableDictionary *rules;
 @property (nonatomic,strong) NSMutableDictionary *specialRules;
 @property (assign)int currPage;
+@property (assign)bool rulesRead;
 
 -(void)createRulesWithLevel:(int)level resumeData:(NSDictionary*)data;
 -(void)show:(bool)b;

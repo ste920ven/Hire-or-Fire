@@ -35,4 +35,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"unPause" object:self];
 }
 
+-(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+}
+
 @end

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>animations/airplane/airplane1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{682, 3932}, {122, 203}}</string>
+			<key>offset</key>
+			<string>{-5, 636}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{439, 0}, {122, 203}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+		<key>animations/airplane/airplane10.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 2187}, {650, 1091}}</string>
+			<key>offset</key>
+			<string>{-6, -115}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{174, 308}, {650, 1091}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+		<key>animations/airplane/airplane11.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{461, 3280}, {650, 1091}}</string>
+			<key>offset</key>
+			<string>{-6, -79}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{174, 496}, {650, 1091}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1924}</string>
+		</dict>
+		<key>animations/airplane/airplane12.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {650, 1091}}</string>
+			<key>offset</key>
+			<string>{-6, -259}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{174, 676}, {650, 1091}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1924}</string>
+		</dict>
+		<key>animations/airplane/airplane13.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{653, 563}, {650, 1052}}</string>
+			<key>offset</key>
+			<string>{-6, -436}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{174, 872}, {650, 1052}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1924}</string>
+		</dict>
+		<key>animations/airplane/airplane2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{461, 3932}, {134, 219}}</string>
+			<key>offset</key>
+			<string>{-5, 628}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{433, 0}, {134, 219}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+		<key>animations/airplane/airplane3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1305, 563}, {184, 295}}</string>
+			<key>offset</key>
+			<string>{-5, 590}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{408, 0}, {184, 295}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+		<key>animations/airplane/airplane4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{3122, 1}, {262, 412}}</string>
+			<key>offset</key>
+			<string>{-5, 532}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{369, 0}, {262, 412}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+		<key>animations/airplane/airplane5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2608, 1}, {328, 512}}</string>
+			<key>offset</key>
+			<string>{-5, 482}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{336, 0}, {328, 512}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+		<key>animations/airplane/airplane6.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 3280}, {458, 708}}</string>
+			<key>offset</key>
+			<string>{-5, 384}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{271, 0}, {458, 708}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+		<key>animations/airplane/airplane7.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{653, 1}, {560, 864}}</string>
+			<key>offset</key>
+			<string>{-6, 306}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{219, 0}, {560, 864}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+		<key>animations/airplane/airplane8.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1554, 1}, {650, 1052}}</string>
+			<key>offset</key>
+			<string>{-6, 212}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{174, 0}, {650, 1052}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+		<key>animations/airplane/airplane9.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1094}, {650, 1091}}</string>
+			<key>offset</key>
+			<string>{-6, 64}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{174, 128}, {650, 1091}}</string>
+			<key>sourceSize</key>
+			<string>{1011, 1476}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{4096, 4096}</string>
+		<key>textureFileName</key>
+		<string>airplane.png</string>
+	</dict>
+</dict>
+</plist>

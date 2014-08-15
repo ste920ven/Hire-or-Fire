@@ -56,6 +56,7 @@
         switch (self.currPage) {
             case RULES:
                 _rulesLabel.string=rulesText;
+                self.rulesRead=true;
                 break;
             case TUTORIAL:
                 _rulesLabel.string=tutorial;
@@ -69,6 +70,7 @@
     inUse=b;
     [self updatePage];
     CCActionScaleTo *translation;
+    [self stopAllActions];
     if(b){
         translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(.5,0)];
     }else{

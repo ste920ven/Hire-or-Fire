@@ -144,7 +144,19 @@
 		</dict>
 		<key>animations</key>
 		<dict/>
+		<key>animations/airplane</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
 		<key>animations/fire</key>
+		<dict>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
+		<key>animations/scissor</key>
 		<dict>
 			<key>isSmartSpriteSheet</key>
 			<true/>

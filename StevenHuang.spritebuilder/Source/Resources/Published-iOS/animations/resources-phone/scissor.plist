@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>animations/scissor/scissor1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{143, 955}, {137, 67}}</string>
+			<key>offset</key>
+			<string>{1, 150}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{36, 0}, {137, 67}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor10.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {130, 226}}</string>
+			<key>offset</key>
+			<string>{-9, -72}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{29, 143}, {130, 226}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor11.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 639}, {128, 197}}</string>
+			<key>offset</key>
+			<string>{-3, -85}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{36, 171}, {128, 197}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{143, 809}, {144, 109}}</string>
+			<key>offset</key>
+			<string>{1, 129}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{32, 0}, {144, 109}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{254, 809}, {143, 141}}</string>
+			<key>offset</key>
+			<string>{0, 113}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{32, 0}, {143, 141}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 838}, {140, 169}}</string>
+			<key>offset</key>
+			<string>{1, 96}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{34, 3}, {140, 169}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{142, 440}, {141, 157}}</string>
+			<key>offset</key>
+			<string>{-8, 75}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{24, 30}, {141, 157}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor6.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{131, 639}, {152, 168}}</string>
+			<key>offset</key>
+			<string>{-1, 62}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{26, 38}, {152, 168}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor7.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{133, 1}, {151, 204}}</string>
+			<key>offset</key>
+			<string>{-1, 34}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{26, 48}, {151, 204}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor8.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 440}, {139, 197}}</string>
+			<key>offset</key>
+			<string>{-7, -11}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{26, 97}, {139, 197}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+		<key>animations/scissor/scissor9.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 229}, {145, 209}}</string>
+			<key>offset</key>
+			<string>{-10, -40}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{20, 120}, {145, 209}}</string>
+			<key>sourceSize</key>
+			<string>{207, 369}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{1024, 1024}</string>
+		<key>textureFileName</key>
+		<string>scissor.png</string>
+	</dict>
+</dict>
+</plist>

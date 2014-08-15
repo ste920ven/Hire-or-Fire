@@ -57,7 +57,7 @@
     ready=false;
     _noBar.zOrder=INT_MAX;
     _clipboardTab.zOrder=3;
-
+    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"plist"];
     root = [NSDictionary dictionaryWithContentsOfFile:path];
     NSDictionary* resumeInfo= root[@"ResumeInfo"];
@@ -76,7 +76,7 @@
     _popoverNode.zOrder=INT_MAX;
     
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
-    roundTime=5.f;
+    roundTime=60.f;
     _clockLabel.string=[NSString stringWithFormat:@"%i",(int)roundTime];
     
     [_rulebookNode show:true];
@@ -233,12 +233,14 @@
 
 -(void)animateClock{
     float time=[GameplayManager sharedInstance].roundCounter;
-    _clockLabel.string=[NSString stringWithFormat:@"%i",(int)(roundTime-time)];
-    _clockhandSprite2.rotation=time/roundTime*360-180;
-    if(time<roundTime/2)
-    _clockhandSprite.rotation=time/roundTime*360-180;
-    else{
-        [_clockhandFill removeFromParent];
+    if(roundTime>time){
+        _clockLabel.string=[NSString stringWithFormat:@"%i",(int)(roundTime-time)];
+        _clockhandSprite2.rotation=time/roundTime*360-180;
+        if(time<roundTime/2)
+            _clockhandSprite.rotation=time/roundTime*360-180;
+        else{
+            [_clockhandFill removeFromParent];
+        }
     }
 }
 
@@ -306,8 +308,12 @@
             //select "no" option
             for (int i=0;i<[noArray count];++i){
                 if(touchLocation.y>((CCNode*)noArray[i]).position.y*_contentNode.contentSizeInPoints.height-((CCNode*)noArray[i]).contentSize.height/2 && touchLocation.y<((CCNode*)noArray[i]).position.y*_contentNode.contentSizeInPoints.height+((CCNode*)noArray[i]).contentSize.height/2){
-                    NSString *s=[NSString stringWithFormat:@"Assets/%@.wav",[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][i]];
-                    [_topAnimation runAnimation:[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][i] ];
+                    NSString *item=[[NSUserDefaults standardUserDefaults] objectForKey:@"noSelected"][i];
+                    NSString *s=[NSString stringWithFormat:@"Assets/%@.wav",item];
+                    if([item isEqualToString:@"Fire"] || [item isEqualToString:@"Airplane"])
+                        [_botAnimation runAnimation:item];
+                    else
+                        [_topAnimation runAnimation:item];
                     //[[OALSimpleAudio sharedInstance] playBg:s];
                 }
             }
@@ -351,15 +357,21 @@
 
 -(void)SwipeDown{
     if(rulesActive){
-        self.userInteractionEnabled=true;
-        [GameplayManager sharedInstance].paused=false;
-        [_rulebookNode show:false];
-        if(!ready){
-            [self newResume];
-            [self newResume];
-            ready=true;
+        if(!_rulebookNode.rulesRead){
+            _rulebookNode.currPage=RULES;
+            [_rulebookNode show:true];
         }
-        rulesActive=false;
+        else{
+            self.userInteractionEnabled=true;
+            [GameplayManager sharedInstance].paused=false;
+            [_rulebookNode show:false];
+            if(!ready){
+                [self newResume];
+                [self newResume];
+                ready=true;
+            }
+            rulesActive=false;
+        }
     }
 }
 
@@ -451,7 +463,7 @@
     //move gameplay view down
     CCActionMoveTo *translation = [CCActionMoveTo actionWithDuration:0.3f position:ccp(0,[self contentSizeInPoints].height*-1)];
     [_gameplayView runAction:translation];
-
+    
 }
 
 @end

@@ -4,187 +4,83 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>animations/fire/fire_0000_Layer-167.png</key>
+		<key>animations/fire/fire1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 227}, {22, 25}}</string>
+			<string>{{154, 67}, {250, 31}}</string>
 			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {22, 25}}</string>
-			<key>sourceSize</key>
-			<string>{22, 25}</string>
-		</dict>
-		<key>animations/fire/fire_0001_Layer-166.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{28, 55}, {25, 47}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {25, 47}}</string>
-			<key>sourceSize</key>
-			<string>{25, 47}</string>
-		</dict>
-		<key>animations/fire/fire_0002_Layer-165.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{55, 50}, {36, 36}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {36, 36}}</string>
-			<key>sourceSize</key>
-			<string>{36, 36}</string>
-		</dict>
-		<key>animations/fire/fire_0003_Layer-164.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{36, 1}, {32, 42}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {32, 42}}</string>
-			<key>sourceSize</key>
-			<string>{32, 42}</string>
-		</dict>
-		<key>animations/fire/fire_0004_Layer-163.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{1, 1}, {33, 52}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {33, 52}}</string>
-			<key>sourceSize</key>
-			<string>{33, 52}</string>
-		</dict>
-		<key>animations/fire/fire_0005_Layer-162.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{1, 55}, {25, 51}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {25, 51}}</string>
-			<key>sourceSize</key>
-			<string>{25, 51}</string>
-		</dict>
-		<key>animations/fire/fire_0006_Layer-161.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{1, 108}, {28, 48}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {28, 48}}</string>
-			<key>sourceSize</key>
-			<string>{28, 48}</string>
-		</dict>
-		<key>animations/fire/fire_0007_Layer-160.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{1, 158}, {38, 40}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {38, 40}}</string>
-			<key>sourceSize</key>
-			<string>{38, 40}</string>
-		</dict>
-		<key>animations/fire/fire_0008_Layer-159.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{31, 104}, {38, 32}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
+			<string>{3, 20}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {38, 32}}</string>
+			<string>{{17, 0}, {250, 31}}</string>
 			<key>sourceSize</key>
-			<string>{38, 32}</string>
+			<string>{279, 73}</string>
 		</dict>
-		<key>animations/fire/fire_0009_Layer-158.png</key>
+		<key>animations/fire/fire2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{70, 1}, {30, 25}}</string>
+			<string>{{112, 67}, {261, 40}}</string>
 			<key>offset</key>
-			<string>{0, 0}</string>
+			<string>{2, 16}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {30, 25}}</string>
+			<string>{{11, 0}, {261, 40}}</string>
 			<key>sourceSize</key>
-			<string>{30, 25}</string>
+			<string>{279, 73}</string>
 		</dict>
-		<key>animations/fire/fire_0010_Layer-157.png</key>
+		<key>animations/fire/fire3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 200}, {25, 24}}</string>
+			<string>{{1, 67}, {274, 50}}</string>
 			<key>offset</key>
-			<string>{0, 0}</string>
+			<string>{3, 11}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {25, 24}}</string>
+			<string>{{5, 0}, {274, 50}}</string>
 			<key>sourceSize</key>
-			<string>{25, 24}</string>
+			<string>{279, 73}</string>
 		</dict>
-		<key>animations/fire/fire_0011_Layer-156.png</key>
+		<key>animations/fire/fire4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{70, 33}, {25, 15}}</string>
+			<string>{{53, 67}, {266, 57}}</string>
 			<key>offset</key>
-			<string>{0, 0}</string>
+			<string>{3, 7}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{9, 0}, {266, 57}}</string>
+			<key>sourceSize</key>
+			<string>{279, 73}</string>
+		</dict>
+		<key>animations/fire/fire5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 343}, {264, 58}}</string>
+			<key>offset</key>
+			<string>{-6, 7}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {25, 15}}</string>
+			<string>{{1, 0}, {264, 58}}</string>
 			<key>sourceSize</key>
-			<string>{25, 15}</string>
+			<string>{279, 73}</string>
 		</dict>
-		<key>animations/fire/fire_0012_Layer-155.png</key>
+		<key>animations/fire/fire6.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{36, 45}, {14, 8}}</string>
+			<string>{{1, 1}, {279, 64}}</string>
 			<key>offset</key>
-			<string>{0, 0}</string>
+			<string>{0, 4}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {14, 8}}</string>
+			<string>{{0, 0}, {279, 64}}</string>
 			<key>sourceSize</key>
-			<string>{14, 8}</string>
-		</dict>
-		<key>animations/fire/fire_0013_Layer-154.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{52, 45}, {9, 3}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {9, 3}}</string>
-			<key>sourceSize</key>
-			<string>{9, 3}</string>
+			<string>{279, 73}</string>
 		</dict>
 	</dict>
 	<key>metadata</key>
@@ -192,7 +88,7 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>size</key>
-		<string>{256, 256}</string>
+		<string>{512, 512}</string>
 		<key>textureFileName</key>
 		<string>fire.png</string>
 	</dict>

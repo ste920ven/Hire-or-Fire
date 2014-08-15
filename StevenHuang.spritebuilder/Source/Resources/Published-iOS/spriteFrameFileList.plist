@@ -9,9 +9,11 @@
 	</dict>
 	<key>spriteFrameFiles</key>
 	<array>
-		<string>animations/fire.plist</string>
 		<string>StevenHuangResources.plist</string>
+		<string>animations/scissor.plist</string>
 		<string>animations/shredder.plist</string>
+		<string>animations/fire.plist</string>
+		<string>animations/airplane.plist</string>
 	</array>
 </dict>
 </plist>

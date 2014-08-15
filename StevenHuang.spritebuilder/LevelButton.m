@@ -13,6 +13,10 @@
 
 -(void)didLoadFromCCB{
     self.userInteractionEnabled=true;
+}
+
+-(void)onEnter{
+    [super onEnter];
     if(!self.active){
         [self.animationManager runAnimationsForSequenceNamed:@"disabled"];
     }
@@ -25,7 +29,14 @@
     }
 }
 
+-(void)touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event{
+    if(self.active){
+        [self.animationManager runAnimationsForSequenceNamed:@"default"];
+    }
+}
+
 -(void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
+    
     if(self.active){
     [GameplayManager sharedInstance].level=self.level;
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];

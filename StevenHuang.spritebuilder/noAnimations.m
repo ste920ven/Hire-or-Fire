@@ -11,9 +11,7 @@
 @implementation noAnimations
 
 -(void)runAnimation:(NSString *)str{
-    //[self.animationManager runAnimationsForSequenceNamed:@"Shredder"];
     [self.animationManager runAnimationsForSequenceNamed:str];
-    NSLog(str);
 }
 
 @end

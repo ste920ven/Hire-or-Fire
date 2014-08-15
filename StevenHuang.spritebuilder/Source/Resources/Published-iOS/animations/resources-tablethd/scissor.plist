@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>animations/scissor/scissor1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{563, 3786}, {549, 265}}</string>
+			<key>offset</key>
+			<string>{5, 605}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{146, 0}, {549, 265}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor10.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {521, 903}}</string>
+			<key>offset</key>
+			<string>{-38, -285}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{116, 572}, {521, 903}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor11.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 2538}, {514, 790}}</string>
+			<key>offset</key>
+			<string>{-13, -342}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{145, 685}, {514, 790}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{563, 3208}, {576, 434}}</string>
+			<key>offset</key>
+			<string>{3, 521}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{130, 0}, {576, 434}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{999, 3208}, {574, 562}}</string>
+			<key>offset</key>
+			<string>{2, 457}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{130, 0}, {574, 562}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 3330}, {560, 676}}</string>
+			<key>offset</key>
+			<string>{4, 388}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{139, 12}, {560, 676}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{560, 1746}, {566, 628}}</string>
+			<key>offset</key>
+			<string>{-36, 304}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{96, 120}, {566, 628}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor6.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{517, 2538}, {607, 668}}</string>
+			<key>offset</key>
+			<string>{-5, 251}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{106, 153}, {607, 668}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor7.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{524, 1}, {604, 815}}</string>
+			<key>offset</key>
+			<string>{-6, 137}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{107, 193}, {604, 815}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor8.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1746}, {557, 790}}</string>
+			<key>offset</key>
+			<string>{-33, -44}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{103, 387}, {557, 790}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+		<key>animations/scissor/scissor9.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 906}, {580, 838}}</string>
+			<key>offset</key>
+			<string>{-44, -161}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{81, 480}, {580, 838}}</string>
+			<key>sourceSize</key>
+			<string>{831, 1476}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{4096, 4096}</string>
+		<key>textureFileName</key>
+		<string>scissor.png</string>
+	</dict>
+</dict>
+</plist>
