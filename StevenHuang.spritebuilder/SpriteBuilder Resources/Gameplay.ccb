@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -2344,27 +2344,25 @@
 						<string>noAnimations.ccb</string>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>48</integer>
+				<integer>110</integer>
 				<key>baseClass</key>
-				<string>CCSprite</string>
+				<string>CCNode</string>
 				<key>children</key>
 				<array>
 					<dict>
 						<key>UUID</key>
-						<integer>53</integer>
+						<integer>48</integer>
 						<key>baseClass</key>
-						<string>CCNode</string>
+						<string>CCSprite</string>
 						<key>children</key>
 						<array/>
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>bubble buttons</string>
+						<string>bubble</string>
 						<key>memberVarAssignmentName</key>
 						<string></string>
 						<key>memberVarAssignmentType</key>
@@ -2386,24 +2384,11 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>8</real>
-									<real>50</real>
-									<integer>0</integer>
-									<integer>0</integer>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>contentSize</string>
-								<key>type</key>
-								<string>Size</string>
-								<key>value</key>
-								<array>
-									<real>0.93000000715255737</real>
-									<real>50</real>
+									<real>0.0</real>
+									<real>0.0</real>
+									<integer>1</integer>
 									<integer>2</integer>
-									<integer>0</integer>
+									<integer>2</integer>
 								</array>
 							</dict>
 							<dict>
@@ -2413,8 +2398,8 @@
 								<string>Point</string>
 								<key>value</key>
 								<array>
-									<real>0.0</real>
-									<real>0.0</real>
+									<real>0.5</real>
+									<real>1</real>
 								</array>
 							</dict>
 							<dict>
@@ -2424,10 +2409,34 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>1.608704686164856</real>
+									<real>1.637137770652771</real>
 									<false/>
 									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>spriteFrame</string>
+								<key>type</key>
+								<string>SpriteFrame</string>
+								<key>value</key>
+								<array>
+									<string></string>
+									<string>StevenHuangResources/bubble.png</string>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>color</string>
+								<key>type</key>
+								<string>Color3</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
 								</array>
 							</dict>
 						</array>
@@ -2464,8 +2473,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>0.5</real>
-									<real>90</real>
+									<real>0.0</real>
+									<real>-86.670753479003906</real>
 									<integer>0</integer>
 									<integer>2</integer>
 									<integer>0</integer>
@@ -2656,7 +2665,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>bubble</string>
+				<string>CCNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>_bubbleNode</string>
 				<key>memberVarAssignmentType</key>
@@ -2687,10 +2696,23 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.052816901355981827</real>
+							<real>5.3000001907348633</real>
 							<integer>1</integer>
 							<integer>2</integer>
-							<integer>2</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>contentSize</string>
+						<key>type</key>
+						<string>Size</string>
+						<key>value</key>
+						<array>
+							<real>0.0</real>
+							<real>0.0</real>
+							<integer>0</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -2700,8 +2722,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>1</real>
+							<real>0.0</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
@@ -2717,31 +2739,9 @@
 							<integer>0</integer>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>spriteFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>StevenHuangResources/bubble.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-						</array>
-					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>

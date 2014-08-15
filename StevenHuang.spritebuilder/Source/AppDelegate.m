@@ -61,8 +61,8 @@
 
 - (CCScene*) startScene
 {
-    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+//    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"noUnlocked"]==nil){
         [[NSUserDefaults standardUserDefaults] setObject:@[@"Trash Can"] forKey:@"noUnlocked"];
@@ -77,6 +77,9 @@
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"level"];
     }
 
+    [[NSUserDefaults standardUserDefaults] setInteger:9 forKey:@"level"];
+    
+      [[CCDirector sharedDirector]setDisplayStats:true];
     
     return [CCBReader loadAsScene:@"LevelSelect"];
     

@@ -509,8 +509,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -601,7 +599,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>12</real>
+							<real>16</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -611,7 +609,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -634,7 +632,7 @@
 						<key>value</key>
 						<array>
 							<real>100</real>
-							<real>20</real>
+							<real>40</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -653,7 +651,7 @@
 						<key>type</key>
 						<string>IntegerLabeled</string>
 						<key>value</key>
-						<integer>1</integer>
+						<integer>0</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -821,7 +819,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>12</real>
+							<real>16</real>
 							<integer>0</integer>
 						</array>
 					</dict>

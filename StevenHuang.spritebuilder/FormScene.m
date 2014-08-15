@@ -15,16 +15,21 @@
 }
 
 -(void)didLoadFromCCB{
+    [GameplayManager sharedInstance].submitted=false;
     _formNode.cascadeOpacityEnabled=true;
     [self.animationManager runAnimationsForSequenceNamed:@"Run"];
 }
 
+
 -(void)submit{
     NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:_nameField.string, @"name", _act1Field.string, @"act1",_act2Field.string,@"act2",_act3Field.string,@"act3",_act4Field.string, @"act4",_act5Field.string, @"act5", _ex1Field.string,@"ex1",_ex2Field.string,@"ex2", nil];
-    //[MGWU logEvent:@"levelcomplete" withParams:params];
+#ifdef __CC_PLATFORM_IOS
+    [MGWU logEvent:@"levelcomplete" withParams:params];
+#endif
     [GameplayManager sharedInstance].submitted=true;
     [self back];
 }
+
 
 -(void)back{
     [[OALSimpleAudio sharedInstance] playBg:@"Assets/click1.wav"];

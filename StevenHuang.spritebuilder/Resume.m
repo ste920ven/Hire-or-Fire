@@ -167,8 +167,7 @@
     self.position=ccp(.5,.5);
     
     //debuging info
-    _debug.string=[NSString stringWithFormat:@"correctness: %d, %d",self.correct,debugInt];
-    //_debug.string=@"";
+    //_debug.string=[NSString stringWithFormat:@"correctness: %d, %d",self.correct,debugInt];
     
 }
 

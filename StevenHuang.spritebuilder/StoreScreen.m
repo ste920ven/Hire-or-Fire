@@ -28,8 +28,8 @@
 //    [[NSUserDefaults standardUserDefaults] setObject:[[NSArray alloc]init] forKey:@"noSelected"];
 //    [[NSUserDefaults standardUserDefaults] setObject:[[NSArray alloc]init] forKey:@"noUnlocked"];
 //    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"noNumber"];
-    [[NSUserDefaults standardUserDefaults] setInteger:1000 forKey:@"money"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    [[NSUserDefaults standardUserDefaults] setInteger:1000 forKey:@"money"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
     noOptions=[[_scrollView contentNode] children];
     

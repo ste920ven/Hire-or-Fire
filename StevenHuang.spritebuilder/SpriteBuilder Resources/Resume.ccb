@@ -818,7 +818,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>180.37037658691406</real>
+							<real>170.37037658691406</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -1258,7 +1258,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>141.73611450195312</real>
+							<real>131.73611450195312</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -1478,7 +1478,7 @@
 						<key>value</key>
 						<array>
 							<real>5.8379631042480469</real>
-							<real>205.53240966796875</real>
+							<real>195.53240966796875</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1664,8 +1664,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1700,7 +1698,7 @@
 						<key>value</key>
 						<array>
 							<real>4.1018524169921875</real>
-							<real>97.305557250976562</real>
+							<real>87.305557250976562</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1944,7 +1942,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>Sample Text</string>
+							<string></string>
 							<false/>
 						</array>
 					</dict>
@@ -2127,7 +2125,7 @@
 						<key>value</key>
 						<array>
 							<real>0.50578707456588745</real>
-							<real>49.921302795410156</real>
+							<real>39.921302795410156</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>

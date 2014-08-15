@@ -69,7 +69,9 @@
             [self greyOut];
             _money.string=[NSString stringWithFormat:@"$%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"money"] ];
             NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: self.title, @"item", nil];
-            //[MGWU logEvent:@"itemBought" withParams:params];
+            #ifdef __CC_PLATFORM_IOS
+            [MGWU logEvent:@"itemBought" withParams:params];
+#endif
         }
     }else{
         int selectedAmountCount=[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"];

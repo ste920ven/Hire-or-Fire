@@ -51,6 +51,7 @@
     swipeEnabled=true;
     [GameplayManager sharedInstance].roundCounter=0;
     [GameplayManager sharedInstance].paused=false;
+    [GameplayManager sharedInstance].minigame=false;
     score=0;
     streak=2;
     rulesActive=true;
@@ -418,11 +419,16 @@
         [GameplayManager sharedInstance].paused=true;
         
         ScoreScreen* screen = (ScoreScreen*)[CCBReader load:@"ScoreScreen"];
-        if(correct>=10){
+        if(score>=goalScore){
             NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:[GameplayManager sharedInstance].level ], @"level", [NSNumber numberWithInt:score], @"score", nil];
-            //[MGWU logEvent:@"levelcomplete" withParams:params];
+#ifdef __CC_PLATFORM_IOS
+            [MGWU logEvent:@"levelcomplete" withParams:params];
+#endif
             [screen setScreenWithScore:score message:true total:_resumeNode.totalCount+_tmpResume.totalCount correct:correct];
-            [[NSUserDefaults standardUserDefaults] setInteger:[GameplayManager sharedInstance].level+1 forKey:@"level"];
+            int tmp=[[NSUserDefaults standardUserDefaults] integerForKey:@"level"];
+            if(tmp<=[GameplayManager sharedInstance].level){
+                [[NSUserDefaults standardUserDefaults] setInteger:[GameplayManager sharedInstance].level+1 forKey:@"level"];
+            }
         }else{
             [screen setScreenWithScore:score message:false total:_resumeNode.totalCount+_tmpResume.totalCount correct:correct];
         }

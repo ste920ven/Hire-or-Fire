@@ -2,478 +2,219 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Email text</key>
-	<array>
-		<string>WIN MORE THAN
-$100000 NOW</string>
-		<string>Hey,
-Are you free this...</string>
-		<string>IMPORTANT DO
-NOT DELETE TH...</string>
-		<string>IMMEDIATE ACTION
-REQUIRED Sign...</string>
-		<string>Are you interested
-in never working...</string>
-		<string>Congratulations
-You got spam!!!!</string>
-		<string>From: Boss
-To: You</string>
-		<string>REMINDER: Dentist
-appointment at...</string>
-		<string>Such email
-Much send</string>
-        <string>Hi,
-I am interested in...</string>
-        <string>Thank you for
-signing up with...</string>
-        <string>Poogle Mail has
-new features! Check...</string>
-        <string>I, a Nigerian
-Prince, would to..</string>
-        <string>Have you seen Tony's
-Sandwiches yet?</string>
-        <string>CLICK HERE FOR
-TONS OF VIRUSES...</string>
-        <string>PLEASE FILL OUT
-THIS FORM AND...</string>
-        <string>IMPORTANT INFO
-ABOUT THE NEXT...</string>
-        <string>Never miss an
-opportunity with...</string>
-        <string>stuff</string>
-        <string>(no subject)</string>
-        <string>Check out this
-crazy video. Unbelie...</string>
-        <string>ATTENTION: The
-squash team is...</string>
-        <string>Like us on our
-Facebook page...</string>
-        <string>Your free trial is
-almost over. Upgra...</string>
-        <string>60% Off Only
-This Weekend Until...</string>
-        <string>URGENT URGENT
-URGENT</string>
-        <string>Dude, I really need
-that thing I sent...</string>
-        <string>It was really great
-to see you yesterday...</string>
-        <string>(no subject)</string>
-        <string>Resetting Password:
-Here is your new pass...</string>
-        <string>Looking to buy
-cats and cups...</string>
-	</array>
 	<key>Levels</key>
 	<array>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>0</integer>
 			</array>
+			<key>Score</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>1</integer>
 				<integer>2</integer>
 			</array>
+			<key>Score</key>
+			<integer>500</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>3</integer>
 				<integer>4</integer>
 			</array>
+			<key>Score</key>
+			<integer>500</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>6</integer>
 				<integer>5</integer>
 			</array>
+			<key>Score</key>
+			<integer>500</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>7</integer>
 				<integer>8</integer>
 			</array>
+			<key>Score</key>
+			<integer>500</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>0</integer>
 				<integer>7</integer>
 				<integer>205</integer>
 			</array>
+			<key>Score</key>
+			<integer>500</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>2</integer>
 				<integer>4</integer>
 				<integer>107</integer>
 			</array>
+			<key>Score</key>
+			<integer>500</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>6</integer>
 				<integer>1</integer>
 				<integer>0</integer>
 			</array>
+			<key>Score</key>
+			<integer>500</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>3</integer>
 				<integer>201</integer>
 				<integer>5</integer>
 			</array>
+			<key>Score</key>
+			<integer>500</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>6</integer>
 				<integer>7</integer>
 				<integer>101</integer>
 			</array>
+			<key>Score</key>
+			<integer>500</integer>
 		</dict>
 		<dict>
-			<key>Score</key>
-			<integer>1000</integer>
 			<key>Rules</key>
 			<array>
 				<integer>0</integer>
 				<integer>6</integer>
 				<integer>4</integer>
 			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>0</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>3</integer>
+				<integer>4</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>6</integer>
+				<integer>5</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>7</integer>
+				<integer>8</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>0</integer>
+				<integer>7</integer>
+				<integer>205</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>2</integer>
+				<integer>4</integer>
+				<integer>107</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>6</integer>
+				<integer>1</integer>
+				<integer>0</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>3</integer>
+				<integer>201</integer>
+				<integer>5</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>101</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
+		</dict>
+		<dict>
+			<key>Rules</key>
+			<array>
+				<integer>0</integer>
+				<integer>6</integer>
+				<integer>4</integer>
+			</array>
+			<key>Score</key>
+			<integer>1000</integer>
 		</dict>
 	</array>
 	<key>ResumeInfo</key>
 	<dict>
-		<key>Activities</key>
-		<array>
-			<string>cleaning</string>
-			<string>computer programming</string>
-			<string>cooking</string>
-			<string>coloring</string>
-			<string>cosplaying</string>
-			<string>creative writing</string>
-			<string>crocheting</string>
-			<string>cryptography</string>
-			<string>digital arts</string>
-			<string>drama</string>
-			<string>drawing</string>
-			<string>drinking coffee</string>
-			<string>eating</string>
-			<string>embroidery</string>
-			<string>gaming</string>
-			<string>gambling</string>
-			<string>genealogy</string>
-			<string>homebrewing</string>
-			<string>jewelry making</string>
-			<string>juggling</string>
-			<string>knitting</string>
-			<string>lacemaking</string>
-			<string>lapidary</string>
-			<string>leather crafting</string>
-			<string>lego building</string>
-			<string>magic</string>
-			<string>origami</string>
-			<string>painting</string>
-			<string>ping pong</string>
-			<string>pottery</string>
-			<string>puzzles</string>
-			<string>quilting</string>
-			<string>rc cars</string>
-			<string>reading</string>
-			<string>scrapbooking</string>
-			<string>sculpting</string>
-			<string>sewing</string>
-			<string>singing</string>
-			<string>sketching</string>
-			<string>soapmaking</string>
-			<string>stand-up comedy</string>
-			<string>sudoku</string>
-			<string>taxidermy</string>
-			<string>watching movies</string>
-			<string>web surfing</string>
-			<string>wood carving</string>
-			<string>woodworking</string>
-			<string>writing</string>
-			<string>yoga</string>
-			<string>yo-yoing</string>
-			<string>air sports</string>
-			<string>archery</string>
-			<string>astronomy</string>
-			<string>backpacking</string>
-			<string>beekeeping</string>
-			<string>board sports</string>
-			<string>bodybuilding</string>
-			<string>cycling</string>
-			<string>dowsing</string>
-			<string>driving</string>
-			<string>fishing</string>
-			<string>flying</string>
-			<string>foraging</string>
-			<string>gardening</string>
-			<string>geocaching</string>
-			<string>ghost hunting</string>
-			<string>graffiti</string>
-			<string>hooping</string>
-			<string>inline skating</string>
-			<string>kayaking</string>
-			<string>kiteflying</string>
-			<string>letterboxing</string>
-			<string>motor sports</string>
-			<string>mountaineering</string>
-			<string>mushroom hunting</string>
-			<string>net ball</string>
-			<string>nordic skating</string>
-			<string>parkour</string>
-			<string>photography</string>
-			<string>polo</string>
-			<string>rafting</string>
-			<string>rappelling</string>
-			<string>rock climbing</string>
-			<string>roller skating</string>
-			<string>rugby</string>
-			<string>running</string>
-			<string>sailing</string>
-			<string>sand castle building</string>
-			<string>scuba diving</string>
-			<string>rowing</string>
-			<string>shopping</string>
-			<string>skating</string>
-			<string>skiing</string>
-			<string>skydiving</string>
-			<string>slacklining</string>
-			<string>snowboarding</string>
-			<string>taekwondo</string>
-			<string>tai chi</string>
-			<string>urban exploration</string>
-			<string>vehicle restoration</string>
-			<string>water sports</string>
-			<string>antiquing</string>
-			<string>art collecting</string>
-			<string>book collecting</string>
-			<string>card collecting</string>
-			<string>coin collecting</string>
-			<string>modelling</string>
-			<string>record collecting</string>
-			<string>stamp collecting</string>
-			<string>stone collecting</string>
-			<string>vintage books</string>
-			<string>vintage cars</string>
-			<string>vintage clothing</string>
-			<string>antiquities</string>
-			<string>fossil hunting</string>
-			<string>insect collecting</string>
-			<string>metal detecting</string>
-			<string>mineral collecting</string>
-			<string>rock stacking</string>
-			<string>seaglass collecting</string>
-			<string>seashell collecting</string>
-			<string>animal showing</string>
-			<string>badminton</string>
-			<string>baton twirling</string>
-			<string>billiards</string>
-			<string>bowling</string>
-			<string>bridge</string>
-			<string>cheerleading</string>
-			<string>chess</string>
-			<string>cubing</string>
-			<string>curling</string>
-			<string>dancing</string>
-			<string>darts</string>
-			<string>debate</string>
-			<string>fencing</string>
-			<string>gymnastics</string>
-			<string>marbles</string>
-			<string>poker</string>
-			<string>video games</string>
-			<string>volleyball</string>
-			<string>airsoft</string>
-			<string>baseball</string>
-			<string>boxing</string>
-			<string>basketball</string>
-			<string>cricket</string>
-			<string>cycling</string>
-			<string>disc golf</string>
-			<string>equestrianism</string>
-			<string>field hockey</string>
-			<string>figure skating</string>
-			<string>fishing</string>
-			<string>footbag</string>
-			<string>football</string>
-			<string>golfing</string>
-			<string>handball</string>
-			<string>ice hockey</string>
-			<string>jugger</string>
-			<string>judo</string>
-			<string>jukskei</string>
-			<string>kart racing</string>
-			<string>lawn tennis</string>
-			<string>paintball</string>
-			<string>pigeon racing</string>
-			<string>racquetball</string>
-			<string>shooting sport</string>
-			<string>skateboarding</string>
-			<string>slot car racing</string>
-			<string>speed skating</string>
-			<string>squash</string>
-			<string>surfing</string>
-			<string>swimming</string>
-			<string>table tennis</string>
-			<string>tennis</string>
-			<string>volleyball</string>
-			<string>audiophilia</string>
-			<string>fishkeeping</string>
-			<string>microscopy</string>
-			<string>shortwave listening</string>
-			<string>aircraft spotting</string>
-			<string>astrology</string>
-			<string>auto racing</string>
-			<string>birdwatching</string>
-			<string>bus spotting</string>
-			<string>gongoozling</string>
-			<string>herping</string>
-			<string>meteorology</string>
-			<string>people watching</string>
-			<string>trainspotting</string>
-			<string>traveling</string>
-			<string>cats</string>
-			<string>dogs</string>
-			<string>computers</string>
-		</array>
-		<key>SchoolLevel</key>
-		<array>
-			<string>Grade School</string>
-			<string>Middle School</string>
-			<string>High School</string>
-			<string>University</string>
-		</array>
-		<key>Schools</key>
-		<array>
-			<string>Barnet</string>
-			<string>Riverbank</string>
-			<string>Westbank</string>
-			<string>Easton</string>
-			<string>Ashton</string>
-			<string>Arrowsmith</string>
-			<string>Crosswell</string>
-			<string>Northvale</string>
-			<string>Northdale</string>
-			<string>Melrose</string>
-			<string>Epingwood</string>
-			<string>Riverdell</string>
-			<string>Cedarwood</string>
-			<string>Colby</string>
-		</array>
-		<key>Locations</key>
-		<array>
-			<string>Starship Enterprise</string>
-			<string>Tony&apos;s Sandwiches</string>
-			<string>Pear Inc</string>
-			<string>The General Store</string>
-			<string>Rural Outfitters</string>
-			<string>Mom and Pop Shop</string>
-			<string>Poogle Inc</string>
-			<string>Mercy Hospital</string>
-			<string>Latin Dance School</string>
-			<string>White House</string>
-			<string>Bob&apos;s Store</string>
-		</array>
-		<key>Experiences</key>
-		<dict>
-			<key>Stealth</key>
-			<array>
-				<string>Stalker</string>
-				<string>Hitman</string>
-				<string>Ninja</string>
-				<string>Sniper</string>
-				<string>Ghost Imitator</string>
-			</array>
-			<key>Entertainment</key>
-			<array>
-				<string>Singer</string>
-				<string>Dancer</string>
-				<string>Clown</string>
-				<string>Bass Player</string>
-			</array>
-			<key>Nature</key>
-			<array>
-				<string>Bird Watcher</string>
-				<string>Hippie</string>
-				<string>Farmer</string>
-				<string>Zoo Keeper</string>
-				<string>Mountain Man</string>
-				<string>Penguin Researcher</string>
-			</array>
-			<key>Business</key>
-			<array>
-				<string>Foil Seller</string>
-				<string>Con Artist</string>
-				<string>Secretary</string>
-				<string>Manager</string>
-				<string>Boss</string>
-				<string>CEO</string>
-				<string>Accountant</string>
-				<string>Trader</string>
-				<string>Stock Broker</string>
-				<string>Banker</string>
-			</array>
-			<key>Medicine</key>
-			<array>
-				<string>Doctor</string>
-				<string>Nurse</string>
-				<string>Veternarian</string>
-				<string>Surgeon</string>
-				<string>Dentist</string>
-			</array>
-			<key>Education</key>
-			<array>
-				<string>Teacher</string>
-				<string>Principal</string>
-				<string>Teacher Assisant</string>
-				<string>Tutor</string>
-				<string>Director</string>
-			</array>
-			<key>Sanatation</key>
-			<array>
-				<string>Janitor</string>
-				<string>Garbage Man</string>
-				<string>Maid</string>
-			</array>
-		</dict>
-		<key>Address2</key>
-		<array>
-			<string>St</string>
-			<string>Ave</string>
-			<string>Rd</string>
-		</array>
 		<key>Address1</key>
 		<array>
 			<string>Acorn</string>
@@ -970,7 +711,391 @@ cats and cups...</string>
 			<string>Crysta</string>
 			<string>Beryl</string>
 		</array>
+		<key>Experiences</key>
+		<dict>
+			<key>Transportation</key>
+			<array>
+				<string>Bus Driver</string>
+				<string>Taxi Driver</string>
+				<string>Piggy Backer</string>
+				<string>Cyclist</string>
+				<string>Pilot</string>
+				<string>Captain</string>
+			</array>
+			<key>Nature</key>
+			<array>
+				<string>Hunter</string>
+				<string>Bird Watcher</string>
+				<string>Hippie</string>
+				<string>Farmer</string>
+				<string>Zoo Keeper</string>
+				<string>Mountain Man</string>
+				<string>Penguin Researcher</string>
+				<string>Fisherman</string>
+			</array>
+			<key>Medicine</key>
+			<array>
+				<string>Doctor</string>
+				<string>Nurse</string>
+				<string>Veternarian</string>
+				<string>Surgeon</string>
+				<string>Dentist</string>
+			</array>
+			<key>Education</key>
+			<array>
+				<string>Teacher</string>
+				<string>Principal</string>
+				<string>Teacher Assisant</string>
+				<string>Tutor</string>
+				<string>Director</string>
+			</array>
+			<key>Sanatation</key>
+			<array>
+				<string>Janitor</string>
+				<string>Garbage Man</string>
+				<string>Maid</string>
+			</array>
+			<key>Business</key>
+			<array>
+				<string>Foil Seller</string>
+				<string>Con Artist</string>
+				<string>Secretary</string>
+				<string>Manager</string>
+				<string>Boss</string>
+				<string>CEO</string>
+				<string>Accountant</string>
+				<string>Trader</string>
+				<string>Stock Broker</string>
+				<string>Banker</string>
+			</array>
+			<key>Stealth</key>
+			<array>
+				<string>Stalker</string>
+				<string>Hitman</string>
+				<string>Ninja</string>
+				<string>Sniper</string>
+				<string>Ghost Imitator</string>
+			</array>
+			<key>Entertainment</key>
+			<array>
+				<string>Singer</string>
+				<string>Dancer</string>
+				<string>Clown</string>
+				<string>Bass Player</string>
+			</array>
+		</dict>
+		<key>Address2</key>
+		<array>
+			<string>St</string>
+			<string>Ave</string>
+			<string>Rd</string>
+		</array>
+		<key>SchoolLevel</key>
+		<array>
+			<string>Grade School</string>
+			<string>Middle School</string>
+			<string>High School</string>
+			<string>University</string>
+		</array>
+		<key>Schools</key>
+		<array>
+			<string>Barnet</string>
+			<string>Riverbank</string>
+			<string>Westbank</string>
+			<string>Easton</string>
+			<string>Ashton</string>
+			<string>Arrowsmith</string>
+			<string>Crosswell</string>
+			<string>Northvale</string>
+			<string>Northdale</string>
+			<string>Melrose</string>
+			<string>Epingwood</string>
+			<string>Riverdell</string>
+			<string>Cedarwood</string>
+			<string>Colby</string>
+		</array>
+		<key>Activities</key>
+		<array>
+			<string>cleaning</string>
+			<string>computer programming</string>
+			<string>cooking</string>
+			<string>coloring</string>
+			<string>cosplaying</string>
+			<string>creative writing</string>
+			<string>crocheting</string>
+			<string>cryptography</string>
+			<string>digital arts</string>
+			<string>drama</string>
+			<string>drawing</string>
+			<string>drinking coffee</string>
+			<string>eating</string>
+			<string>embroidery</string>
+			<string>gaming</string>
+			<string>gambling</string>
+			<string>genealogy</string>
+			<string>homebrewing</string>
+			<string>jewelry making</string>
+			<string>juggling</string>
+			<string>knitting</string>
+			<string>lacemaking</string>
+			<string>lapidary</string>
+			<string>leather crafting</string>
+			<string>lego building</string>
+			<string>magic</string>
+			<string>origami</string>
+			<string>painting</string>
+			<string>ping pong</string>
+			<string>pottery</string>
+			<string>puzzles</string>
+			<string>quilting</string>
+			<string>rc cars</string>
+			<string>reading</string>
+			<string>scrapbooking</string>
+			<string>sculpting</string>
+			<string>sewing</string>
+			<string>singing</string>
+			<string>sketching</string>
+			<string>soapmaking</string>
+			<string>stand-up comedy</string>
+			<string>sudoku</string>
+			<string>taxidermy</string>
+			<string>watching movies</string>
+			<string>web surfing</string>
+			<string>wood carving</string>
+			<string>woodworking</string>
+			<string>writing</string>
+			<string>yoga</string>
+			<string>yo-yoing</string>
+			<string>air sports</string>
+			<string>archery</string>
+			<string>astronomy</string>
+			<string>backpacking</string>
+			<string>beekeeping</string>
+			<string>board sports</string>
+			<string>bodybuilding</string>
+			<string>cycling</string>
+			<string>dowsing</string>
+			<string>driving</string>
+			<string>fishing</string>
+			<string>flying</string>
+			<string>foraging</string>
+			<string>gardening</string>
+			<string>geocaching</string>
+			<string>ghost hunting</string>
+			<string>graffiti</string>
+			<string>hooping</string>
+			<string>inline skating</string>
+			<string>kayaking</string>
+			<string>kiteflying</string>
+			<string>letterboxing</string>
+			<string>motor sports</string>
+			<string>mountaineering</string>
+			<string>mushroom hunting</string>
+			<string>net ball</string>
+			<string>nordic skating</string>
+			<string>parkour</string>
+			<string>photography</string>
+			<string>polo</string>
+			<string>rafting</string>
+			<string>rappelling</string>
+			<string>rock climbing</string>
+			<string>roller skating</string>
+			<string>rugby</string>
+			<string>running</string>
+			<string>sailing</string>
+			<string>sand castle building</string>
+			<string>scuba diving</string>
+			<string>rowing</string>
+			<string>shopping</string>
+			<string>skating</string>
+			<string>skiing</string>
+			<string>skydiving</string>
+			<string>slacklining</string>
+			<string>snowboarding</string>
+			<string>taekwondo</string>
+			<string>tai chi</string>
+			<string>urban exploration</string>
+			<string>vehicle restoration</string>
+			<string>water sports</string>
+			<string>antiquing</string>
+			<string>art collecting</string>
+			<string>book collecting</string>
+			<string>card collecting</string>
+			<string>coin collecting</string>
+			<string>modelling</string>
+			<string>record collecting</string>
+			<string>stamp collecting</string>
+			<string>stone collecting</string>
+			<string>vintage books</string>
+			<string>vintage cars</string>
+			<string>vintage clothing</string>
+			<string>antiquities</string>
+			<string>fossil hunting</string>
+			<string>insect collecting</string>
+			<string>metal detecting</string>
+			<string>mineral collecting</string>
+			<string>rock stacking</string>
+			<string>seaglass collecting</string>
+			<string>seashell collecting</string>
+			<string>animal showing</string>
+			<string>badminton</string>
+			<string>baton twirling</string>
+			<string>billiards</string>
+			<string>bowling</string>
+			<string>bridge</string>
+			<string>cheerleading</string>
+			<string>chess</string>
+			<string>cubing</string>
+			<string>curling</string>
+			<string>dancing</string>
+			<string>darts</string>
+			<string>debate</string>
+			<string>fencing</string>
+			<string>gymnastics</string>
+			<string>marbles</string>
+			<string>poker</string>
+			<string>video games</string>
+			<string>volleyball</string>
+			<string>airsoft</string>
+			<string>baseball</string>
+			<string>boxing</string>
+			<string>basketball</string>
+			<string>cricket</string>
+			<string>cycling</string>
+			<string>disc golf</string>
+			<string>equestrianism</string>
+			<string>field hockey</string>
+			<string>figure skating</string>
+			<string>fishing</string>
+			<string>footbag</string>
+			<string>football</string>
+			<string>golfing</string>
+			<string>handball</string>
+			<string>ice hockey</string>
+			<string>jugger</string>
+			<string>judo</string>
+			<string>jukskei</string>
+			<string>kart racing</string>
+			<string>lawn tennis</string>
+			<string>paintball</string>
+			<string>pigeon racing</string>
+			<string>racquetball</string>
+			<string>shooting sport</string>
+			<string>skateboarding</string>
+			<string>slot car racing</string>
+			<string>speed skating</string>
+			<string>squash</string>
+			<string>surfing</string>
+			<string>swimming</string>
+			<string>table tennis</string>
+			<string>tennis</string>
+			<string>volleyball</string>
+			<string>audiophilia</string>
+			<string>fishkeeping</string>
+			<string>microscopy</string>
+			<string>shortwave listening</string>
+			<string>aircraft spotting</string>
+			<string>astrology</string>
+			<string>auto racing</string>
+			<string>birdwatching</string>
+			<string>bus spotting</string>
+			<string>gongoozling</string>
+			<string>herping</string>
+			<string>meteorology</string>
+			<string>people watching</string>
+			<string>trainspotting</string>
+			<string>traveling</string>
+			<string>cats</string>
+			<string>dogs</string>
+			<string>computers</string>
+		</array>
+		<key>Locations</key>
+		<array>
+			<string>Burgeres&apos; Burgerhouse</string>
+			<string>Death Star</string>
+			<string>McArnolds</string>
+			<string>Prestige International</string>
+			<string>Starship Enterprise</string>
+			<string>Burger Queen</string>
+			<string>City Fitness</string>
+			<string>For the Feds</string>
+			<string>Suit Headquarters</string>
+			<string>Tony&apos;s Sandwiches</string>
+			<string>Pear Inc</string>
+			<string>The Olympic Team</string>
+			<string>The General Store</string>
+			<string>Cabbage Corp</string>
+			<string>Rural Outfitters</string>
+			<string>Mom and Pop Shop</string>
+			<string>Poogle Inc</string>
+			<string>Mercy Hospital</string>
+			<string>Latin Dance School</string>
+			<string>White House</string>
+			<string>Bob&apos;s Store</string>
+		</array>
 	</dict>
+	<key>Email text</key>
+	<array>
+		<string>WIN MORE THAN
+$100000 NOW</string>
+		<string>Hey,
+Are you free this...</string>
+		<string>IMPORTANT DO
+NOT DELETE TH...</string>
+		<string>IMMEDIATE ACTION
+REQUIRED Sign...</string>
+		<string>Are you interested
+in never working...</string>
+		<string>Congratulations
+You got spam!!!!</string>
+		<string>From: Boss
+To: You</string>
+		<string>REMINDER: Dentist
+appointment at...</string>
+		<string>Such email
+Much send</string>
+		<string>Hi,
+I am interested in...</string>
+		<string>Thank you for
+signing up with...</string>
+		<string>Poogle Mail has
+new features! Check...</string>
+		<string>I, a Nigerian
+Prince, would to..</string>
+		<string>Have you seen Tony&apos;s
+Sandwiches yet?</string>
+		<string>CLICK HERE FOR
+TONS OF VIRUSES...</string>
+		<string>PLEASE FILL OUT
+THIS FORM AND...</string>
+		<string>IMPORTANT INFO
+ABOUT THE NEXT...</string>
+		<string>Never miss an
+opportunity with...</string>
+		<string>stuff</string>
+		<string>(no subject)</string>
+		<string>Check out this
+crazy video. Unbelie...</string>
+		<string>ATTENTION: The
+squash team is...</string>
+		<string>Like us on our
+Facebook page...</string>
+		<string>Your free trial is
+almost over. Upgra...</string>
+		<string>60% Off Only
+This Weekend Until...</string>
+		<string>URGENT URGENT
+URGENT</string>
+		<string>Dude, I really need
+that thing I sent...</string>
+		<string>It was really great
+to see you yesterday...</string>
+		<string>(no subject)</string>
+		<string>Resetting Password:
+Here is your new pass...</string>
+		<string>Looking to buy
+cats and cups...</string>
+	</array>
 	<key>Training_Wheels</key>
 	<array>
 		<string>Manufactorer</string>
