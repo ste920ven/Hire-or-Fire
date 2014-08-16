@@ -77,6 +77,8 @@
     _popoverNode.zOrder=INT_MAX;
     
     [self setupNoOptions:[[NSUserDefaults standardUserDefaults] integerForKey:@"noNumber"]];
+    if([GameplayManager sharedInstance].level==0)
+        roundTime=15.f;
     roundTime=60.f;
     _clockLabel.string=[NSString stringWithFormat:@"%i",(int)roundTime];
     

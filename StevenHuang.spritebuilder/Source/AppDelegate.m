@@ -79,8 +79,6 @@
 
     [[NSUserDefaults standardUserDefaults] setInteger:9 forKey:@"level"];
     
-      [[CCDirector sharedDirector]setDisplayStats:true];
-    
     return [CCBReader loadAsScene:@"LevelSelect"];
     
 }
