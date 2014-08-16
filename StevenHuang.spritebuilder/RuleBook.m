@@ -79,6 +79,7 @@
     }
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[translation]];
     [self runAction:sequence];
+    self.currPage=RULES;
 }
 
 -(void)createRulesWithLevel:(int)level resumeData:(NSDictionary*)data{
